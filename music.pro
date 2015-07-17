@@ -26,3 +26,6 @@ FORMS    += ui/mainwindow.ui
 INCLUDEPATH += src/local
 INCLUDEPATH += src/online
 INCLUDEPATH += src
+
+RESOURCES += \
+    ui/ui_rescource.qrc
