@@ -109,6 +109,14 @@ void MainWindow::on_AddLocalMusicBtn_clicked()
     Player list;
     list.addToList(url);
     list.playNewMusic(0);
+    //hdj:test
+    qDebug() << "WTF";
+    OffMusic omus(url);
+    qDebug() << omus.GetAlbum();
+    qDebug() << omus.GetArtist();
+    qDebug() << omus.GetDuration();
+    qDebug() << omus.GetMp3Url();
+    qDebug() << omus.GetName();
 }
 
 void MainWindow::on_playMusicBtn_clicked()
