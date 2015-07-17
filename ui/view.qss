@@ -1,0 +1,130 @@
+/*搜索栏*/
+QLineEdit#search
+{
+    background-color:#8f6060;
+    border-radius:10px;
+    color:white;
+}
+
+/*关闭按钮*/
+
+QPushButton#closeAppBtn:!hover
+{
+    border-radius: 8px;
+    background-color:black;
+    outline: 10px;
+}
+
+QPushButton#closeAppBtn:hover
+{
+    border-image: url(:/icon/images/closeAppBtn_hover.png);
+    border-radius: 8px;
+    background-color:black;
+    outline: 10px;
+}
+
+QPushButton#closeAppBtn:pressed
+{
+    border-radius: 8px;
+    background-color:black;
+    outline: 10px;
+}
+
+/*最小化按钮*/
+
+QPushButton#minimizeAppBtn:!hover
+{
+    border-radius: 8px;
+    background-color:green;
+    outline: 5px;
+}
+
+QPushButton#minimizeAppBtn:hover
+{
+    border-image: url(:/icon/images/minimizeAppBtn_hover.png);
+    border-radius: 8px;
+    background-color:green;
+    outline: 10px;
+}
+
+QPushButton#minimizeAppBtn:pressed
+{
+    border-radius: 8px;
+    background-color:green;
+    outline: 10px;
+}
+
+/*前一首按钮*/
+QPushButton#lastMusicBtn:!hover
+{
+    border-image: url(:/icon/images/lastMusicBtn.png);
+    background-color:white;
+    border-radius: 20px;
+    outline: 10px;
+}
+
+QPushButton#lastMusicBtn:hover
+{
+    background-color:white;
+    border-radius: 20px;
+    outline: 10px;
+}
+
+QPushButton#lastMusicBtn:pressed
+{
+    background-color:white;
+    border-radius: 20px;
+    outline: 10px;
+}
+
+/*播放按钮*/
+
+QPushButton#playMusicBtn:!hover
+{
+    border-image: url(:/icon/images/playMusicBtn.png);
+    background-color:white;
+    border-radius: 30px;
+    outline: 10px;
+}
+
+QPushButton#playMusicBtn:hover
+{
+    background-color:white;
+    border-radius: 30px;
+    outline: 10px;
+}
+
+QPushButton#playMusicBtn:pressed
+{
+    background-color:white;
+    border-radius: 30px;
+    outline: 10px;
+}
+
+/*后一首按钮*/
+QPushButton#nextMusicBtn:!hover
+{
+    border-image: url(:/icon/images/nextMusicBtn.png);
+    background-color:white;
+    border-radius: 20px;
+    outline: 10px;
+}
+
+QPushButton#nextMusicBtn:hover
+{
+    background-color:white;
+    border-radius: 20px;
+    outline: 10px;
+}
+
+QPushButton#nextMusicBtn:pressed
+{
+    background-color:white;
+    border-radius: 20px;
+    outline: 10px;
+}
+
+QLabel#title
+{
+    color:white;
+}
