@@ -29,16 +29,24 @@ class OnMusic:public Music
 {
 private:
     bool isStarred;
-    QString artist;
-    QString album;
     QUrl picUrl;
 public:
     OnMusic(){}
-    OnMusic(bool _is, QString _name,QString _artist, QString _album, qint64 _duration, QUrl _mp3Url, QUrl _picUrl):Music(_name,_duration,_mp3Url),isStarred(_is),artist(_artist),album(_album),picUrl(_picUrl){}
-    OnMusic(const OnMusic &rhs):Music(rhs.GetName(),rhs.GetDuration(),rhs.GetMp3Url()),isStarred(rhs.IsStarred()),artist(rhs.GetArtist()),album(rhs.GetAlbum()),picUrl(rhs.GetPicUrl()){}
+    OnMusic(bool _is, QString _name,QString _artist, QString _album, qint64 _duration, QUrl _mp3Url, QUrl _picUrl):
+        Music(_name,_duration,_mp3Url,_artist,_album),
+        isStarred(_is),
+        picUrl(_picUrl)
+        {
+        }
+    OnMusic(const OnMusic &rhs):
+        Music(rhs.GetName(),rhs.GetDuration(),rhs.GetMp3Url(),rhs.GetArtist(),rhs.GetAlbum()),
+        isStarred(rhs.IsStarred()),
+        artist(rhs.GetArtist()),
+        album(rhs.GetAlbum()),
+        picUrl(rhs.GetPicUrl())
+    {
+    }
     bool IsStarred() const{return isStarred;}
-    QString GetArtist() const{return artist;}
-    QString GetAlbum() const{return album;}
     QUrl GetPicUrl() const{return picUrl;}
 };
 
