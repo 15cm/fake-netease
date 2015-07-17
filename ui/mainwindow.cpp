@@ -6,6 +6,8 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QUrl>
+#include <OffMusic.h>
+#include <player.h>
 
 void MainWindow::initial()
 {
@@ -104,7 +106,9 @@ void MainWindow::on_AddLocalMusicBtn_clicked()
 {
     QUrl url;
     url = QFileDialog::getOpenFileUrl(this, tr("Open Music File"), tr("."), tr("mp3 music files(*.mp3)"));
-
+    Player list;
+    list.addToList(url);
+    list.playNewMusic(0);
 }
 
 void MainWindow::on_playMusicBtn_clicked()

@@ -1,6 +1,8 @@
 #ifndef OFFMUSIC
 #define OFFMUSIC
 
+#include <music.h>
+
 class OffMusic : public Music
 {
 public:
@@ -10,7 +12,6 @@ public:
 
 OffMusic::OffMusic(QUrl url)
 {
-
 }
 
 #endif
