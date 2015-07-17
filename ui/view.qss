@@ -1,4 +1,10 @@
+/*GG Music*/
+QLabel#title
+{
+    color:white;
+}
 
+/*搜索栏*/
 QLineEdit#search
 {
     background-color:#8f6060;
@@ -124,7 +130,22 @@ QPushButton#nextMusicBtn:pressed
     outline: 10px;
 }
 
-QLabel#title
+/*添加本地音乐按钮*/
+QPushButton#addLocalMusicBtn:!hover
 {
-    color:white;
+    border-image: url(:/icon/images/addLocalMusicBtn.png);
+    outline: 10px;
 }
+
+QPushButton#addLocalMusicBtn:hover
+{
+    border-image: url(:/icon/images/addLocalMusicBtn_hover.png);
+    outline: 10px;
+}
+
+QPushButton#addLocalMusicBtn:pressed
+{
+    border-image: url(:/icon/images/addLocalMusicBtn_pressed.png);
+    outline: 10px;
+}
+

@@ -102,13 +102,13 @@ void MainWindow::paintEvent(QPaintEvent *)
     painter.setBrush(Qt::NoBrush);
 }
 
-void MainWindow::on_AddLocalMusicBtn_clicked()
+void MainWindow::on_addLocalMusicBtn_clicked()
 {
-    QUrl url;
+    /*QUrl url;
     url = QFileDialog::getOpenFileUrl(this, tr("Open Music File"), tr("."), tr("mp3 music files(*.mp3)"));
     Player list;
     list.addToList(url);
-    list.playNewMusic(0);
+    list.playNewMusic(0);*/
 }
 
 void MainWindow::on_playMusicBtn_clicked()

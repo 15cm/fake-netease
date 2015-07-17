@@ -162,17 +162,17 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="AddLocalMusicBtn">
+   <widget class="QPushButton" name="addLocalMusicBtn">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>570</y>
-      <width>80</width>
-      <height>20</height>
+      <x>530</x>
+      <y>47</y>
+      <width>21</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Add</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="musicMessage">
