@@ -25,3 +25,4 @@ FORMS    += ui/mainwindow.ui
 
 INCLUDEPATH += src/local
 INCLUDEPATH += src/online
+INCLUDEPATH += src
