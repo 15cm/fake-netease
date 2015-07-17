@@ -1,7 +1,7 @@
 #ifndef OFFMUSIC
 #define OFFMUSIC
 
-#include <music.h>
+#include "music.h"
 
 class OffMusic : public Music
 {
