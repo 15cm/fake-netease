@@ -7,6 +7,7 @@
 
 class Player
 {
+
 private:
     QMediaPlayer *MediaPlayer;
     QMediaPlaylist *MediaPlayerlist;
