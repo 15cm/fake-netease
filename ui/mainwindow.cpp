@@ -109,6 +109,7 @@ void MainWindow::on_addLocalMusicBtn_clicked()
     Player list;
     list.addToList(url);
     list.playNewMusic(0);*/
+
 }
 
 void MainWindow::on_playMusicBtn_clicked()
