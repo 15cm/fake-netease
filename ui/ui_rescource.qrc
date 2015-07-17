@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/icon">
         <file>images/closeAppBtn_hover.png</file>
-        <file>images/closeAppBtn_pressed.png</file>
         <file>images/format.png</file>
         <file>images/lastMusicBtn.png</file>
         <file>images/minimizeAppBtn_hover.png</file>
@@ -9,5 +8,8 @@
         <file>images/playMusicBtn.png</file>
         <file>images/search.png</file>
         <file>view.qss</file>
+        <file>images/addLocalMusicBtn_pressed.png</file>
+        <file>images/addLocalMusicBtn.png</file>
+        <file>images/addLocalMusicBtn_hover.png</file>
     </qresource>
 </RCC>

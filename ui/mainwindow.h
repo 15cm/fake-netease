@@ -24,7 +24,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_AddLocalMusicBtn_clicked();
+    void on_addLocalMusicBtn_clicked();
 
     void on_playMusicBtn_clicked();
 
