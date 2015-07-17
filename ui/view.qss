@@ -1,4 +1,4 @@
-/*搜索栏*/
+
 QLineEdit#search
 {
     background-color:#8f6060;
