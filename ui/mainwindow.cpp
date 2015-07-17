@@ -6,8 +6,8 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QUrl>
-#include <OffMusic.h>
-#include <player.h>
+#include "OffMusic.h"
+#include "player.h"
 
 void MainWindow::initial()
 {
