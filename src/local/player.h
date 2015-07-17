@@ -5,14 +5,14 @@
 #include <QMediaPlayer>
 #include <QUrl>
 
-class Player : public QObject
+class Player
 {
 private:
     QMediaPlayer *MediaPlayer;
     QMediaPlaylist *MediaPlayerlist;
 public:
     Player();
-    ~Player(){};
+    ~Player(){}
     void initilizeSong();
     void addToList(QUrl url);
     void playNewMusic(int index);
@@ -21,8 +21,8 @@ public:
 
 Player::Player()
 {
-    MediaPlayerlist = new QMediaPlaylist(this);
-    MediaPlayer = new QMediaPlayer(this);
+    MediaPlayerlist = new QMediaPlaylist();
+    MediaPlayer = new QMediaPlayer();
     MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Loop);
     MediaPlayer->setPlaylist(MediaPlayerlist);
 }
