@@ -18,7 +18,8 @@ SOURCES += ui/main.cpp\
 
 HEADERS  += ui/mainwindow.h\
             src/local/player.h\
-            src/online/network.h
+            src/online/network.h\
+            src/music.h
 
 FORMS    += ui/mainwindow.ui
 
