@@ -14,7 +14,7 @@ public:
     Player();
     ~Player();
     void initilizeSong();
-    void addToList(Qurl url);
+    void addToList(QUrl url);
     void playNewMusic(int index);
     void retreat(int index);
 };
@@ -27,7 +27,7 @@ Player::Player()
     MediaPlayer->setPlaylist(MediaPlayerlist);
 }
 
-void Player::addToList(Qurl url)
+void Player::addToList(QUrl url)
 {
     MediaPlayerlist->addMedia(url);
 }

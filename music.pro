@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT       += network
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,9 +18,11 @@ SOURCES += ui/main.cpp\
         ui/mainwindow.cpp
 
 HEADERS  += ui/mainwindow.h\
+            src/local/OffMusic.h\
             src/local/player.h\
             src/online/network.h\
             src/music.h \
+
     src/online/onmusic.h
 
 FORMS    += ui/mainwindow.ui
