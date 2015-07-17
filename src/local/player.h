@@ -12,7 +12,7 @@ private:
     QMediaPlaylist *MediaPlayerlist;
 public:
     Player();
-    ~Player();
+    ~Player(){};
     void initilizeSong();
     void addToList(QUrl url);
     void playNewMusic(int index);
