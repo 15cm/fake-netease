@@ -23,7 +23,7 @@ HEADERS  += ui/mainwindow.h\
             src/online/network.h\
             src/music.h \
             src/online/onmusic.h \
-    src/local/listrecord.h
+    src/local/playlistrecord.h
 
 FORMS    += ui/mainwindow.ui
 
