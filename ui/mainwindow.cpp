@@ -61,7 +61,36 @@ void MainWindow::initial()
     ui->musicList->horizontalHeader()->setStretchLastSection(true);
     ui->musicList->setAlternatingRowColors(true);
     ui->musicList->horizontalHeader()->setHighlightSections(false);
+    //local列表设置
+    ui->musicListLocal->setRowCount(80);
+    ui->musicListLocal->setColumnCount(5);
+    ui->musicListLocal->setHorizontalHeaderLabels(QStringList() <<
+                                             tr("") <<
+                                             tr("Name") <<
+                                             tr("Album") <<
+                                             tr("Artist") <<
+                                             tr("Duration"));
 
+    ui->musicListLocal->setColumnWidth(0, 30);
+    ui->musicListLocal->setColumnWidth(1, 230);
+    ui->musicListLocal->setColumnWidth(2, 150);
+    ui->musicListLocal->setColumnWidth(3, 120);
+    ui->musicListLocal->setColumnWidth(4, 82);
+    ui->musicListLocal->verticalHeader()->setVisible(false);
+    ui->musicListLocal->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->musicListLocal->setShowGrid(false);
+    ui->musicListLocal->setFocusPolicy(Qt::NoFocus);
+    ui->musicListLocal->resize(QSize(this->width() - 242, this->height() - 182));
+    ui->musicListLocal->setEditTriggers(QTableWidget::NoEditTriggers);
+    ui->musicListLocal->horizontalHeader()->setStretchLastSection(true);
+    ui->musicListLocal->setAlternatingRowColors(true);
+    ui->musicListLocal->horizontalHeader()->setHighlightSections(false);
+
+    //歌单设置
+    ui->musicListLocal->setFrameShape(QListWidget::NoFrame);
+    ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/favorite.png")), QObject::tr("收藏歌曲")));
+    ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/localList.png")), QObject::tr("本地列表")));
+    ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/playList.png")), QObject::tr("播放列表")));
     /*QTableWidgetItem *p = new QTableWidgetItem("a");
     ui->musicList->setItem(0, 0, p);
     ui->musicList->show();*/
