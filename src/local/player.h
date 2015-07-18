@@ -1,6 +1,7 @@
 #ifndef PLAYER
 #define PLAYER
 
+#include <QObject>
 #include <QMediaPlaylist>
 #include <QMediaPlayer>
 #include <QUrl>
@@ -9,22 +10,22 @@
 #include <QFile>
 #include <QDir>
 #include <QFileDialog>
+#include "commander.h"
 #include "playlistrecord.h"
-#include "binder.h"
 
-class AddToListException : public QException
-{
-public:
-    void raise() const {throw *this;}
-    AddToListException *clone() const{return new AddToListException(*this);}
-};
+//class AddToListException : public QException
+//{
+//public:
+//    void raise() const {throw *this;}
+//    AddToListException *clone() const{return new AddToListException(*this);}
+//};
 
-class Player : public Binder
+class Player : public Commander
 {
 private:
     QMediaPlayer *MediaPlayer;
     QMediaPlaylist *MediaPlayerlist;
-   // PlaylistRecord record;
+    PlaylistRecord record;
 
 signals:
     void durationChanged(qint64 duration);
@@ -37,20 +38,20 @@ public:
         MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Loop);
         MediaPlayer->setPlaylist(MediaPlayerlist);
         MediaPlayer->setVolume(20);
-        //initilizeSong();
-//        connnect(MediaPlayer,QMediaPlayer::durationChanged, [=](qint64 duration)
-//        {
-//           emit durationChanged(duration);
-//        });
-//        connetc(MediaPlayer, QMediaPlayer::positionChanged, [=](qint64 progress)
-//        {
-//            emit positionChanged(progress);
-//        });
+        initilizeSong();
+        QObject::connect(MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
+        {
+           emit durationChanged(duration);
+        });
+        QObject::connect(MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
+        {
+            emit positionChanged(progress);
+        });
     }
 
     ~Player()
     {
-        //record.SyncMediaList(MediaPlayerlist);
+        record.SyncMediaList(MediaPlayerlist);
     }
 
     //first start the player to initialize the playlist
@@ -103,7 +104,7 @@ public:
     //add a musci to the list
     void AddLocalMusic()
     {
-        QUrl url = QFileDialog::getOpenFileUrl(this, QObject::tr("Open Music File"), QObject::tr("."), QObject::tr("mp3 music files(*.mp3)"));
+        QUrl url = QFileDialog::getOpenFileUrl(QObject::tr("Open Music File"), QObject::tr("."), QObject::tr("mp3 music files(*.mp3)"));
         if(url.isLocalFile())
         {
             if(!MediaPlayerlist->addMedia(url))
