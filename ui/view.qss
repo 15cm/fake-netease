@@ -226,5 +226,64 @@ QPushButton#loginBtn:pressed
     outline: 10px;
 }
 
+/*在线列表*/
+QTableWidget {
+    border: none;
+    background-color: #7e7e7e;
+    alternate-background-color: #9d9d9d;
+}
 
+QTableWidget::item{
+    text-align: left;
+    border-radius: 0px;
+    selection-background-color: #993333;
+    outline: none;
+    color: #222;
+}
 
+QTableWidget::item:selected{
+    outline: none;
+    border: none;
+    color: #CCC;
+    background-color: #993333;
+}
+
+QTableWidget::item:focus {
+    outline: none;
+    border: 0px;
+}
+
+/*在线列表表头*/
+QHeaderView::section
+{
+    color: white;
+    padding:4px;
+    height:24px;
+    border:0px solid #567dbc;
+    background:#2c3e50;
+}
+
+/*滚动条*/
+QScrollBar:vertical
+{
+    background: transparent;
+    width:10px;
+}
+QScrollBar::handle
+{
+    background: #ababab;
+    border:2px solid transparent;
+    border-radius:5px;
+}
+QScrollBar::handle:hover
+{
+    background: gray;
+}
+QScrollBar::sub-line
+{
+    background: transparent;
+}
+QScrollBar::add-line
+{
+    background: transparent;
+}

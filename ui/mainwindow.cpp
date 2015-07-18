@@ -28,16 +28,17 @@ void MainWindow::initial()
     pictolabel(":/icon/images/format.png", ui->format, 30, 30);
     pictolabel(":/icon/images/search.png", ui->searchIcon, 20, 20);
     pictolabel(":/icon/images/soundIcon.png", ui->soundIcon, 20, 20);
-
+    //搜索栏设置
     int l, r, t, b;
     ui->search->getTextMargins(&l, &t, &r, &b);
     ui->search->setTextMargins(5, t, r + 6, b);
     ui->search->setPlaceholderText("SEARCH");
-
+    //音量调设置
     ui->soundSlider->setMinimum(0);
     ui->soundSlider->setMaximum(100);
     ui->soundSlider->setValue(20);
-
+    //在线列表设置
+    ui->musicList->setRowCount(80);
     ui->musicList->setColumnCount(5);
     ui->musicList->setHorizontalHeaderLabels(QStringList() <<
                                              tr("") <<
@@ -45,12 +46,25 @@ void MainWindow::initial()
                                              tr("Album") <<
                                              tr("Artist") <<
                                              tr("Duration"));
-    ui->musicList->setColumnWidth(0, 60);
+
+    ui->musicList->setColumnWidth(0, 30);
     ui->musicList->setColumnWidth(1, 230);
     ui->musicList->setColumnWidth(2, 150);
     ui->musicList->setColumnWidth(3, 120);
+    ui->musicList->setColumnWidth(4, 82);
     ui->musicList->verticalHeader()->setVisible(false);
     ui->musicList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->musicList->setShowGrid(false);
+    ui->musicList->setFocusPolicy(Qt::NoFocus);
+    ui->musicList->resize(QSize(this->width() - 242, this->height() - 182));
+    ui->musicList->setEditTriggers(QTableWidget::NoEditTriggers);
+    ui->musicList->horizontalHeader()->setStretchLastSection(true);
+    ui->musicList->setAlternatingRowColors(true);
+    ui->musicList->horizontalHeader()->setHighlightSections(false);
+
+    /*QTableWidgetItem *p = new QTableWidgetItem("a");
+    ui->musicList->setItem(0, 0, p);
+    ui->musicList->show();*/
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -122,14 +136,14 @@ void MainWindow::paintEvent(QPaintEvent *)
 
 void MainWindow::on_addLocalMusicBtn_clicked()
 {
-    QUrl url;
+    /*QUrl url;
     url = QFileDialog::getOpenFileUrl(this, tr("Open Music File"), tr("."), tr("mp3 music files(*.mp3)"));
-    list.addToList(url);
+    list.addToList(url);*/
 }
 
 void MainWindow::on_playMusicBtn_clicked()
 {
-    list.Retreat();
+    /*list.Retreat();
     sta = list.GetPlayingState();
     if (!sta)
     {
@@ -183,10 +197,22 @@ void MainWindow::on_playMusicBtn_clicked()
                 outline: 10px;\
             }\
         ");
-    }
+    }*/
 }
 
 void MainWindow::on_soundSlider_valueChanged(int value)
 {
-    list.SetVolume(value);
+    //list.SetVolume(value);
+}
+
+void MainWindow::on_musicList_clicked(const QModelIndex &index)
+{
+   // ui->musicList->selectRow(index.row());
+    /*if (index.column() == 0)
+    {
+        QLabel *label = new QLabel(this);
+        pictolabel(":/icon/images/collect.png", label, 30, 30);
+        ui->musicList->setCellWidget(index.row(), 0, label);
+        ui->musicList->show();
+    }*/
 }

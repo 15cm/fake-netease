@@ -17,5 +17,6 @@
         <file>images/loginBtn_hover.png</file>
         <file>images/loginBtn_pressed.png</file>
         <file>images/pauseMusicBtn.png</file>
+        <file>images/collect.png</file>
     </qresource>
 </RCC>

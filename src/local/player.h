@@ -45,7 +45,7 @@ public:
         MediaPlayer->setPlaylist(MediaPlayerlist);
         MediaPlayer->setVolume(20);
         initilizeSong();
-        QObject::connect(MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
+     /*   QObject::connect(MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
         {
            emit durationChanged(duration);
         });
@@ -53,7 +53,7 @@ public:
         {
             emit positionChanged(progress);
         });
-    }
+    }*/
 
     ~Player()
     {

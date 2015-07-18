@@ -217,10 +217,10 @@
    <widget class="QTableWidget" name="musicList">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>115</y>
-      <width>631</width>
-      <height>501</height>
+      <x>241</x>
+      <y>101</y>
+      <width>661</width>
+      <height>531</height>
      </rect>
     </property>
    </widget>
