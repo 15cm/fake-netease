@@ -7,6 +7,14 @@
 #include <QMediaPlaylist>
 #include <QException>
 
+class SyncPlaylistFail : public QException
+{
+public:
+    const QString message = "Synchronize ListRecord.json fail.";
+    void raise() const { throw *this; }
+    SyncPlaylistFail *clone() const { return new SyncPlaylistFail(*this); }
+};
+
 class PlaylistRecord
 {
 private:
@@ -34,11 +42,11 @@ public:
     void SyncMediaList(const QMediaPlaylist* playlist)
     {
         QJsonArray jsonarr;
-        int cnt = player->MediaPlayerlist->mediaCount();
+        int cnt = playlist->mediaCount();
         for(int index = 0; index < cnt; index++)
         {
             QUrl url(playlist->media(index).canonicalUrl());
-            jsonarr.append(url);
+            jsonarr.append(url.toString());
         }
         json.setArray(jsonarr);
         QByteArray byteArr = json.toBinaryData();
@@ -53,14 +61,6 @@ public:
         }
     }
 
-};
-
-class SyncPlaylistFail : public QException
-{
-public:
-    const QString message = "Synchronize ListRecord.json fail.";
-    void raise() const { throw *this; }
-    SyncPlaylistFail *clone() const { return new SyncFail(*this); }
 };
 
 #endif // PLAYLISTRECORD
