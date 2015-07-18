@@ -34,6 +34,7 @@ void MainWindow::initial()
     ui->search->getTextMargins(&l, &t, &r, &b);
     ui->search->setTextMargins(5, t, r + 6, b);
     ui->search->setPlaceholderText("SEARCH");
+
 }
 
 MainWindow::MainWindow(QWidget *parent) :

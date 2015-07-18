@@ -136,19 +136,6 @@
      <string/>
     </property>
    </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>660</y>
-      <width>511</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>24</number>
-    </property>
-   </widget>
    <widget class="QPushButton" name="minimizeAppBtn">
     <property name="geometry">
      <rect>
@@ -186,6 +173,19 @@
     </property>
     <property name="text">
      <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="musicSlider">
+    <property name="geometry">
+     <rect>
+      <x>237</x>
+      <y>654</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>
