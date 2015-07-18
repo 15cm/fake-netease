@@ -20,6 +20,12 @@ public:
     AddToListException *clone() const{return new AddToListException(*this);}
 };
 
+class playNewMusicException : public QException
+{
+    void raise() const {throw *this;}
+    playNewMusicException *clone() const{return new playNewMusicException(*this);}
+};
+
 class Player : public Commander
 {
 private:
@@ -95,7 +101,7 @@ public:
     }
 
     //set the progress of the music play
-    void SetPositon(qint64 percent)
+    void SetPositon(int percent)
     {
         qint64 position = percent*1.0/100 * GetDuration();
         MediaPlayer->setPosition(position);
@@ -105,16 +111,23 @@ public:
     void AddLocalMusic()
     {
         QUrl url = QFileDialog::getOpenFileUrl(0, QObject::tr("Open Music File"), QObject::tr("."), QObject::tr("mp3 music files(*.mp3)"));
-        if(url.isLocalFile())
+        if(!MediaPlayerlist->addMedia(url))
+             throw (AddToListException());
+    }
+
+    void AddLocalMusicFolder()
+    {
+        QUrl url = QFileDialog::getExistingDirectoryUrl(0, QObject::tr("Open Music File Folder"));
+        QDir dir(url.toLocalFile());
+        QStringList filter;
+        filter << "*.mp3";
+        QFileInfoList list = dir.entryInfoList(filter);
+        foreach(QFileInfo info, list)
         {
-            if(!MediaPlayerlist->addMedia(url))
+            QUrl fileurl(info.absolutePath());
+            if(!MediaPlayerlist->addMedia(fileurl))
                 throw (AddToListException());
         }
-//        else
-//        {
-//            QDir dir(url);
-
-//        }
     }
 
     //play a new music
@@ -123,7 +136,7 @@ public:
         QString Path = MediaPlayer->currentMedia().canonicalUrl().toString();
         if(!QFile::exists(Path))
         {
-
+            throw playNewMusicException();
         }
         MediaPlayer->play();
     }
