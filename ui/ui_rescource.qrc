@@ -12,5 +12,10 @@
         <file>images/addLocalMusicBtn.png</file>
         <file>images/addLocalMusicBtn_hover.png</file>
         <file>images/sliderKnob.png</file>
+        <file>images/soundIcon.png</file>
+        <file>images/loginBtn.png</file>
+        <file>images/loginBtn_hover.png</file>
+        <file>images/loginBtn_pressed.png</file>
+        <file>images/pauseMusicBtn.png</file>
     </qresource>
 </RCC>

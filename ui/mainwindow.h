@@ -9,6 +9,8 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QLabel>
+#include "OffMusic.h"
+#include "player.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,9 +30,13 @@ private slots:
 
     void on_playMusicBtn_clicked();
 
+    void on_soundSlider_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     QPoint dragPosition;
+    bool sta;
+    Player list;
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent*);
     void paintEvent(QPaintEvent *);

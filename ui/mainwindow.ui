@@ -162,19 +162,6 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="musicMessage">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>180</y>
-      <width>451</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
    <widget class="QSlider" name="musicSlider">
     <property name="geometry">
      <rect>
@@ -186,6 +173,55 @@
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="soundSlider">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>660</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="soundIcon">
+    <property name="geometry">
+     <rect>
+      <x>765</x>
+      <y>658</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="loginBtn">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>30</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="musicList">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>115</y>
+      <width>631</width>
+      <height>501</height>
+     </rect>
     </property>
    </widget>
   </widget>

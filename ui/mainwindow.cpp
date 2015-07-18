@@ -6,8 +6,6 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QUrl>
-#include "OffMusic.h"
-#include "player.h"
 
 void MainWindow::initial()
 {
@@ -29,17 +27,36 @@ void MainWindow::initial()
 
     pictolabel(":/icon/images/format.png", ui->format, 30, 30);
     pictolabel(":/icon/images/search.png", ui->searchIcon, 20, 20);
+    pictolabel(":/icon/images/soundIcon.png", ui->soundIcon, 20, 20);
 
     int l, r, t, b;
     ui->search->getTextMargins(&l, &t, &r, &b);
     ui->search->setTextMargins(5, t, r + 6, b);
     ui->search->setPlaceholderText("SEARCH");
 
+    ui->soundSlider->setMinimum(0);
+    ui->soundSlider->setMaximum(100);
+    ui->soundSlider->setValue(20);
+
+    ui->musicList->setColumnCount(5);
+    ui->musicList->setHorizontalHeaderLabels(QStringList() <<
+                                             tr("") <<
+                                             tr("Name") <<
+                                             tr("Album") <<
+                                             tr("Artist") <<
+                                             tr("Duration"));
+    ui->musicList->setColumnWidth(0, 60);
+    ui->musicList->setColumnWidth(1, 230);
+    ui->musicList->setColumnWidth(2, 150);
+    ui->musicList->setColumnWidth(3, 120);
+    ui->musicList->verticalHeader()->setVisible(false);
+    ui->musicList->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    sta(false)
 {
     ui->setupUi(this);
 
@@ -105,15 +122,71 @@ void MainWindow::paintEvent(QPaintEvent *)
 
 void MainWindow::on_addLocalMusicBtn_clicked()
 {
-    /*QUrl url;
+    QUrl url;
     url = QFileDialog::getOpenFileUrl(this, tr("Open Music File"), tr("."), tr("mp3 music files(*.mp3)"));
-    Player list;
     list.addToList(url);
-    list.playNewMusic(0);*/
-
 }
 
 void MainWindow::on_playMusicBtn_clicked()
 {
+    list.Retreat();
+    sta = list.GetPlayingState();
+    if (!sta)
+    {
+        ui->playMusicBtn->setStyleSheet
+        ("\
+            QPushButton#playMusicBtn:!hover\
+            {\
+                border-image: url(:/icon/images/playMusicBtn.png);\
+                background-color:white;\
+                border-radius: 30px;\
+                outline: 10px;\
+            }\
+            QPushButton#playMusicBtn:hover\
+            {\
+                border-image: url(:/icon/images/playMusicBtn.png);\
+                background-color:white;\
+                border-radius: 30px;\
+                outline: 10px;\
+            }\
+            QPushButton#playMusicBtn:pressed\
+            {\
+                border-image: url(:/icon/images/playMusicBtn.png);\
+                background-color:white;\
+                border-radius: 30px;\
+                outline: 10px;\
+            }\
+        ");
+    }else
+    {
+        ui->playMusicBtn->setStyleSheet
+        ("\
+            QPushButton#playMusicBtn:!hover\
+            {\
+                border-image: url(:/icon/images/pauseMusicBtn.png);\
+                background-color:white;\
+                border-radius: 30px;\
+                outline: 10px;\
+            }\
+            QPushButton#playMusicBtn:hover\
+            {\
+                border-image: url(:/icon/images/pauseMusicBtn.png);\
+                background-color:white;\
+                border-radius: 30px;\
+                outline: 10px;\
+            }\
+            QPushButton#playMusicBtn:pressed\
+            {\
+                border-image: url(:/icon/images/pauseMusicBtn.png);\
+                background-color:white;\
+                border-radius: 30px;\
+                outline: 10px;\
+            }\
+        ");
+    }
+}
 
+void MainWindow::on_soundSlider_valueChanged(int value)
+{
+    list.SetVolume(value);
 }

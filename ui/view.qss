@@ -71,6 +71,7 @@ QPushButton#lastMusicBtn:!hover
 
 QPushButton#lastMusicBtn:hover
 {
+    border-image: url(:/icon/images/lastMusicBtn.png);
     background-color:white;
     border-radius: 20px;
     outline: 10px;
@@ -78,6 +79,7 @@ QPushButton#lastMusicBtn:hover
 
 QPushButton#lastMusicBtn:pressed
 {
+    border-image: url(:/icon/images/lastMusicBtn.png);
     background-color:white;
     border-radius: 20px;
     outline: 10px;
@@ -95,6 +97,7 @@ QPushButton#playMusicBtn:!hover
 
 QPushButton#playMusicBtn:hover
 {
+    border-image: url(:/icon/images/playMusicBtn.png);
     background-color:white;
     border-radius: 30px;
     outline: 10px;
@@ -102,6 +105,7 @@ QPushButton#playMusicBtn:hover
 
 QPushButton#playMusicBtn:pressed
 {
+    border-image: url(:/icon/images/playMusicBtn.png);
     background-color:white;
     border-radius: 30px;
     outline: 10px;
@@ -118,6 +122,7 @@ QPushButton#nextMusicBtn:!hover
 
 QPushButton#nextMusicBtn:hover
 {
+    border-image: url(:/icon/images/nextMusicBtn.png);
     background-color:white;
     border-radius: 20px;
     outline: 10px;
@@ -125,6 +130,7 @@ QPushButton#nextMusicBtn:hover
 
 QPushButton#nextMusicBtn:pressed
 {
+    border-image: url(:/icon/images/nextMusicBtn.png);
     background-color:white;
     border-radius: 20px;
     outline: 10px;
@@ -173,6 +179,51 @@ QSlider::handle:horizontal
     background-color:rgb(255, 255, 255, 160);
     /*border-image: url(:icon/images/sliderKnob.png);*/
     margin: -4 0px;
+}
+
+/*音量条*/
+QSlider::add-page:horizontal
+{
+   background-color: rgb(87, 97, 106);
+   height:4px;
+}
+QSlider::sub-page:horizontal
+{
+   background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(231,80,229, 255), stop:1 rgba(7,208,255, 255));
+   height:4px;
+}
+QSlider::groove:horizontal
+{
+    background:transparent;
+    height:6px;
+}
+QSlider::handle:horizontal
+{
+    height: 8px;
+    width: 8px;
+    border-radius:4px;
+    background-color:rgb(255, 255, 255, 160);
+    /*border-image: url(:icon/images/sliderKnob.png);*/
+    margin: -4 0px;
+}
+
+/*登录按钮*/
+QPushButton#loginBtn:!hover
+{
+    border-image: url(:icon/images/loginBtn.png);
+    outline: 10px;
+}
+
+QPushButton#loginBtn:hover
+{
+    border-image: url(:icon/images/loginBtn_hover.png);
+    outline: 10px;
+}
+
+QPushButton#loginBtn:pressed
+{
+    border-image: url(:icon/images/loginBtn_pressed.png);
+    outline: 10px;
 }
 
 

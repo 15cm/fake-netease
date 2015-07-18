@@ -73,12 +73,12 @@ public:
 
     void Retreat(){
         //no music is playing and playing list is not null and playing first music
-        if(MediaPlayer->currentMedia().isNull() && !MediaPlayerlist->isEmpty())
+        if(MediaPlayer->state()== QMediaPlayer::StoppedState && !MediaPlayerlist->isEmpty())
             playNewMusic(0);
         //music is playing and
-        else if(MediaPlayer->state()==QMediaPlayer::PlayingState)
-            MediaPlayer->play();
         else if(MediaPlayer->state()==QMediaPlayer::PausedState)
+            MediaPlayer->play();
+        else if(MediaPlayer->state()==QMediaPlayer::PlayingState)
             MediaPlayer->pause();
     }
 
