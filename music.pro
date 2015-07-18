@@ -32,6 +32,8 @@ INCLUDEPATH += src/local
 INCLUDEPATH += src/online
 INCLUDEPATH += src
 
+CONFIG += C++11
+
 RESOURCES += \
     ui/ui_rescource.qrc
 

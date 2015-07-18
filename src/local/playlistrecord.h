@@ -10,7 +10,6 @@
 class SyncPlaylistFail : public QException
 {
 public:
-    const QString message = "Synchronize ListRecord.json fail.";
     void raise() const { throw *this; }
     SyncPlaylistFail *clone() const { return new SyncPlaylistFail(*this); }
 };
