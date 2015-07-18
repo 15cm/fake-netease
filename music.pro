@@ -37,12 +37,17 @@ CONFIG += C++11
 RESOURCES += \
     ui/ui_rescource.qrc
 
-#DISTFILES += \
-#    Library/libtag.so
 
-#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/Library/release/ -ltag
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/Library/debug/ -ltag
-#else:unix: LIBS += -L$$PWD/Library/ -ltag
 
-#INCLUDEPATH += $$PWD/Library
-#DEPENDPATH += $$PWD/Library
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/3rdpart/taglib/lib/release/ -ltag
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/3rdpart/taglib/lib/debug/ -ltag
+else:unix: LIBS += -L$$PWD/3rdpart/taglib/lib/ -ltag
+
+INCLUDEPATH += $$PWD/3rdpart/taglib/include
+DEPENDPATH += $$PWD/3rdpart/taglib/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/3rdpart/taglib/lib/release/libtag.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/3rdpart/taglib/lib/debug/libtag.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/3rdpart/taglib/lib/release/tag.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/3rdpart/taglib/lib/debug/tag.lib
+else:unix: PRE_TARGETDEPS += $$PWD/3rdpart/taglib/lib/libtag.a
