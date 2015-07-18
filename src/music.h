@@ -5,7 +5,8 @@
 #include <QUrl>
 class Music
 {
-private:
+
+protected:  //hdj:These members should be accessible to derived class such as OffMusic, so I change them to protected
     QString name;
     qint64 duration;
     QString artist;

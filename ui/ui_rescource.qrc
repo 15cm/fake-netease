@@ -11,5 +11,6 @@
         <file>images/addLocalMusicBtn_pressed.png</file>
         <file>images/addLocalMusicBtn.png</file>
         <file>images/addLocalMusicBtn_hover.png</file>
+        <file>images/sliderKnob.png</file>
     </qresource>
 </RCC>
