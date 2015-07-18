@@ -6,12 +6,9 @@
 class OffMusic : public Music
 {
 public:
-    OffMusic(QUrl url);
+    OffMusic(QUrl url){}
     virtual ~OffMusic(){}
 };
 
-OffMusic::OffMusic(QUrl url)
-{
-}
 
 #endif

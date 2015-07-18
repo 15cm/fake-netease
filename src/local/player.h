@@ -4,6 +4,16 @@
 #include <QMediaPlaylist>
 #include <QMediaPlayer>
 #include <QUrl>
+#include <QString>
+#include <QException>
+#include <QFile>
+
+class AddToListException : public QException
+{
+public:
+    void raise() const {throw *this;}
+    AddToListException *clone() const{return new AddToListException(*this);}
+};
 
 class Player
 {
@@ -11,95 +21,77 @@ private:
     QMediaPlayer *MediaPlayer;
     QMediaPlaylist *MediaPlayerlist;
 public:
-    Player();
+    Player(){
+        MediaPlayerlist = new QMediaPlaylist();
+        MediaPlayer = new QMediaPlayer();
+        MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Loop);
+        MediaPlayer->setPlaylist(MediaPlayerlist);
+    }
+
     ~Player(){}
-    bool GetPlayingState();
-    void SetLoopPlayingMode();
-    void SetSequentialPlayingMode();
-    void SetRandomPlayingMode();
-    void SetVolume(int volume);
-    void initilizeSong();
-    void addToList(QUrl url);
-    void playNewMusic(int Index);
-    void Retreat();
-    void NextSong();
-    void LastSong();
-};
+    bool GetPlayingState(){
+        if(MediaPlayer->state()==QMediaPlayer::PlayingState)
+            return true;
+        else
+            return false;
+    }
 
-Player::Player()
-{
-    MediaPlayerlist = new QMediaPlaylist();
-    MediaPlayer = new QMediaPlayer();
-    MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Loop);
-    MediaPlayer->setPlaylist(MediaPlayerlist);
-}
+    void SetLoopPlayingMode(){
+         MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Loop);
+    }
 
-bool Player::GetPlayingState()
-{
-    if(MediaPlayer->state()==QMediaPlayer::PlayingState)
-        return true;
-    else
-        return false;
-}
+    void SetSequentialPlayingMode(){
+         MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Sequential);
+    }
 
-//set playing mode(loop, sequential, random)
-void Player::SetLoopPlayingMode()
-{
-    MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Loop);
-}
+    void SetRandomPlayingMode(){
+        MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Random);
+    }
 
-void Player::SetSequentialPlayingMode()
-{
-    MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Sequential);
-}
+    void SetVolume(int volume){
+        MediaPlayer->setVolume(volume);
+    }
 
-void Player::SetRandomPlayingMode()
-{
-    MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Random);
-}
+    void initilizeSong(){
 
-void Player::SetVolume(int volume)
-{
-    MediaPlayer->setVolume(volume);
-}
+    }
 
-void Player::addToList(QUrl url)
-{
-    MediaPlayerlist->addMedia(url);
-}
+    void addToList(QUrl url){
+        if(!MediaPlayerlist->addMedia(url))
+            throw (AddToListException());
+    }
 
-void Player::playNewMusic(int Index)
-{
-    MediaPlayerlist->setCurrentIndex(Index);
-    MediaPlayer->play();
-}
+    void playNewMusic(int Index){
+        MediaPlayerlist->setCurrentIndex(Index);
+        QString Path = MediaPlayer->currentMedia().canonicalUrl().toString();
+        if(!QFile::exists(Path))
+        {
 
-//Go on or Pause
-void Player::Retreat()
-{
-    //no music is playing and playing list is not null and playing first music
-    if(MediaPlayer->currentMedia().isNull() && !MediaPlayerlist->isEmpty())
-        playNewMusic(0);
-    //music is playing and
-    else if(MediaPlayer->state()==QMediaPlayer::PlayingState)
+        }
         MediaPlayer->play();
-    else if(MediaPlayer->state()==QMediaPlayer::PausedState)
-        MediaPlayer->pause();
-}
+    }
 
-//next song
-void Player::NextSong()
-{
-    int NextIndex = MediaPlayerlist->nextIndex();
-    playNewMusic(NextIndex);
-}
+    void Retreat(){
+        //no music is playing and playing list is not null and playing first music
+        if(MediaPlayer->currentMedia().isNull() && !MediaPlayerlist->isEmpty())
+            playNewMusic(0);
+        //music is playing and
+        else if(MediaPlayer->state()==QMediaPlayer::PlayingState)
+            MediaPlayer->play();
+        else if(MediaPlayer->state()==QMediaPlayer::PausedState)
+            MediaPlayer->pause();
+    }
 
-//last song
-void Player::LastSong()
-{
-    int PreviouseIndex = MediaPlayerlist->previousIndex();
-    playNewMusic(PreviouseIndex);
-}
+    void NextSong(){
+        int NextIndex = MediaPlayerlist->nextIndex();
+        playNewMusic(NextIndex);
+    }
+
+    void LastSong(){
+        int PreviouseIndex = MediaPlayerlist->previousIndex();
+        playNewMusic(PreviouseIndex);
+    }
+};
 
 #endif // Player
 
