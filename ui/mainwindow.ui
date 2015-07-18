@@ -224,6 +224,32 @@
      </rect>
     </property>
    </widget>
+   <widget class="QTableWidget" name="musicListLocal">
+    <property name="geometry">
+     <rect>
+      <x>241</x>
+      <y>101</y>
+      <width>661</width>
+      <height>531</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="favoriteList">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>211</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Droid Sans Fallback</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

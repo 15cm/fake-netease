@@ -18,5 +18,8 @@
         <file>images/loginBtn_pressed.png</file>
         <file>images/pauseMusicBtn.png</file>
         <file>images/collect.png</file>
+        <file>images/favorite.png</file>
+        <file>images/localList.png</file>
+        <file>images/playList.png</file>
     </qresource>
 </RCC>

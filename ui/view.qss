@@ -287,3 +287,36 @@ QScrollBar::add-line
 {
     background: transparent;
 }
+
+/*歌单*/
+QListWidget
+{
+    background-color: rgb(118,118,118);
+    color: #ffffff;
+    border: none;
+}
+
+QListWidget::item
+{
+    outline: none;
+    border-radius: 8px;
+}
+
+QListWidget::item
+{
+    width: 180px;
+}
+
+QListWidget::item:selected
+{
+    outline: none;
+    border: none;
+    color: white;
+    background-color: #4F2F2F;
+}
+
+QListWidget::item:focus
+{
+    outline: none;
+    border: 0px;
+}
