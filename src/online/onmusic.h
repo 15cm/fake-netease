@@ -2,8 +2,9 @@
 #define ONMUSIC
 
 #include "music.h"
+#include "commander.h"
 // online music
-class OnMusic:public Music
+class OnMusic:public Music,Commander
 {
 private:
     bool isStarred;
