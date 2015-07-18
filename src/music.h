@@ -9,9 +9,9 @@ class Music
 protected:  //hdj:These members should be accessible to derived class such as OffMusic, so I change them to protected
     QString name;
     qint64 duration;
+    QUrl mp3Url;
     QString artist;
     QString album;
-    QUrl mp3Url;
 public:
     Music(){}
     Music(QString _name, qint64 _duration, QUrl _url, QString _artist = QString("Not Found"), QString _album = QString("Not Found"))
