@@ -23,7 +23,7 @@ HEADERS  += ui/mainwindow.h\
             src/online/network.h\
             src/music.h \
             src/online/onmusic.h \
-    src/local/playlistrecord.h
+            src/local/playlistrecord.h
 
 FORMS    += ui/mainwindow.ui
 
@@ -34,12 +34,12 @@ INCLUDEPATH += src
 RESOURCES += \
     ui/ui_rescource.qrc
 
-DISTFILES += \
-    Library/libtag.so
+#DISTFILES += \
+#    Library/libtag.so
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/Library/release/ -ltag
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/Library/debug/ -ltag
-else:unix: LIBS += -L$$PWD/Library/ -ltag
+#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/Library/release/ -ltag
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/Library/debug/ -ltag
+#else:unix: LIBS += -L$$PWD/Library/ -ltag
 
-INCLUDEPATH += $$PWD/Library
-DEPENDPATH += $$PWD/Library
+#INCLUDEPATH += $$PWD/Library
+#DEPENDPATH += $$PWD/Library
