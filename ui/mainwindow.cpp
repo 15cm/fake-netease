@@ -93,10 +93,14 @@ void MainWindow::initial()
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/localList.png")), QObject::tr("本地列表")));
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/playList.png")), QObject::tr("播放列表")));
     for (int i = 0; i < ui->musicList->rowCount(); i++)
-        for (int j = 1; j < ui->musicList->columnCount(); j++)
+        for (int j = 0; j < ui->musicList->columnCount(); j++)
         {
-            //tableWidgetItem[i][j] = new QTableWidgetItem("");
-            ui->musicList->setItem(i, j, new QTableWidgetItem(""));
+            if (j > 0)
+                ui->musicList->setItem(i, j, new QTableWidgetItem(" "));
+            else
+                ui->musicList->setCellWidget(i, j, new QLabel);
+            if (j == 4)
+                ui->musicList->item(i, j)->setTextAlignment(Qt::AlignCenter);
         }
     ui->musicList->hide();
     ui->musicListLocal->hide();
@@ -202,13 +206,8 @@ void MainWindow::on_soundSlider_valueChanged(int value)
 void MainWindow::on_musicList_clicked(const QModelIndex &index)
 {
    // ui->musicList->selectRow(index.row());
-    /*if (index.column() == 0)
-    {
-        QLabel *label = new QLabel(this);
-        pictolabel(":/icon/images/collect.png", label, 30, 30);
-        ui->musicList->setCellWidget(index.row(), 0, label);
-        ui->musicList->show();
-    }*/
+    if (index.column() == 0)
+        pictolabel(":/icon/images/collect.png", (QLabel*)ui->musicList->cellWidget(index.row(), 0), 25, 25);
 }
 
 void MainWindow::on_search_returnPressed()
