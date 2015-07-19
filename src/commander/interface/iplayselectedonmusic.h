@@ -3,10 +3,11 @@
 
 #include <QString>
 #include <QUrl>
+#include <QImage>
 class IPlaySelectedOnMusic
 {
 public:
-    virtual void PlaySelectedOnMusic(int index, QString &lrc, QUrl &imgPath) = 0;
+    virtual void PlaySelectedOnMusic(int index, QString &lrc, QImage &img) = 0;
 };
 
 #endif // IPLAYSELECTEDONMUSIC

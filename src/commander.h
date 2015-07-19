@@ -79,10 +79,10 @@ public:
         pPlayModelChanger->ChangePlayModle();
         delete pPlayModelChanger;
     }
-    void PlaySelectedOnMusic(int index, QString &lrc, QUrl &imgPath)
+    void PlaySelectedOnMusic(int index, QString &lrc, QImage &img)
     {
         IPlaySelectedOnMusic *pSelectedOnMusicPlayer = new SelectedOnMusicPlayer;
-        pSelectedOnMusicPlayer->PlaySelectedOnMusic(index,lrc,imgPath);
+        pSelectedOnMusicPlayer->PlaySelectedOnMusic(index,lrc,img);
         delete pSelectedOnMusicPlayer;
     }
 

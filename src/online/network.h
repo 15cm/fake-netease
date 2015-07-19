@@ -18,6 +18,7 @@
 #include <QException>
 #include <QVector>
 #include <QEventLoop>
+#include <QImage>
 #include "onmusic.h"
 
 
@@ -187,6 +188,32 @@ public:
             return QString("");
         QJsonObject lrcObj = searchObj["lrc"].toObject();
         return lrcObj["lyric"].toString();
+    }
+};
+
+class ImageDownload : QObject
+{
+private:
+    QUrl imgUrl;
+public:
+    ImageDownload(QUrl _imgUrl):imgUrl(_imgUrl){}
+    QImage GetImage()
+    {
+        QNetworkAccessManager *manager = new QNetworkAccessManager;
+        const QNetworkRequest request(imgUrl);
+        QNetworkReply *reply = manager->get(request);
+        // wait for reply finished
+        QEventLoop loop;
+        connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
+        loop.exec();
+        // reply finished
+        if (reply->error() != QNetworkReply::NoError) {
+            qDebug() << "Error in" << reply->url() << ":" << reply->errorString();
+        }
+        QByteArray imgData = reply->readAll();
+        QImage img;
+        img.loadFromData(imgData);
+        return img;
     }
 };
 
