@@ -76,15 +76,15 @@ public:
            throw(NetworkConnectionException());
        QByteArray resultInByte = reply->readAll();
 
-       // test: output json
-       QString testStr = QString(resultInByte);
-       QFile file("/Users/a15/Desktop/networktest.json");
-       file.open(QIODevice::WriteOnly);
-       QTextStream out(&file);
-       out << testStr;
-       file.flush();
-       file.close();
-       // end of output json
+//       //test: output json
+//       String testStr = QString(resultInByte);
+//       QFile file("/Users/a15/Desktop/networktest.json");
+//       file.open(QIODevice::WriteOnly);
+//       QTextStream out(&file);
+//       out << testStr;
+//       file.flush();
+//       file.close();
+//       end of output json
        QJsonDocument parse_document = QJsonDocument::fromJson(resultInByte);
        QJsonObject searchObj = parse_document.object();
        if(!searchObj.contains("result"))
@@ -128,7 +128,7 @@ public:
                 QUrl mp3Url(song["mp3Url"].toString());
                 QString com = albumObj["commentThreadId"].toString();
                 QUrl picUrl(albumObj["picUrl"].toString());
-                musicList.push_back(OnMusic(isStarred,name,artist,album,duration,mp3Url,picUrl));
+
             }
             return musicList;
         }

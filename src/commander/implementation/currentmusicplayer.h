@@ -6,7 +6,7 @@
 class CurrentMusicPlayer : public IPlayCurrentMusic
 {
 public:
-    bool PlayCurrentMusic()
+    void PlayCurrentMusic(int index)
     {
 
     }

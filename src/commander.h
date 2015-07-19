@@ -23,12 +23,11 @@ public:
         pLocalMusicFolerAdder->AddLocalMusicFolder();
         delete pLocalMusicFolerAdder;
     }
-    bool PlayCurrentMusic()
+    void PlayCurrentMusic(int index)
     {
         IPlayCurrentMusic *pCurrentMusicPlayer = new CurrentMusicPlayer();
-        bool state = pCurrentMusicPlayer->PlayCurrentMusic();
+        pCurrentMusicPlayer->PlayCurrentMusic(index);
         delete pCurrentMusicPlayer;
-        return state;
     }
     void SetVolume(int value)
     {

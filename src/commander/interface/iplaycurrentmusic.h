@@ -4,7 +4,7 @@
 class IPlayCurrentMusic
 {
 public:
-    virtual bool PlayCurrentMusic() = 0;
+    virtual void PlayCurrentMusic(int index) = 0;
 };
 
 #endif // IPLAYCURRENTMUSIC
