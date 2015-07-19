@@ -92,12 +92,12 @@ void MainWindow::initial()
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/favorite.png")), QObject::tr("收藏歌曲")));
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/localList.png")), QObject::tr("本地列表")));
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/playList.png")), QObject::tr("播放列表")));
-
-    QTableWidgetItem tableWidgetItem[50][5];
     for (int i = 0; i < ui->musicList->rowCount(); i++)
         for (int j = 1; j < ui->musicList->columnCount(); j++)
-            ui->musicList->setItem(i, j,&tableWidgetItem[50][5]);
-
+        {
+            //tableWidgetItem[i][j] = new QTableWidgetItem("");
+            ui->musicList->setItem(i, j, new QTableWidgetItem(""));
+        }
     ui->musicList->hide();
     ui->musicListLocal->hide();
 
@@ -120,6 +120,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    for (int i = 0; i < ui->musicList->rowCount(); i++)
+        for (int j = 1; j < ui->musicList->columnCount(); j++)
+        {
+            delete ui->musicList->item(i, j);
+        }
     delete ui;
 }
 
