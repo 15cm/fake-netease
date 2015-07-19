@@ -138,7 +138,6 @@ HEADERS  += ui/mainwindow.h\
     src/commander/interface/iaddlocalmusic.h \
     src/commander/implementation/volumesetter.h \
     src/commander/interface/ifilltable.h \
-    src/commander/implementation/ontablefiller.h \
     src/commander/interface/igetcurrentplaystate.h \
     src/commander/implementation/currentplaystategetter.h \
     src/commander/interface/inextmusic.h \
@@ -149,7 +148,13 @@ HEADERS  += ui/mainwindow.h\
     src/commander/implementation/selectedmusicplayer.h \
     src/commander/interface/iplayorpausecurrentmusic.h \
     src/commander/implementation/playorpausecurrentmusicsetter.h \
+<<<<<<< HEAD
     3rdpart/taglib/src/toolkit/tdebug.h
+=======
+    src/commander/interface/igetcurrenttotalduration.h \
+    src/commander/implementation/ontablefiller.h \
+    src/commander/implementation/curtotaldurationgetter.h
+>>>>>>> 5a78ef41573f0834a4f96fd1679111f154563378
 
 FORMS    += ui/mainwindow.ui
 
