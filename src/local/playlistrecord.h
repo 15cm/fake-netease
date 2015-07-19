@@ -14,22 +14,14 @@ public:
     SyncPlaylistFail *clone() const { return new SyncPlaylistFail(*this); }
 };
 
-class PlaylistRecord
+namespace  PlaylistRecord
 {
-private:
-    QJsonDocument json;
-public:
-    PlaylistRecord()
+    void InitMediaList(QMediaPlaylist* playlist)
     {
         QFile file("PlaylistRecord.json");
         if(file.open(QIODevice::ReadOnly | QIODevice::Text))
             json = QJsonDocument::fromBinaryData(file.readAll());
-    }
 
-    virtual ~PlaylistRecord() {}
-
-    void InitMediaList(QMediaPlaylist* playlist)
-    {
         QJsonArray jsonarr = json.array();
         for(int index = 0; index < jsonarr.size(); index++ )
         {
@@ -59,7 +51,6 @@ public:
             throw SyncPlaylistFail();
         }
     }
-
-};
+}
 
 #endif // PLAYLISTRECORD

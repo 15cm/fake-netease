@@ -36,9 +36,9 @@ class Player : public QObject
 {
     Q_OBJECT
 private:
-    QMediaPlayer *MediaPlayer;
-    QMediaPlaylist *MediaPlayerlist;
-    PlaylistRecord record;
+    static QMediaPlayer *MediaPlayer;
+    static QMediaPlaylist *MediaPlayerlist;
+    //static PlaylistRecord record;
 
 signals:
     void DurationChanged(qint64 duration);
@@ -65,17 +65,12 @@ public:
         });
     }
 
-    ~Player()
-    {
-        record.SyncMediaList(MediaPlayerlist);
-        delete MediaPlayer;
-        delete MediaPlayerlist;
-    }
+    ~Player(){}
 
     //first start the player to initialize the playlist
     void initilizeSong()
     {
-        record.InitMediaList(MediaPlayerlist);
+        PlaylistRecord::InitMediaList(MediaPlayerlist);
     }
 
     //To get the playing state(true while playing, or false)
@@ -196,7 +191,12 @@ public:
         int PreviouseIndex = MediaPlayerlist->previousIndex();
         playNewMusic(PreviouseIndex);
     }
+
+    void Release(){
+        PlaylistRecord::SyncMediaList(MediaPlayerlist);
+        delete MediaPlayer;
+        delete MediaPlayerlist;
+    }
 };
 
 #endif // Player
-
