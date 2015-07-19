@@ -2,16 +2,49 @@
 #define COMMANDER
 
 
-#include <QVector>
-#include <QTableWidget>
+#include "localmusicadder.h"
+#include "localmusicfolderadder.h"
+#include "currentmusicplayer.h"
+#include "volumesetter.h"
+#include "ontablefiller.h"
 // Commander
 class Commander
 {
-    virtual void AddLocalMusic() = 0;
-    virtual void AddLocalMusicFolder() = 0;
-    virtual bool GetPlayingState() = 0;
-    virtual void SetVolume(int value) = 0;
-    virtual QVector<bool> FillLOnlineMusicList(QTableWiget *pTable,const QString &query);
+public:
+    void AddLocalMusic()
+    {
+        IAddLocalMusic *pLocalMusicAdder = new LocalMusicAdder();
+        pLocalMusicAdder->AddLocalMusic();
+        delete pLocalMusicAdder;
+    }
+    void AddLocalMusicFolder()
+    {
+        IAddLocalMusicFolder *pLocalMusicFolerAdder = new LocalMusicFolderAdder();
+        pLocalMusicFolerAdder->AddLocalMusicFolder();
+        delete pLocalMusicFolerAdder;
+    }
+    bool PlayCurrentMusic()
+    {
+        IPlayCurrentMusic *pCurrentMusicPlayer = new CurrentMusicPlayer();
+        bool state = pCurrentMusicPlayer->PlayCurrentMusic();
+        delete pCurrentMusicPlayer;
+        return state;
+    }
+    void SetVolume(int value)
+    {
+        ISetVolume *pVolumeSetter = new VolumeSetter();
+        pVolumeSetter->SetVolume(value);
+        delete pVolumeSetter;
+    }
+    QVector<bool> FillOnlineMusicTable(QTableWidget *pTable, QString &query)
+    {
+        IFillTable *pOnTableFiller = new OnTableFiller();
+        pOnTableFiller->FillTable(pTable,query);
+        delete pOnTableFiller;
+    }
+
+
+
 };
 #endif // COMMANDER
 

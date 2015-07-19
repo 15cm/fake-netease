@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QUrl>
+#include "commander.h"
 
 void MainWindow::initial()
 {
@@ -236,6 +237,7 @@ void MainWindow::on_soundSlider_valueChanged(int value)
 
 void MainWindow::on_musicList_clicked(const QModelIndex &index)
 {
+    Commander *cmd = new Commander();
    // ui->musicList->selectRow(index.row());
     /*if (index.column() == 0)
     {
