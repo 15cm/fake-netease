@@ -7,7 +7,7 @@
 class LocalMusicFolderAdder:public IAddLocalMusicFolder
 {
 public:
-    void  AddLocalMusicFolder()
+    void  AddLocalMusicFolder(QTableWidget *pTable)
     {
         Player list;
         list.AddLocalMusicFolder();

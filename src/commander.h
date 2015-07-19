@@ -10,6 +10,7 @@
 #include "nextmusicplayer.h"
 #include "previousmusicplayer.h"
 #include "selectedmusicplayer.h"
+#include "curtotaldurationgetter.h"
 // Commander
 class Commander
 {
@@ -20,10 +21,10 @@ public:
         pLocalMusicAdder->AddLocalMusic(pTable);
         delete pLocalMusicAdder;
     }
-    void AddLocalMusicFolder()
+    void AddLocalMusicFolder(QTableWidget *pTable)
     {
         IAddLocalMusicFolder *pLocalMusicFolerAdder = new LocalMusicFolderAdder();
-        pLocalMusicFolerAdder->AddLocalMusicFolder();
+        pLocalMusicFolerAdder->AddLocalMusicFolder(pTable);
         delete pLocalMusicFolerAdder;
     }
     void PlayOrPauseCurrentMusic()
@@ -62,6 +63,13 @@ public:
         IPlaySelectedMusic *pSelectedMusicPlayer = new SelectedMusicPlayer;
         pSelectedMusicPlayer->PlaySelectedMusic(index);
         delete pSelectedMusicPlayer;
+    }
+    QString GetCurrentTotalDuration()
+    {
+        IGetCurrentTotalDuration *pCurTotalDurationGetter = new CurTotalDurationGetter;
+        QString tmp = pCurTotalDurationGetter->GetCurrentTotalDuration();
+        delete pCurTotalDurationGetter;
+        return tmp;
     }
 
 

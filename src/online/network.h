@@ -61,7 +61,7 @@ public:
         postData.append("&offset=0");
         postData.append("&limit=50");
     }
-    void SetApiForSeach()
+    void SetApiForSearch()
     {
         apiUrl.clear();
         apiUrl = QUrl(QString(NEHOST).append("api/search/pc"));
@@ -134,6 +134,7 @@ public:
         this->MakePostData();
         try{
             vecOnMusic.clear();
+            Search::SetApiForSearch();
             this->Dosearch();
             QJsonArray songArray = resultObj["songs"].toArray();
             foreach(QJsonValue val, songArray){
