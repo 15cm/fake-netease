@@ -9,22 +9,26 @@ class OnMusic:public Music
 private:
     bool isStarred;
     QUrl picUrl;
-
+    QString id;
+    QUrl lrcUrl;
 public:
     OnMusic(){}
-    OnMusic(bool _is, QString _name,QString _artist, QString _album, qint64 _duration, QUrl _mp3Url, QUrl _picUrl):
+    OnMusic(bool _is, QString _name,QString _artist, QString _album, qint64 _duration, QUrl _mp3Url, QUrl _picUrl,QString _id):
         Music(_name,_duration,_mp3Url,_artist,_album),
         isStarred(_is),
-        picUrl(_picUrl)
+        picUrl(_picUrl),
+        id(_id)
         {
         }
     OnMusic(const OnMusic &rhs):
         Music(rhs.GetName(),rhs.GetDuration(),rhs.GetMp3Url(),rhs.GetArtist(),rhs.GetAlbum()),
         isStarred(rhs.IsStarred()),
-        picUrl(rhs.GetPicUrl())
+        picUrl(rhs.GetPicUrl()),
+        id(rhs.GetId())
     {
     }
     bool IsStarred() const{return isStarred;}
     QUrl GetPicUrl() const{return picUrl;}
+    QString GetId() const{return id;}
 };
 #endif // ONMUSIC

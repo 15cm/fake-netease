@@ -9,6 +9,7 @@
 #include "ontablefiller.h"
 #include "nextmusicplayer.h"
 #include "previousmusicplayer.h"
+#include "selectedmusicplayer.h"
 // Commander
 class Commander
 {
@@ -55,6 +56,12 @@ public:
         IPreviousMusic *pPreviousMusicPlayer = new PreviousMusicPlayer;
         pPreviousMusicPlayer->PreviousMusic();
         delete pPreviousMusicPlayer;
+    }
+    void PlaySelectedMusic(int index)
+    {
+        IPlaySelectedMusic *pSelectedMusicPlayer = new SelectedMusicPlayer;
+        pSelectedMusicPlayer->PlaySelectedMusic(index);
+        delete pSelectedMusicPlayer;
     }
 
 

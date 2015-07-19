@@ -45,6 +45,7 @@ class Search :public QObject
 {
 private:
     QString query;
+    QUrl apiUrl;
 protected:
     QByteArray postData;
     QJsonObject resultObj;
@@ -54,15 +55,28 @@ public:
     Search(QString _query):query(_query){}
     virtual void MakePostData()
     {
+        postData.clear();
         postData.append("s=");
         postData.append(query);
         postData.append("&offset=0");
         postData.append("&limit=50");
     }
+    void SetApiForSeach()
+    {
+        apiUrl.clear();
+        apiUrl = QUrl(QString(NEHOST).append("api/search/pc"));
+    }
+
+    void SetApiForLrc()
+    {
+        apiUrl.clear();
+        apiUrl = QUrl(QString(NEHOST).append("api/song/lyric"));
+    }
+
     void Dosearch()
     {
        QNetworkAccessManager *manager = new QNetworkAccessManager();
-       QNetworkRequest *request = new QNetworkRequest(QUrl(QString(NEHOST).append("api/search/pc")));
+       QNetworkRequest *request = new QNetworkRequest(QUrl(apiUrl));
        request->setRawHeader(QByteArray("Referer"),QByteArray(NEHOST));
        request->setRawHeader(QByteArray("content-type"),QByteArray("application/x-www-form-urlencoded"));
        request->setRawHeader(QByteArray("Cookie"),QByteArray("appver=1.5.0.75771;"));
@@ -103,9 +117,18 @@ public:
     MusicSearch(const QString &query):Search(query){}
     void MakePostData()
     {
+        postData.clear();
         Search::MakePostData();
         postData.append("&type=1");
     }
+    void MakePostData(QString id)
+    {
+        postData.clear();
+        postData.append("id=");
+        postData.append(id);
+        postData.append("&lv=-1&kv=-1&tv=-1");
+    }
+
     void GetMusicList()
     {
         this->MakePostData();
@@ -116,6 +139,7 @@ public:
             foreach(QJsonValue val, songArray){
                 QJsonObject song = val.toObject();
                 bool isStarred = song["starred"].toBool();
+                QString id = QString::number(song["id"].toInt(),10);
                 QString name = song["name"].toString();
                 QString artist;
                 QJsonArray artistsArray = song["artists"].toArray();
@@ -127,9 +151,8 @@ public:
                 QString album = albumObj["name"].toString();
                 qint64 duration = song["duration"].toInt();
                 QUrl mp3Url(song["mp3Url"].toString());
-                QString com = albumObj["commentThreadId"].toString();
                 QUrl picUrl(albumObj["picUrl"].toString());
-                vecOnMusic.push_back(OnMusic(isStarred,name,artist,album,duration,mp3Url,picUrl));
+                vecOnMusic.push_back(OnMusic(isStarred,name,artist,album,duration,mp3Url,picUrl,id));
             }
         }
         catch(NetworkConnectionException &e){
