@@ -6,7 +6,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QUrl>
-#include "commander.h"
+#include <commander.h>
 
 void MainWindow::initial()
 {
@@ -92,9 +92,18 @@ void MainWindow::initial()
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/favorite.png")), QObject::tr("收藏歌曲")));
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/localList.png")), QObject::tr("本地列表")));
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/playList.png")), QObject::tr("播放列表")));
+
     /*QTableWidgetItem *p = new QTableWidgetItem("a");
     ui->musicList->setItem(0, 0, p);
     ui->musicList->show();*/
+
+    ui->musicList->hide();
+    ui->musicListLocal->hide();
+
+    //循环方式
+    ui->playMethod->setIcon(QIcon(":/icon/images/loopPlay.png"));
+    loop = 0;
+
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -132,10 +141,10 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    if (event->buttons() & Qt::LeftButton)
+    if (event->buttons() && Qt::LeftButton && this ->dragPosition.x()  >= 0 && this->dragPosition.y() <= 40 && this ->dragPosition.y()  >= 0 && this ->dragPosition.x()  <= this->width())
     {
-        move(event->globalPos() - this->dragPosition);
-        event->accept();
+            move(event->globalPos() - this->dragPosition);
+            event->accept();
     }
 }
 
@@ -233,11 +242,17 @@ void MainWindow::on_playMusicBtn_clicked()
 void MainWindow::on_soundSlider_valueChanged(int value)
 {
     //list.SetVolume(value);
+    if (value == 0)
+    {
+        pictolabel(":/icon/images/noSound.png", ui->soundIcon, 20, 20);
+    }else
+    {
+        pictolabel(":/icon/images/soundIcon.png", ui->soundIcon, 20, 20);
+    }
 }
 
 void MainWindow::on_musicList_clicked(const QModelIndex &index)
 {
-    Commander *cmd = new Commander();
    // ui->musicList->selectRow(index.row());
     /*if (index.column() == 0)
     {
@@ -246,4 +261,30 @@ void MainWindow::on_musicList_clicked(const QModelIndex &index)
         ui->musicList->setCellWidget(index.row(), 0, label);
         ui->musicList->show();
     }*/
+}
+
+void MainWindow::on_search_returnPressed()
+{
+
+    Commander *p = new Commander;
+    QVector<bool> res = p->FillOnlineMusicTable(ui->musicList, ui->search->text());
+    ui->musicList->show();
+    ui->musicListLocal->hide();
+}
+
+void MainWindow::on_playMethod_clicked()
+{
+    loop = (loop +  1) % 3;
+    switch (loop)
+    {
+        case 0:
+            ui->playMethod->setIcon(QIcon(":/icon/images/loopPlay.png"));
+        break;
+        case 1:
+            ui->playMethod->setIcon(QIcon(":/icon/images/singlePlay.png"));
+        break;
+        case 2:
+            ui->playMethod->setIcon(QIcon(":/icon/images/randomPlay.png"));
+        break;
+    }
 }

@@ -21,5 +21,10 @@
         <file>images/favorite.png</file>
         <file>images/localList.png</file>
         <file>images/playList.png</file>
+        <file>images/loopPlay.png</file>
+        <file>images/noSound.png</file>
+        <file>images/randomPlay.png</file>
+        <file>images/singlePlay.png</file>
+        <file>images/lyric.png</file>
     </qresource>
 </RCC>
