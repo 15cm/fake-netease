@@ -185,6 +185,10 @@ void MainWindow::paintEvent(QPaintEvent *)
 
 void MainWindow::on_addLocalMusicBtn_clicked()
 {
+    Commander c;
+    c.AddLocalMusic(ui->musicListLocal);
+    ui->musicList->hide();
+    ui->musicListLocal->show();
 }
 
 void MainWindow::on_playMusicBtn_clicked()
@@ -193,7 +197,9 @@ void MainWindow::on_playMusicBtn_clicked()
 
 void MainWindow::on_soundSlider_valueChanged(int value)
 {
-    //list.SetVolume(value);
+    Commander c;
+    c.SetVolume(value);
+
     if (value == 0)
     {
         pictolabel(":/icon/images/noSound.png", ui->soundIcon, 20, 20);
