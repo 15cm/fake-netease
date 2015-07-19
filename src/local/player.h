@@ -33,7 +33,7 @@ class DeleteFromListException : public QException
     DeleteFromListException *clone() const{return new DeleteFromListException(*this);}
 };
 
-class Player : public QObject, public Commander
+class Player : public QObject
 {
     Q_OBJECT
 private:
@@ -110,7 +110,7 @@ public:
     //To get the duration of the current playing music
     QString GetDuration()
     {
-        const qin64 progress = MediaPlayer->duration();
+        const qint64 progress = MediaPlayer->duration();
         QTime t = QTime::fromMSecsSinceStartOfDay(progress);
         return t.toString();
     }
