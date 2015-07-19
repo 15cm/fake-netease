@@ -8,8 +8,19 @@ class SelectedMusicPlayer : public IPlaySelectedMusic
 public:
     void PlaySelectedMusic(int index)
     {
-        Player list;
-        list.playNewMusic(index);
+        try
+        {
+            Player list;
+            list.playNewMusic(index);
+        }
+        catch(const playNewMusicException &playnewmusicexception)
+        {
+            throw;
+        }
+        catch(const DeleteFromListException &deletefromlistexception)
+        {
+            throw;
+        }
     }
 };
 

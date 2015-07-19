@@ -28,6 +28,7 @@ inline void InitMediaList(QMediaPlaylist* playlist)
 
         playlist->addMedia(url);
     }
+    qDebug() <<"Init end"<< playlist->mediaCount();
 }
 
 inline void SyncMediaList(const QMediaPlaylist* playlist)

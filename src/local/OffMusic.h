@@ -20,6 +20,7 @@ public:
         artist = QString(ref.tag()->artist().toCString());
         album = QString(ref.tag()->album().toCString());
     }
+
     virtual ~OffMusic(){}
 };
 

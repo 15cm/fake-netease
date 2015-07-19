@@ -33,12 +33,20 @@ class DeleteFromListException : public QException
     DeleteFromListException *clone() const{return new DeleteFromListException(*this);}
 };
 
+class AlreadyInListException : public QException
+{
+    void raise() const {throw *this;}
+    AlreadyInListException *clone() const{return new AlreadyInListException(*this);}
+};
+
+
 class Player : public QObject
 {
     Q_OBJECT
 private:
    static QMediaPlayer MediaPlayer;
    static QMediaPlaylist MediaPlayerlist;
+   static bool flag;
 
 signals:
     void DurationChanged(qint64 duration);
@@ -101,6 +109,9 @@ public:
     void LastSong();
 
     void Release();
+
+    //check if url is already in playlist
+    bool InList(QUrl url);
 
 };
 

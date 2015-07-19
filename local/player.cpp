@@ -2,23 +2,43 @@
 
 QMediaPlayer Player::MediaPlayer;
 QMediaPlaylist Player::MediaPlayerlist;
+bool Player::flag = 0;
+
 
 Player::Player(QObject* parent)
     :QObject(parent)
 {
-    MediaPlayerlist.setPlaybackMode(QMediaPlaylist::Loop);
-    MediaPlayer.setPlaylist(&MediaPlayerlist);
-    MediaPlayer.setVolume(20);
-    initilizeSong();
 
-    connect(&MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
+    if(!flag)
     {
-       emit DurationChanged(duration);
-    });
-    connect(&MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
-    {
-        emit PositionChanged(progress);
-    });
+        MediaPlayerlist.setPlaybackMode(QMediaPlaylist::Loop);
+        if(!&MediaPlayerlist)
+            qDebug() << "NULL";
+        //qDebug() << Media
+        MediaPlayer.setPlaylist(&MediaPlayerlist);
+        MediaPlayer.setVolume(20);
+        initilizeSong();
+//        connect(&MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
+//        {
+//           emit DurationChanged(duration);
+//        });
+//        connect(&MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
+//        {
+//            emit PositionChanged(progress);
+//        });
+        flag = 1;
+    }
+//    if(MediaPlayer.state()==QMediaPlayer::StoppedState){
+//        qDebug() << "stop state";
+//    }
+//    else if(MediaPlayer.state()==QMediaPlayer::PlayingState){
+//        qDebug() << "playing state";
+//    }
+//    else {
+//        qDebug() << "pause state";
+//    }
+
+
 }
 
 Player::~Player(){}
@@ -75,14 +95,19 @@ void Player::SetPositon(qint64 progress)
 //add a musci to the list
 OffMusic Player::AddLocalMusic()
 {
+    //add to list
     QUrl fileurl = QFileDialog::getOpenFileUrl(0, QObject::tr("Open Music File"), QObject::tr("."), QObject::tr("mp3 music files(*.mp3)"));
+    if(InList(fileurl))
+    {
+        throw AlreadyInListException();
+        qDebug() << "media count " << MediaPlayerlist.mediaCount();
+    }
     if(!MediaPlayerlist.addMedia(fileurl))
-         throw (AddToListException());
-     qDebug() << "media count " << MediaPlayerlist.mediaCount();
+        throw AddToListException();
+    qDebug() << "media count " << MediaPlayerlist.mediaCount();
+    OffMusic omus(fileurl);
+    return omus;
 
-     //initialize OffMusic
-     OffMusic omus(fileurl);
-     return omus;
 }
 
 QVector<OffMusic> Player::AddLocalMusicFolder()
@@ -97,18 +122,21 @@ QVector<OffMusic> Player::AddLocalMusicFolder()
     foreach(QFileInfo info, list)
     {
         QUrl fileurl = QUrl::fromLocalFile(info.absoluteFilePath());
-        if(!MediaPlayerlist.addMedia(fileurl))
-            throw (AddToListException());
-        qDebug() << fileurl;
-        OffMusic omus(fileurl);
-        qvec.append(omus);
+        if(!InList(fileurl))
+        {
+            if(!MediaPlayerlist.addMedia(fileurl))
+                throw (AddToListException());
+            qDebug() << fileurl;
+            OffMusic omus(fileurl);
+            qvec.append(omus);
+        }
     }
     int cnt = MediaPlayerlist.mediaCount();
     for(int index = 0; index < cnt; index++)
     {
         qDebug() << MediaPlayerlist.media(index).canonicalUrl();
     }
-    //hdj
+
     qDebug() << "media count " << MediaPlayerlist.mediaCount();
 
     return qvec;
@@ -121,7 +149,15 @@ void Player::playNewMusic(int Index){
     QUrl url = MediaPlayer.currentMedia().canonicalUrl();
     if(!QFile::exists(url.toLocalFile()))
     {
-        DeleteFromList(Index);
+        try
+        {
+            DeleteFromList(Index);
+        }
+        catch(const DeleteFromListException &deletefromlistexception)
+        {
+            throw;
+        }
+
         throw playNewMusicException();
     }
     else
@@ -162,4 +198,16 @@ void Player::LastSong(){
 
 void Player::Release(){
     SyncMediaList(&MediaPlayerlist);
+}
+
+bool Player::InList(QUrl url){
+    int cnt = MediaPlayerlist.mediaCount();
+    for( int index = 0 ; index < cnt ; index++)
+    {
+        qDebug() << "url: " << url;
+        qDebug() << "media_url: " << MediaPlayerlist.media(index).canonicalUrl();
+        if(url == MediaPlayerlist.media(index).canonicalUrl())
+            return true;
+    }
+    return false;
 }
