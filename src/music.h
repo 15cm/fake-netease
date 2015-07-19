@@ -28,7 +28,10 @@ public:
     {
         int second = duration / 1000 % 60;
         int minute = duration /1000 / 60;
-        QString sec = QString::number(second, 10);
+        QString sec;
+        if(second < 10)
+            sec.append("0");
+        sec.append(QString::number(second, 10));
         QString min = QString::number(minute, 10);
         return QString(min.append(":").append(sec));
     }
