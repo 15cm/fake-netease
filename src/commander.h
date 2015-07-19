@@ -11,6 +11,8 @@
 #include "previousmusicplayer.h"
 #include "selectedmusicplayer.h"
 #include "curtotaldurationgetter.h"
+#include "playmodelchanger.h"
+#include "selectedonmusicplayer.h"
 // Commander
 class Commander
 {
@@ -70,6 +72,18 @@ public:
         QString tmp = pCurTotalDurationGetter->GetCurrentTotalDuration();
         delete pCurTotalDurationGetter;
         return tmp;
+    }
+    void ChangePlayModel()
+    {
+        IChangePlayModle *pPlayModelChanger = new PlayModleChanger;
+        pPlayModelChanger->ChangePlayModle();
+        delete pPlayModelChanger;
+    }
+    void PlaySelectedOnMusic(int index, QString &lrc, QImage &img)
+    {
+        IPlaySelectedOnMusic *pSelectedOnMusicPlayer = new SelectedOnMusicPlayer;
+        pSelectedOnMusicPlayer->PlaySelectedOnMusic(index,lrc,img);
+        delete pSelectedOnMusicPlayer;
     }
 
 

@@ -148,9 +148,15 @@ HEADERS  += ui/mainwindow.h\
     src/commander/implementation/selectedmusicplayer.h \
     src/commander/interface/iplayorpausecurrentmusic.h \
     src/commander/implementation/playorpausecurrentmusicsetter.h \
+    3rdpart/taglib/src/toolkit/tdebug.h\
     src/commander/interface/igetcurrenttotalduration.h \
     src/commander/implementation/ontablefiller.h \
-    src/commander/implementation/curtotaldurationgetter.h
+    src/commander/implementation/curtotaldurationgetter.h \
+    src/commander/interface/ichangeplaymodel.h \
+    src/commander/implementation/playmodelchanger.h\
+    src/commander/implementation/curtotaldurationgetter.h \
+    src/commander/interface/iplayselectedonmusic.h \
+    src/commander/implementation/selectedonmusicplayer.h
 
 FORMS    += ui/mainwindow.ui
 
@@ -160,7 +166,6 @@ INCLUDEPATH += src/commander\
                 src/commander/interface\
                 src/commander/implementation
 INCLUDEPATH += src
-
 CONFIG += C++11
 
 RESOURCES += \

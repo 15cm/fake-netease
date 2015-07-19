@@ -1,7 +1,6 @@
 #ifndef NETWORK
 #define NETWORK
 
-#endif // NETWORK
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
@@ -19,6 +18,7 @@
 #include <QException>
 #include <QVector>
 #include <QEventLoop>
+#include <QImage>
 #include "onmusic.h"
 
 
@@ -44,11 +44,11 @@ public:
 class Search :public QObject
 {
 private:
-    QString query;
     QUrl apiUrl;
 protected:
+    QString query;
     QByteArray postData;
-    QJsonObject resultObj;
+    QJsonObject searchObj;
 public:
     const static char *NEHOST;
     Search(){}
@@ -91,7 +91,7 @@ public:
        QByteArray resultInByte = reply->readAll();
 
 //       //test: output json
-//       String testStr = QString(resultInByte);
+//       QString testStr = QString(resultInByte);
 //       QFile file("/Users/a15/Desktop/networktest.json");
 //       file.open(QIODevice::WriteOnly);
 //       QTextStream out(&file);
@@ -100,10 +100,9 @@ public:
 //       file.close();
 //       end of output json
        QJsonDocument parse_document = QJsonDocument::fromJson(resultInByte);
-       QJsonObject searchObj = parse_document.object();
-       if(!searchObj.contains("result"))
+       searchObj = parse_document.object();
+       if(searchObj.empty())
            throw(SearchNotFoundException());
-       resultObj = searchObj["result"].toObject();
     }
 };
 const char *Search::NEHOST = "http://music.163.com/";
@@ -136,6 +135,7 @@ public:
             vecOnMusic.clear();
             Search::SetApiForSearch();
             this->Dosearch();
+            QJsonObject resultObj = searchObj["result"].toObject();
             QJsonArray songArray = resultObj["songs"].toArray();
             foreach(QJsonValue val, songArray){
                 QJsonObject song = val.toObject();
@@ -164,6 +164,61 @@ public:
         }
     }
 };
+
+class LrcSearch : public Search
+{
+public:
+    LrcSearch();
+    LrcSearch(QString _query):Search(_query){}
+    void MakePostData()
+    {
+        postData.clear();
+        postData.append("id=");
+        postData.append(query);
+        postData.append("&lv=-1&kv=-1&tv=-1");
+    }
+
+
+    QString SearchLrc()
+    {
+        Search::SetApiForLrc();
+        this->MakePostData();
+        Search::Dosearch();
+        if(!searchObj.contains("lrc"))
+            return QString("");
+        QJsonObject lrcObj = searchObj["lrc"].toObject();
+        return lrcObj["lyric"].toString();
+    }
+};
+
+class ImageDownload : QObject
+{
+private:
+    QUrl imgUrl;
+public:
+    ImageDownload(QUrl _imgUrl):imgUrl(_imgUrl){}
+    QImage GetImage()
+    {
+        QNetworkAccessManager *manager = new QNetworkAccessManager;
+        const QNetworkRequest request(imgUrl);
+        QNetworkReply *reply = manager->get(request);
+        // wait for reply finished
+        QEventLoop loop;
+        connect(reply,SIGNAL(finished()),&loop,SLOT(quit()));
+        loop.exec();
+        // reply finished
+        if (reply->error() != QNetworkReply::NoError) {
+            qDebug() << "Error in" << reply->url() << ":" << reply->errorString();
+        }
+        QByteArray imgData = reply->readAll();
+        QImage img;
+        img.loadFromData(imgData);
+        return img;
+    }
+};
+
 QVector<OnMusic> MusicSearch::vecOnMusic;
 
 
+
+#endif // NETWORK

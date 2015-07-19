@@ -26,5 +26,6 @@
         <file>images/randomPlay.png</file>
         <file>images/singlePlay.png</file>
         <file>images/lyric.png</file>
+        <file>images/album.png</file>
     </qresource>
 </RCC>
