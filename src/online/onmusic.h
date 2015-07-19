@@ -10,7 +10,7 @@ private:
     bool isStarred;
     QUrl picUrl;
     QString id;
-    QUrl lrcUrl;
+    QString lrc;
 public:
     OnMusic(){}
     OnMusic(bool _is, QString _name,QString _artist, QString _album, qint64 _duration, QUrl _mp3Url, QUrl _picUrl,QString _id):
@@ -30,5 +30,7 @@ public:
     bool IsStarred() const{return isStarred;}
     QUrl GetPicUrl() const{return picUrl;}
     QString GetId() const{return id;}
+    void SetLrc(QString _lrc){lrc = _lrc;}
+    QString GetLrc(){return lrc;}
 };
 #endif // ONMUSIC

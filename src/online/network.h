@@ -44,11 +44,11 @@ public:
 class Search :public QObject
 {
 private:
-    QString query;
     QUrl apiUrl;
 protected:
+    QString query;
     QByteArray postData;
-    QJsonObject resultObj;
+    QJsonObject searchObj;
 public:
     const static char *NEHOST;
     Search(){}
@@ -91,7 +91,7 @@ public:
        QByteArray resultInByte = reply->readAll();
 
 //       //test: output json
-//       String testStr = QString(resultInByte);
+//       QString testStr = QString(resultInByte);
 //       QFile file("/Users/a15/Desktop/networktest.json");
 //       file.open(QIODevice::WriteOnly);
 //       QTextStream out(&file);
@@ -100,10 +100,9 @@ public:
 //       file.close();
 //       end of output json
        QJsonDocument parse_document = QJsonDocument::fromJson(resultInByte);
-       QJsonObject searchObj = parse_document.object();
-       if(!searchObj.contains("result"))
+       searchObj = parse_document.object();
+       if(searchObj.empty())
            throw(SearchNotFoundException());
-       resultObj = searchObj["result"].toObject();
     }
 };
 const char *Search::NEHOST = "http://music.163.com/";
@@ -136,6 +135,7 @@ public:
             vecOnMusic.clear();
             Search::SetApiForSearch();
             this->Dosearch();
+            QJsonObject resultObj = searchObj["result"].toObject();
             QJsonArray songArray = resultObj["songs"].toArray();
             foreach(QJsonValue val, songArray){
                 QJsonObject song = val.toObject();
@@ -164,6 +164,33 @@ public:
         }
     }
 };
+
+class LrcSearch : public Search
+{
+
+    LrcSearch();
+    LrcSearch(QString _query):Search(_query){}
+    void MakePostData()
+    {
+        postData.clear();
+        postData.append("id=");
+        postData.append(query);
+        postData.append("&lv=-1&kv=-1&tv=-1");
+    }
+
+
+    QString SearchLrc()
+    {
+        Search::SetApiForLrc();
+        this->MakePostData();
+        Search::Dosearch();
+        if(!searchObj.contains("lrc"))
+            return QString("");
+        QJsonObject lrcObj = searchObj["lrc"].toObject();
+        return lrcObj["lyric"].toString();
+    }
+};
+
 QVector<OnMusic> MusicSearch::vecOnMusic;
 
 

@@ -149,7 +149,9 @@ HEADERS  += ui/mainwindow.h\
     src/commander/implementation/playorpausecurrentmusicsetter.h \
     src/commander/interface/igetcurrenttotalduration.h \
     src/commander/implementation/ontablefiller.h \
-    src/commander/implementation/curtotaldurationgetter.h
+    src/commander/implementation/curtotaldurationgetter.h \
+    src/commander/interface/ichangeplaymodel.h \
+    src/commander/implementation/playmodelchanger.h
 
 FORMS    += ui/mainwindow.ui
 
