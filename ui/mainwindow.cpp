@@ -63,7 +63,7 @@ void MainWindow::initial()
     ui->musicList->setAlternatingRowColors(true);
     ui->musicList->horizontalHeader()->setHighlightSections(false);
     //local列表设置
-    ui->musicListLocal->setRowCount(80);
+    ui->musicListLocal->setRowCount(50);
     ui->musicListLocal->setColumnCount(5);
     ui->musicListLocal->setHorizontalHeaderLabels(QStringList() <<
                                              tr("") <<
@@ -74,9 +74,9 @@ void MainWindow::initial()
 
     ui->musicListLocal->setColumnWidth(0, 30);
     ui->musicListLocal->setColumnWidth(1, 230);
-    ui->musicListLocal->setColumnWidth(2, 150);
-    ui->musicListLocal->setColumnWidth(3, 120);
-    ui->musicListLocal->setColumnWidth(4, 82);
+    ui->musicListLocal->setColumnWidth(2, 170);
+    ui->musicListLocal->setColumnWidth(3, 140);
+    //ui->musicListLocal->setColumnWidth(4, 82);
     ui->musicListLocal->verticalHeader()->setVisible(false);
     ui->musicListLocal->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->musicListLocal->setShowGrid(false);
@@ -93,9 +93,9 @@ void MainWindow::initial()
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/localList.png")), QObject::tr("本地列表")));
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/playList.png")), QObject::tr("播放列表")));
 
-    /*QTableWidgetItem *p = new QTableWidgetItem("a");
-    ui->musicList->setItem(0, 0, p);
-    ui->musicList->show();*/
+    for (int i = 0; i < ui->musicList->rowCount(); i++)
+        for (int j = 1; j < ui->musicList->columnCount(); j++)
+            ui->musicList->setItem(i, j, new QTableWidgetItem(""));
 
     ui->musicList->hide();
     ui->musicListLocal->hide();
@@ -119,6 +119,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    for (int i = 0; i < ui->musicList->rowCount(); i++)
+        for (int j = 1; j < ui->musicList->columnCount(); j++)
+            delete ui->musicList->item(i, j);
     delete ui;
 }
 
@@ -175,68 +178,10 @@ void MainWindow::paintEvent(QPaintEvent *)
 
 void MainWindow::on_addLocalMusicBtn_clicked()
 {
-    /*QUrl url;
-    url = QFileDialog::getOpenFileUrl(this, tr("Open Music File"), tr("."), tr("mp3 music files(*.mp3)"));
-    list.addToList(url);*/
 }
 
 void MainWindow::on_playMusicBtn_clicked()
 {
-    /*list.Retreat();
-    sta = list.GetPlayingState();
-    if (!sta)
-    {
-        ui->playMusicBtn->setStyleSheet
-        ("\
-            QPushButton#playMusicBtn:!hover\
-            {\
-                border-image: url(:/icon/images/playMusicBtn.png);\
-                background-color:white;\
-                border-radius: 30px;\
-                outline: 10px;\
-            }\
-            QPushButton#playMusicBtn:hover\
-            {\
-                border-image: url(:/icon/images/playMusicBtn.png);\
-                background-color:white;\
-                border-radius: 30px;\
-                outline: 10px;\
-            }\
-            QPushButton#playMusicBtn:pressed\
-            {\
-                border-image: url(:/icon/images/playMusicBtn.png);\
-                background-color:white;\
-                border-radius: 30px;\
-                outline: 10px;\
-            }\
-        ");
-    }else
-    {
-        ui->playMusicBtn->setStyleSheet
-        ("\
-            QPushButton#playMusicBtn:!hover\
-            {\
-                border-image: url(:/icon/images/pauseMusicBtn.png);\
-                background-color:white;\
-                border-radius: 30px;\
-                outline: 10px;\
-            }\
-            QPushButton#playMusicBtn:hover\
-            {\
-                border-image: url(:/icon/images/pauseMusicBtn.png);\
-                background-color:white;\
-                border-radius: 30px;\
-                outline: 10px;\
-            }\
-            QPushButton#playMusicBtn:pressed\
-            {\
-                border-image: url(:/icon/images/pauseMusicBtn.png);\
-                background-color:white;\
-                border-radius: 30px;\
-                outline: 10px;\
-            }\
-        ");
-    }*/
 }
 
 void MainWindow::on_soundSlider_valueChanged(int value)
