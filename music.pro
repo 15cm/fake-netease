@@ -154,7 +154,9 @@ HEADERS  += ui/mainwindow.h\
     src/commander/implementation/curtotaldurationgetter.h \
     src/commander/interface/ichangeplaymodel.h \
     src/commander/implementation/playmodelchanger.h\
-    src/commander/implementation/curtotaldurationgetter.h
+    src/commander/implementation/curtotaldurationgetter.h \
+    src/commander/interface/iplayselectedonmusic.h \
+    src/commander/implementation/selectedonmusicplayer.h
 
 FORMS    += ui/mainwindow.ui
 

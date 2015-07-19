@@ -12,6 +12,7 @@
 #include "selectedmusicplayer.h"
 #include "curtotaldurationgetter.h"
 #include "playmodelchanger.h"
+#include "selectedonmusicplayer.h"
 // Commander
 class Commander
 {
@@ -77,6 +78,12 @@ public:
         IChangePlayModle *pPlayModelChanger = new PlayModleChanger;
         pPlayModelChanger->ChangePlayModle();
         delete pPlayModelChanger;
+    }
+    void PlaySelectedOnMusic(int index, QString &lrc, QUrl &imgPath)
+    {
+        IPlaySelectedOnMusic *pSelectedOnMusicPlayer = new SelectedOnMusicPlayer;
+        pSelectedOnMusicPlayer->PlaySelectedOnMusic(index,lrc,imgPath);
+        delete pSelectedOnMusicPlayer;
     }
 
 

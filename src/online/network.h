@@ -1,7 +1,6 @@
 #ifndef NETWORK
 #define NETWORK
 
-#endif // NETWORK
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
@@ -167,7 +166,7 @@ public:
 
 class LrcSearch : public Search
 {
-
+public:
     LrcSearch();
     LrcSearch(QString _query):Search(_query){}
     void MakePostData()
@@ -194,3 +193,5 @@ class LrcSearch : public Search
 QVector<OnMusic> MusicSearch::vecOnMusic;
 
 
+
+#endif // NETWORK
