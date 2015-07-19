@@ -133,10 +133,10 @@ public:
             }
         }
         catch(NetworkConnectionException &e){
-            throw(e);
+            vecOnMusic.clear();
         }
         catch(SearchNotFoundException &e){
-            throw(e);
+            vecOnMusic.clear();
         }
     }
 };
