@@ -138,7 +138,9 @@ HEADERS  += ui/mainwindow.h\
     src/commander/implementation/currentmusicplayer.h \
     src/commander/implementation/volumesetter.h \
     src/commander/interface/ifilltable.h \
-    src/commander/implementation/ontablefiller.h
+    src/commander/implementation/ontablefiller.h \
+    src/commander/interface/igetcurrentplaystate.h \
+    src/commander/implementation/currentplaystategetter.h
 
 FORMS    += ui/mainwindow.ui
 
