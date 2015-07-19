@@ -34,8 +34,8 @@ private:
     PlaylistRecord record;
 
 signals:
-    void durationChanged(qint64 duration);
-    void positionChanged(qint64 progress);
+    void DurationChanged(qint64 duration);
+    void PositionChanged(qint64 progress);
 
 public:
     Player(){
@@ -45,19 +45,21 @@ public:
         MediaPlayer->setPlaylist(MediaPlayerlist);
         MediaPlayer->setVolume(20);
         initilizeSong();
-     /*   QObject::connect(MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
-        {
-           emit durationChanged(duration);
-        });
-        QObject::connect(MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
-        {
-            emit positionChanged(progress);
-        });
-    }*/
+//        QObject::connect(MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
+//        {
+//           emit Player::DurationChanged(duration);
+//        });
+//        QObject::connect(MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
+//        {
+//            emit Player::PositionChanged(progress);
+//        });
+    }
 
     ~Player()
     {
         record.SyncMediaList(MediaPlayerlist);
+        delete MediaPlayer;
+        delete MediaPlayerlist;
     }
 
     //first start the player to initialize the playlist
@@ -111,7 +113,9 @@ public:
     void AddLocalMusic()
     {
         QUrl url = QFileDialog::getOpenFileUrl(0, QObject::tr("Open Music File"), QObject::tr("."), QObject::tr("mp3 music files(*.mp3)"));
-        if(!MediaPlayerlist->addMedia(url))
+        QFileInfo info(url.toLocalFile());
+        QUrl fileurl(info.absoluteFilePath());
+        if(!MediaPlayerlist->addMedia(fileurl))
              throw (AddToListException());
     }
 
@@ -124,7 +128,7 @@ public:
         QFileInfoList list = dir.entryInfoList(filter);
         foreach(QFileInfo info, list)
         {
-            QUrl fileurl(info.absolutePath());
+            QUrl fileurl(info.absoluteFilePath());
             if(!MediaPlayerlist->addMedia(fileurl))
                 throw (AddToListException());
         }
@@ -133,11 +137,9 @@ public:
     //play a new music
     void playNewMusic(int Index){
         MediaPlayerlist->setCurrentIndex(Index);
-        QString Path = MediaPlayer->currentMedia().canonicalUrl().toString();
-        if(!QFile::exists(Path))
-        {
+        QString path = MediaPlayer->currentMedia().canonicalUrl().toString();
+        if(!QFile::exists(path))
             throw playNewMusicException();
-        }
         MediaPlayer->play();
     }
 
