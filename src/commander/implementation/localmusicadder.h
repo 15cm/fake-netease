@@ -6,7 +6,7 @@
 class LocalMusicAdder: public IAddLocalMusic
 {
 public:
-    void AddLocalMusic()
+    void AddLocalMusic(QTableWidget *pTable)
     {
         Player list;
         list.AddLocalMusic();

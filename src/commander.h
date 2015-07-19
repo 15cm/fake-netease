@@ -7,14 +7,16 @@
 #include "currentmusicplayer.h"
 #include "volumesetter.h"
 #include "ontablefiller.h"
+#include "nextmusicplayer.h"
+#include "previousmusicplayer.h"
 // Commander
 class Commander
 {
 public:
-    void AddLocalMusic()
+    void AddLocalMusic(QTableWidget *pTable)
     {
         IAddLocalMusic *pLocalMusicAdder = new LocalMusicAdder();
-        pLocalMusicAdder->AddLocalMusic();
+        pLocalMusicAdder->AddLocalMusic(pTable);
         delete pLocalMusicAdder;
     }
     void AddLocalMusicFolder()
@@ -26,7 +28,7 @@ public:
     void PlayCurrentMusic(int index)
     {
         IPlayCurrentMusic *pCurrentMusicPlayer = new CurrentMusicPlayer();
-        pCurrentMusicPlayer->PlayCurrentMusic(index);
+        pCurrentMusicPlayer->PlayCurrentMusic();
         delete pCurrentMusicPlayer;
     }
     void SetVolume(int value)
@@ -41,6 +43,18 @@ public:
         QVector<bool> temp =  pOnTableFiller->FillTable(pTable,query);
         delete pOnTableFiller;
         return temp;
+    }
+    void NextMusic()
+    {
+        INextMusic *pNextMusicPlayer = new NextMusicPlayer();
+        pNextMusicPlayer->NextMusic();
+        delete pNextMusicPlayer;
+    }
+    void PreviousMusic()
+    {
+        IPreviousMusic *pPreviousMusicPlayer = new PreviousMusicPlayer;
+        pPreviousMusicPlayer->PreviousMusic();
+        delete pPreviousMusicPlayer;
     }
 
 

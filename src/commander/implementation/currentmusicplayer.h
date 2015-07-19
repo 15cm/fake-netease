@@ -7,10 +7,8 @@
 class CurrentMusicPlayer : public IPlayCurrentMusic
 {
 public:
-    void PlayCurrentMusic(int index)
+    void PlayCurrentMusic()
     {
-        Player list;
-        list.playNewMusic(index);
     }
 };
 

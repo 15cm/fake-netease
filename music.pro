@@ -141,7 +141,11 @@ HEADERS  += ui/mainwindow.h\
     src/commander/interface/ifilltable.h \
     src/commander/implementation/ontablefiller.h \
     src/commander/interface/igetcurrentplaystate.h \
-    src/commander/implementation/currentplaystategetter.h
+    src/commander/implementation/currentplaystategetter.h \
+    src/commander/interface/inextmusic.h \
+    src/commander/interface/ipreviousmusic.h \
+    src/commander/implementation/nextmusicplayer.h \
+    src/commander/implementation/previousmusicplayer.h
 
 FORMS    += ui/mainwindow.ui
 
