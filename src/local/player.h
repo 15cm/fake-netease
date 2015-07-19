@@ -110,16 +110,17 @@ public:
     //To get the duration of the current playing music
     QString GetDuration()
     {
+        const qin64 progress = MediaPlayer->duration();
         QTime t = QTime::fromMSecsSinceStartOfDay(progress);
         return t.toString();
     }
 
-    QString GetCurrentProgress()
-    {
-        qint64 progress = MediaPlayer->position();
-        QTime t = QTime::fromMSecsSinceStartOfDay(progress);
-        return t.toString();
-    }
+//    QString GetCurrentProgress()
+//    {
+//        qint64 progress = MediaPlayer->position();
+//        QTime t = QTime::fromMSecsSinceStartOfDay(progress);
+//        return t.toString();
+//    }
 
     //set the progress of the music play
     void SetPositon(qint64 progress)
