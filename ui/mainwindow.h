@@ -40,6 +40,8 @@ private slots:
 
     void on_playMethod_clicked();
 
+    void on_musicList_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     QPoint dragPosition;

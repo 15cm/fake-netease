@@ -109,6 +109,7 @@ void MainWindow::initial()
     ui->playMethod->setIcon(QIcon(":/icon/images/loopPlay.png"));
     loop = 0;
 
+    pictolabel(":/icon/images/album.png", ui->musicPic, 238, 238);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -240,4 +241,15 @@ void MainWindow::on_playMethod_clicked()
             ui->playMethod->setIcon(QIcon(":/icon/images/randomPlay.png"));
         break;
     }
+}
+
+void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
+{
+   Commander p;
+   QString s;
+   QImage img;
+   p.PlaySelectedOnMusic(index.row(), s, img);
+    QImage a_img = img.scaled(238, 238, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    ui->musicPic->setPixmap(QPixmap::fromImage(a_img));
+    ui->musicPic->resize(a_img.width(), a_img.height());
 }

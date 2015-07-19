@@ -276,6 +276,19 @@
      <string>词</string>
     </property>
    </widget>
+   <widget class="QLabel" name="musicPic">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>391</y>
+      <width>171</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
