@@ -10,6 +10,7 @@
 #include <QFile>
 #include <QDir>
 #include <QFileDialog>
+#include <QTime>
 #include "commander.h"
 #include "playlistrecord.h"
 
@@ -26,8 +27,15 @@ class playNewMusicException : public QException
     playNewMusicException *clone() const{return new playNewMusicException(*this);}
 };
 
-class Player : public Commander
+class DeleteFromListException : public QException
 {
+    void raise() const {throw *this;}
+    DeleteFromListException *clone() const{return new DeleteFromListException(*this);}
+};
+
+class Player : public QObject, public Commander
+{
+    Q_OBJECT
 private:
     QMediaPlayer *MediaPlayer;
     QMediaPlaylist *MediaPlayerlist;
@@ -38,21 +46,24 @@ signals:
     void PositionChanged(qint64 progress);
 
 public:
-    Player(){
+    Player(QObject* parent = 0)
+        :QObject(parent)
+    {
         MediaPlayerlist = new QMediaPlaylist();
         MediaPlayer = new QMediaPlayer();
         MediaPlayerlist->setPlaybackMode(QMediaPlaylist::Loop);
         MediaPlayer->setPlaylist(MediaPlayerlist);
         MediaPlayer->setVolume(20);
         initilizeSong();
-//        QObject::connect(MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
-//        {
-//           emit Player::DurationChanged(duration);
-//        });
-//        QObject::connect(MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
-//        {
-//            emit Player::PositionChanged(progress);
-//        });
+
+        connect(MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
+        {
+           emit DurationChanged(duration);
+        });
+        connect(MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
+        {
+            emit PositionChanged(progress);
+        });
     }
 
     ~Player()
@@ -97,16 +108,24 @@ public:
     }
 
     //To get the duration of the current playing music
-    qint64 GetDuration()
+    QString GetDuration()
     {
-        return MediaPlayer->duration();
+        QTime t = QTime::fromMSecsSinceStartOfDay(progress);
+        return t.toString();
+    }
+
+    QString GetCurrentProgress()
+    {
+        qint64 progress = MediaPlayer->position();
+        QTime t = QTime::fromMSecsSinceStartOfDay(progress);
+        return t.toString();
     }
 
     //set the progress of the music play
-    void SetPositon(int percent)
+    void SetPositon(qint64 progress)
     {
-        qint64 position = percent*1.0/100 * GetDuration();
-        MediaPlayer->setPosition(position);
+        //qint64 position = percent*1.0/100 * GetDuration();
+        MediaPlayer->setPosition(progress);
     }
 
     //add a musci to the list
@@ -139,8 +158,17 @@ public:
         MediaPlayerlist->setCurrentIndex(Index);
         QString path = MediaPlayer->currentMedia().canonicalUrl().toString();
         if(!QFile::exists(path))
+        {
+            DeleteFromList(Index);
             throw playNewMusicException();
+        }
         MediaPlayer->play();
+    }
+
+    void DeleteFromList(int Index)
+    {
+        if(!MediaPlayerlist->removeMedia(Index));
+            throw (DeleteFromListException());
     }
 
     //Go on or pause
@@ -149,10 +177,12 @@ public:
         if(MediaPlayer->state()==QMediaPlayer::StoppedState && !MediaPlayerlist->isEmpty())
             playNewMusic(0);
         //music is playing and
-        else if(MediaPlayer->state()==QMediaPlayer::PlayingState)
-            MediaPlayer->play();
         else if(MediaPlayer->state()==QMediaPlayer::PausedState)
+            MediaPlayer->play();
+        else if(MediaPlayer->state()==QMediaPlayer::PlayingState)
             MediaPlayer->pause();
+
+        qDebug() << "Retreat";
     }
 
     //next song
