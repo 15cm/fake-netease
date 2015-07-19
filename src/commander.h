@@ -36,11 +36,12 @@ public:
         pVolumeSetter->SetVolume(value);
         delete pVolumeSetter;
     }
-    QVector<bool> FillOnlineMusicTable(QTableWidget *pTable, QString &query)
+    QVector<bool> FillOnlineMusicTable(QTableWidget *pTable,const QString &query)
     {
         IFillTable *pOnTableFiller = new OnTableFiller();
-        pOnTableFiller->FillTable(pTable,query);
+        QVector<bool> temp =  pOnTableFiller->FillTable(pTable,query);
         delete pOnTableFiller;
+        return temp;
     }
 
 

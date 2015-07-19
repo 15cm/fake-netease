@@ -6,7 +6,7 @@
 class OnTableFiller : public IFillTable
 {
 public:
-    QVector<bool> FillTable(QTableWidget *pTable, QString &query)
+    QVector<bool> FillTable(QTableWidget *pTable,const QString &query)
     {
         MusicSearch mSearch(query);
         QVector<bool> IsStarredList;
