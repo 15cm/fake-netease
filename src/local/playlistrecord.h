@@ -25,6 +25,7 @@ inline void InitMediaList(QMediaPlaylist* playlist)
     for(int index = 0; index < jsonarr.size(); index++ )
     {
         QUrl url(jsonarr[index].toString());
+
         playlist->addMedia(url);
     }
 }

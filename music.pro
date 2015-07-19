@@ -15,7 +15,8 @@ TEMPLATE = app
 
 
 SOURCES += ui/main.cpp\
-        ui/mainwindow.cpp
+        ui/mainwindow.cpp \
+    local/player.cpp
 
 HEADERS  += ui/mainwindow.h\
             src/local/OffMusic.h\
