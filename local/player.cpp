@@ -73,15 +73,19 @@ void Player::SetPositon(qint64 progress)
 }
 
 //add a musci to the list
-void Player::AddLocalMusic()
+OffMusic Player::AddLocalMusic()
 {
     QUrl fileurl = QFileDialog::getOpenFileUrl(0, QObject::tr("Open Music File"), QObject::tr("."), QObject::tr("mp3 music files(*.mp3)"));
     if(!MediaPlayerlist.addMedia(fileurl))
          throw (AddToListException());
      qDebug() << "media count " << MediaPlayerlist.mediaCount();
+
+     //initialize OffMusic
+     OffMusic omus(fileurl);
+     return omus;
 }
 
-void Player::AddLocalMusicFolder()
+QVector<OffMusic> Player::AddLocalMusicFolder()
 {
     qDebug() << "media count " << MediaPlayerlist.mediaCount();
     QUrl url = QFileDialog::getExistingDirectoryUrl(0, QObject::tr("Open Music File Folder"));
@@ -89,12 +93,15 @@ void Player::AddLocalMusicFolder()
     QStringList filter;
     filter << "*.mp3";
     QFileInfoList list = dir.entryInfoList(filter);
+    QVector<OffMusic> qvec;
     foreach(QFileInfo info, list)
     {
         QUrl fileurl = QUrl::fromLocalFile(info.absoluteFilePath());
         if(!MediaPlayerlist.addMedia(fileurl))
             throw (AddToListException());
         qDebug() << fileurl;
+        OffMusic omus(fileurl);
+        qvec.append(omus);
     }
     int cnt = MediaPlayerlist.mediaCount();
     for(int index = 0; index < cnt; index++)
@@ -103,6 +110,8 @@ void Player::AddLocalMusicFolder()
     }
     //hdj
     qDebug() << "media count " << MediaPlayerlist.mediaCount();
+
+    return qvec;
 }
 
 //play a new music

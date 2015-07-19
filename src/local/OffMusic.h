@@ -7,6 +7,7 @@
 class OffMusic : public Music
 {
 public:
+    OffMusic() {}
     OffMusic(QUrl url){
         TagLib::FileRef ref(url.path().toLatin1().data());
         if(!ref.tag())

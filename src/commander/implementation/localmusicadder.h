@@ -3,13 +3,14 @@
 
 #include "iaddlocalmusic.h"
 #include "player.h"
+#include "OffMusic.h"
 class LocalMusicAdder: public IAddLocalMusic
 {
 public:
     void AddLocalMusic(QTableWidget *pTable)
     {
         Player list;
-        list.AddLocalMusic();
+        OffMusic omus = list.AddLocalMusic();
     }
 };
 
