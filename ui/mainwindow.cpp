@@ -39,7 +39,7 @@ void MainWindow::initial()
     ui->soundSlider->setMaximum(100);
     ui->soundSlider->setValue(20);
     //在线列表设置
-    ui->musicList->setRowCount(80);
+    ui->musicList->setRowCount(50);
     ui->musicList->setColumnCount(5);
     ui->musicList->setHorizontalHeaderLabels(QStringList() <<
                                              tr("") <<
@@ -93,9 +93,10 @@ void MainWindow::initial()
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/localList.png")), QObject::tr("本地列表")));
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/playList.png")), QObject::tr("播放列表")));
 
+    QTableWidgetItem tableWidgetItem[50][5];
     for (int i = 0; i < ui->musicList->rowCount(); i++)
         for (int j = 1; j < ui->musicList->columnCount(); j++)
-            ui->musicList->setItem(i, j, new QTableWidgetItem(""));
+            ui->musicList->setItem(i, j,&tableWidgetItem[50][5]);
 
     ui->musicList->hide();
     ui->musicListLocal->hide();
@@ -119,9 +120,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    for (int i = 0; i < ui->musicList->rowCount(); i++)
-        for (int j = 1; j < ui->musicList->columnCount(); j++)
-            delete ui->musicList->item(i, j);
     delete ui;
 }
 

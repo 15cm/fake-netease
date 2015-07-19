@@ -57,7 +57,7 @@ public:
         postData.append("s=");
         postData.append(query);
         postData.append("&offset=0");
-        postData.append("&limit=80");
+        postData.append("&limit=50");
     }
     void Dosearch()
     {
@@ -98,6 +98,7 @@ const char *Search::NEHOST = "http://music.163.com/";
 class MusicSearch:public Search
 {
 public:
+    static QVector<OnMusic> vecOnMusic;
     MusicSearch(){}
     MusicSearch(const QString &query):Search(query){}
     void MakePostData()
@@ -105,12 +106,11 @@ public:
         Search::MakePostData();
         postData.append("&type=1");
     }
-    QVector<OnMusic> GetMusicList()
+    void GetMusicList()
     {
         this->MakePostData();
         try{
             this->Dosearch();
-            QVector<OnMusic> musicList;
             QJsonArray songArray = resultObj["songs"].toArray();
             foreach(QJsonValue val, songArray){
                 QJsonObject song = val.toObject();
@@ -128,9 +128,8 @@ public:
                 QUrl mp3Url(song["mp3Url"].toString());
                 QString com = albumObj["commentThreadId"].toString();
                 QUrl picUrl(albumObj["picUrl"].toString());
-
+                vecOnMusic.push_back(OnMusic(isStarred,name,artist,album,duration,mp3Url,picUrl));
             }
-            return musicList;
         }
         catch(NetworkConnectionException &e){
             throw(e);
@@ -140,5 +139,6 @@ public:
         }
     }
 };
+QVector<OnMusic> MusicSearch::vecOnMusic;
 
 
