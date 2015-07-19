@@ -11,7 +11,6 @@
 #include <QDir>
 #include <QFileDialog>
 #include <QTime>
-#include "commander.h"
 #include "playlistrecord.h"
 
 class AddToListException : public QException
