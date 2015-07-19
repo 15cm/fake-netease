@@ -16,7 +16,8 @@ TEMPLATE = app
 
 SOURCES += ui/main.cpp\
         ui/mainwindow.cpp \
-    local/player.cpp
+    local/player.cpp \
+    3rdpart/taglib/src/mpeg/id3v2/id3v2frame.cpp
 
 HEADERS  += ui/mainwindow.h\
             src/local/OffMusic.h\
@@ -147,7 +148,8 @@ HEADERS  += ui/mainwindow.h\
     src/commander/interface/iplayselectedmusic.h \
     src/commander/implementation/selectedmusicplayer.h \
     src/commander/interface/iplayorpausecurrentmusic.h \
-    src/commander/implementation/playorpausecurrentmusicsetter.h
+    src/commander/implementation/playorpausecurrentmusicsetter.h \
+    3rdpart/taglib/src/toolkit/tdebug.h
 
 FORMS    += ui/mainwindow.ui
 
@@ -164,7 +166,6 @@ RESOURCES += \
     ui/ui_rescource.qrc
 
 
-
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/3rdpart/taglib/lib/release/ -ltag
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/3rdpart/taglib/lib/debug/ -ltag
 else:unix: LIBS += -L$$PWD/3rdpart/taglib/lib/ -ltag
@@ -177,3 +178,5 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/3rdpart/tag
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/3rdpart/taglib/lib/release/tag.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/3rdpart/taglib/lib/debug/tag.lib
 else:unix: PRE_TARGETDEPS += $$PWD/3rdpart/taglib/lib/libtag.a
+
+INCLUDEPATH += $$PWD/3rdpart/taglib/src/toolkit

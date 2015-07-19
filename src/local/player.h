@@ -12,7 +12,8 @@
 #include <QFileDialog>
 #include <QTime>
 #include "playlistrecord.h"
-
+#include "OffMusic.h"
+#include <QVector>
 class AddToListException : public QException
 {
 public:
@@ -81,9 +82,9 @@ public:
     void SetPositon(qint64 progress);
 
     //add a musci to the list
-    void AddLocalMusic();
+    OffMusic AddLocalMusic();
 
-    void AddLocalMusicFolder();
+    QVector<OffMusic> AddLocalMusicFolder();
 
     //play a new music
     void playNewMusic(int Index);
