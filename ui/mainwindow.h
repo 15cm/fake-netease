@@ -11,6 +11,7 @@
 #include <QLabel>
 //#include "OffMusic.h"
 //#include "player.h"
+#include <QTableWidgetItem>
 
 namespace Ui {
 class MainWindow;
@@ -24,6 +25,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     void initial();
     ~MainWindow();
+    //QTableWidgetItem *tableWidgetItem[50][5];
 
 private slots:
     void on_addLocalMusicBtn_clicked();

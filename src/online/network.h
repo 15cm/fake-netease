@@ -110,6 +110,7 @@ public:
     {
         this->MakePostData();
         try{
+            vecOnMusic.clear();
             this->Dosearch();
             QJsonArray songArray = resultObj["songs"].toArray();
             foreach(QJsonValue val, songArray){
@@ -132,10 +133,10 @@ public:
             }
         }
         catch(NetworkConnectionException &e){
-            throw(e);
+            vecOnMusic.clear();
         }
         catch(SearchNotFoundException &e){
-            throw(e);
+            vecOnMusic.clear();
         }
     }
 };

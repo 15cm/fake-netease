@@ -13,8 +13,10 @@ public:
         mSearch.GetMusicList();
         for(int row = 0; row < pTable->rowCount(); row++){
             for(int col = 0; col < pTable->columnCount(); col ++){
-                if(row >= MusicSearch::vecOnMusic.size())
+                if(row >= MusicSearch::vecOnMusic.size()){
+                    if(col != 0)
                     pTable->item(row,col)->setText("");
+                }
                 else
                     switch(col){
                     case 0:{
