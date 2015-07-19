@@ -24,7 +24,8 @@ HEADERS  += ui/mainwindow.h\
             src/music.h \
             src/online/onmusic.h \
             src/local/playlistrecord.h \
-    src/commander.h
+    src/commander.h \
+    src/online/onlinemusiclistfiller.h
 
 FORMS    += ui/mainwindow.ui
 

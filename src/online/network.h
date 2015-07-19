@@ -93,6 +93,8 @@ public:
     }
 };
 const char *Search::NEHOST = "http://music.163.com/";
+
+// music search
 class MusicSearch:public Search
 {
 public:
