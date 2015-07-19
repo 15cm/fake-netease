@@ -11,7 +11,7 @@
 #include <QDir>
 #include <QFileDialog>
 #include <QTime>
-#include "playlistrecord.h"
+//#include "playlistrecord.h"
 
 class AddToListException : public QException
 {
@@ -70,7 +70,7 @@ public:
     //first start the player to initialize the playlist
     void initilizeSong()
     {
-        PlaylistRecord::InitMediaList(MediaPlayerlist);
+        //PlaylistRecord::InitMediaList(MediaPlayerlist);
     }
 
     //To get the playing state(true while playing, or false)
@@ -193,7 +193,7 @@ public:
     }
 
     void Release(){
-        PlaylistRecord::SyncMediaList(MediaPlayerlist);
+        //PlaylistRecord::SyncMediaList(MediaPlayerlist);
         delete MediaPlayer;
         delete MediaPlayerlist;
     }
