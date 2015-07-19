@@ -4,7 +4,7 @@
 
 #include "localmusicadder.h"
 #include "localmusicfolderadder.h"
-#include "currentmusicplayer.h"
+#include "playorpausecurrentmusicsetter.h"
 #include "volumesetter.h"
 #include "ontablefiller.h"
 #include "nextmusicplayer.h"
@@ -25,11 +25,11 @@ public:
         pLocalMusicFolerAdder->AddLocalMusicFolder();
         delete pLocalMusicFolerAdder;
     }
-    void PlayCurrentMusic(int index)
+    void PlayOrPauseCurrentMusic()
     {
-        IPlayCurrentMusic *pCurrentMusicPlayer = new CurrentMusicPlayer();
-        pCurrentMusicPlayer->PlayCurrentMusic();
-        delete pCurrentMusicPlayer;
+        IPlayOrPauseCurrentMusic *pCurrentMusicSetter = new PlayOrPauseCurrentMusicSetter();
+        pCurrentMusicSetter->PlayOrPauseCurrentMusic();
+        delete pCurrentMusicSetter;
     }
     void SetVolume(int value)
     {

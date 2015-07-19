@@ -131,12 +131,10 @@ HEADERS  += ui/mainwindow.h\
     src/commander/itablefiller.h \
     src/commander/localmusicadder.h \
     src/commander/interface/iaddlocalmusicfolder.h \
-    src/commander/interface/iplaycurrentmusic.h \
     src/commander/interface/isetvolume.h \
     src/commander/implementation/localmusicfolderadder.h \
     src/commander/implementation/localmusicadder.h \
     src/commander/interface/iaddlocalmusic.h \
-    src/commander/implementation/currentmusicplayer.h \
     src/commander/implementation/volumesetter.h \
     src/commander/interface/ifilltable.h \
     src/commander/implementation/ontablefiller.h \
@@ -145,7 +143,11 @@ HEADERS  += ui/mainwindow.h\
     src/commander/interface/inextmusic.h \
     src/commander/interface/ipreviousmusic.h \
     src/commander/implementation/nextmusicplayer.h \
-    src/commander/implementation/previousmusicplayer.h
+    src/commander/implementation/previousmusicplayer.h \
+    src/commander/interface/iplayselectedmusic.h \
+    src/commander/implementation/selectedmusicplayer.h \
+    src/commander/interface/iplayorpausecurrentmusic.h \
+    src/commander/implementation/playorpausecurrentmusicsetter.h
 
 FORMS    += ui/mainwindow.ui
 
