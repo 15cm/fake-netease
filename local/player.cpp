@@ -123,8 +123,9 @@ void Player::AddLocalMusic(OffMusic &offmusic, int &index)
     qDebug() << "index" << index;
 }
 
-QVector<OffMusic> Player::AddLocalMusicFolder()
+QVector<OffMusic> Player::AddLocalMusicFolder(int &MusicCount)
 {
+    MusicCount = MediaPlayerlist.mediaCount();
     qDebug() << "media count " << MediaPlayerlist.mediaCount();
     QUrl url = QFileDialog::getExistingDirectoryUrl(0, QObject::tr("Open Music File Folder"));
     QDir dir(url.toLocalFile());

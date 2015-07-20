@@ -95,7 +95,7 @@ public:
     //add a musci to the list
     void AddLocalMusic(OffMusic &, int&);
 
-    QVector<OffMusic> AddLocalMusicFolder();
+    QVector<OffMusic> AddLocalMusicFolder(int &);
 
     //play a new music
     void playNewMusic(int Index);
