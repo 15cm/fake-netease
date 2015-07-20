@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QMediaPlaylist>
 #include <QException>
+#include "OffMusic.h"
 
 class SyncPlaylistFail : public QException
 {
@@ -14,7 +15,7 @@ class SyncPlaylistFail : public QException
         SyncPlaylistFail *clone() const { return new SyncPlaylistFail(*this); }
 };
 
-inline void InitMediaList(QMediaPlaylist* playlist)
+inline void InitMediaList(QMediaPlaylist* playlist, QVector<OffMusic> &qvec)
 {
     QFile file("PlaylistRecord.json");
     QJsonDocument json;
@@ -25,7 +26,8 @@ inline void InitMediaList(QMediaPlaylist* playlist)
     for(int index = 0; index < jsonarr.size(); index++ )
     {
         QUrl url(jsonarr[index].toString());
-
+        OffMusic omus(url);
+        qvec.append(omus);
         playlist->addMedia(url);
     }
     qDebug() <<"Init end"<< playlist->mediaCount();
