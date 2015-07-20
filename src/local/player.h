@@ -115,6 +115,9 @@ public:
     //check if url is already in playlist
     bool InList(QUrl url);
 
+    //play online music
+    void PlayOnlineMusic(const QUrl &url);
+
 };
 
 #endif // Player

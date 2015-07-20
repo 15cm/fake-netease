@@ -142,7 +142,8 @@ void Player::AddLocalMusic(OffMusic &offmusic, int &index)
     qDebug() << "media count " << MediaPlayerlist.mediaCount();
     OffMusic omus(fileurl);
     offmusic = omus;
-    index = MediaPlayerlist.currentIndex();
+    index = MediaPlayerlist.mediaCount();
+    qDebug() << "index" << index;
 }
 
 QVector<OffMusic> Player::AddLocalMusicFolder()
@@ -247,9 +248,10 @@ bool Player::InList(QUrl url)
     }
     return false;
 }
-/*
+
 void Player::PlayOnlineMusic(const QUrl &url)
 {
     MediaPlayer.setMedia(url);
     MediaPlayer.play();
-}*/
+    qDebug() << "play online music" << url;
+}
