@@ -150,6 +150,10 @@ void MainWindow::initial()
     ui->lyricLabel2->hide();
     ui->lyricLabel3->setAlignment(Qt::AlignCenter);
     ui->lyricLabel3->hide();
+
+    ui->lyricLabel1->setText("");
+    ui->lyricLabel2->setText("");
+    ui->lyricLabel3->setText("");
     lrcState = 0;
 }
 
@@ -414,7 +418,7 @@ void MainWindow::UpdateTime(qint64 time)
 {
     QMap<qint64, QString>::iterator p;
     p = lrc_map.begin();
-    if  (!lrc_map.empty())
+    while  (!lrc_map.empty())
     {
         if (p.key() <= time)
         {
@@ -422,7 +426,8 @@ void MainWindow::UpdateTime(qint64 time)
             ui->lyricLabel2->setText(p.value());
             p = lrc_map.erase(p);
             p++;
-        }
+        }else
+            break;
     }
     if (p != lrc_map.end())
         ui->lyricLabel3->setText(p.value());
@@ -430,6 +435,9 @@ void MainWindow::UpdateTime(qint64 time)
 
 void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
 {
+    ui->lyricLabel1->setText("");
+    ui->lyricLabel2->setText("");
+    ui->lyricLabel3->setText("");
    Commander p;
    QImage img;
    QString ss;
