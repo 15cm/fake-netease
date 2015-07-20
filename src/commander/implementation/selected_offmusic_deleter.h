@@ -17,8 +17,8 @@ public:
                 pTable->item(row - 1,col)->setText(pTable->item(row, col)->text());
         for(int i = 0; i < 5; i ++)
             if(i == 0){
-                delete pTable->item(count + 1,0);
-                pTable->setCellWidget(count + 1, 0,new QLabel);
+                delete pTable->cellWidget(count,0);
+                pTable->setCellWidget(count, 0,new QLabel);
             }
             else
             pTable->item(count,i)->setText("");
