@@ -46,7 +46,7 @@ class Player : public QObject
 private:
    static QMediaPlayer MediaPlayer;
    static QMediaPlaylist MediaPlayerlist;
-   static bool flag;
+   //static bool flag;
 
 signals:
     void DurationChanged(qint64 duration);
@@ -54,6 +54,8 @@ signals:
 
 public:
     Player(QObject* parent = 0);
+
+    void Initialize();
 
     ~Player();
 

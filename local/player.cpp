@@ -2,9 +2,9 @@
 
 QMediaPlayer Player::MediaPlayer;
 QMediaPlaylist Player::MediaPlayerlist;
-bool Player::flag = 0;
+//bool Player::flag = 0;
 
-
+/*
 Player::Player(QObject* parent)
     :QObject(parent)
 {
@@ -39,15 +39,34 @@ Player::Player(QObject* parent)
 //    }
 
 
+}*/
+Player::Player(QObject* parent)
+    :QObject(parent)
+{
+    //do nothing
+}
+
+void Player::Initialize()
+{
+    MediaPlayerlist.setPlaybackMode(QMediaPlaylist::Loop);
+    if(!&MediaPlayerlist)
+        qDebug() << "NULL";
+    //qDebug() << Media
+    MediaPlayer.setPlaylist(&MediaPlayerlist);
+    MediaPlayer.setVolume(20);
+    //initilizeSong();
+    InitMediaList(&MediaPlayerlist);
 }
 
 Player::~Player(){}
 
 //first start the player to initialize the playlist
+/* hdj::directly add into Initialize()
 void Player::initilizeSong()
 {
     InitMediaList(&MediaPlayerlist);
 }
+*/
 
 //To get the playing state(true while playing, or false)
 bool Player::GetPlayingState(){
