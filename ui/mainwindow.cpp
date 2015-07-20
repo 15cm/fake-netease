@@ -50,9 +50,8 @@ void MainWindow::initial()
 
     ui->musicList->setColumnWidth(0, 30);
     ui->musicList->setColumnWidth(1, 230);
-    ui->musicList->setColumnWidth(2, 150);
-    ui->musicList->setColumnWidth(3, 120);
-    ui->musicList->setColumnWidth(4, 82);
+    ui->musicList->setColumnWidth(2, 170);
+    ui->musicList->setColumnWidth(3, 140);
     ui->musicList->verticalHeader()->setVisible(false);
     ui->musicList->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->musicList->setShowGrid(false);

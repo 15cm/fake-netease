@@ -53,6 +53,7 @@ private slots:
 
     void on_favoriteList_clicked(const QModelIndex &index);
 
+
 private:
     Ui::MainWindow *ui;
     QPoint dragPosition;   bool sta;
