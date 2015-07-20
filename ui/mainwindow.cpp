@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QUrl>
 #include <commander.h>
+#include "hintdialog.h"
 
 void MainWindow::initial()
 {
