@@ -92,12 +92,7 @@ public:
         delete pCurTotalDurationGetter;
         return tmp;
     }
-    void ChangePlayModel()
-    {
-        IChangePlayModle *pPlayModelChanger = new PlayModleChanger;
-        pPlayModelChanger->ChangePlayModle();
-        delete pPlayModelChanger;
-    }
+
     void PlaySelectedOnMusic(int index, QString &lrc, QImage &img)
     {
         IPlaySelectedOnMusic *pSelectedOnMusicPlayer = new SelectedOnMusicPlayer;
