@@ -42,10 +42,13 @@ private slots:
 
     void on_musicList_doubleClicked(const QModelIndex &index);
 
+    void on_lastMusicBtn_clicked();
+
+    void on_nextMusicBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
-    QPoint dragPosition;
-    bool sta;
+    QPoint dragPosition;   bool sta;
     int loop;
     //Player list;
     void mousePressEvent(QMouseEvent*);
