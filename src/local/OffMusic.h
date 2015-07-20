@@ -23,7 +23,7 @@ public:
             qDebug() << "NULL";
         }
         name = QString(ref.tag()->title().toCString());
-        duration = ref.audioProperties()->length();
+        duration = ref.audioProperties()->length()*1000;
         mp3Url = url;
         artist = QString(ref.tag()->artist().toCString());
         album = QString(ref.tag()->album().toCString());

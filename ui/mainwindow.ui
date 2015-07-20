@@ -299,7 +299,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>time</string>
+     <string>00:00</string>
     </property>
    </widget>
   </widget>

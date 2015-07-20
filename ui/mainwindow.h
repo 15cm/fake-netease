@@ -47,6 +47,12 @@ private slots:
 
     void on_nextMusicBtn_clicked();
 
+    void on_musicSlider_valueChanged(int value);
+
+    void on_musicListLocal_doubleClicked(const QModelIndex &index);
+
+    void on_favoriteList_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     QPoint dragPosition;   bool sta;
