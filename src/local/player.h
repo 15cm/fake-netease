@@ -69,8 +69,8 @@ public:
     //set the playing mode loop
     void SetLoopPlayingMode();
 
-    //set the playing mode sequential
-    void SetSequentialPlayingMode();
+    //set the playing mode single music loop
+    void SetItemLoopPlayingMode();
 
     //set the playing mode random
     void SetRandomPlayingMode();
@@ -100,6 +100,10 @@ public:
     //play a new music
     void playNewMusic(int Index);
 
+    //delete a music by index, and return cnt
+    void DeleteFromList(int Index, int &cnt);
+
+    //delete a music by index
     void DeleteFromList(int Index);
 
     //Go on or pause

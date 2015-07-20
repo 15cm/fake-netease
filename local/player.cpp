@@ -75,8 +75,8 @@ void Player::SetLoopPlayingMode(){
 }
 
 //set the playing mode sequential
-void Player::SetSequentialPlayingMode(){
-     MediaPlayerlist.setPlaybackMode(QMediaPlaylist::Sequential);
+void Player::SetItemLoopPlayingMode(){
+     MediaPlayerlist.setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
 }
 
 //set the playing mode random
@@ -184,11 +184,21 @@ void Player::playNewMusic(int Index){
         MediaPlayer.play();
 }
 
+void Player::DeleteFromList(int Index, int &cnt)
+{
+    if(!MediaPlayerlist.removeMedia(Index))
+        throw (DeleteFromListException());
+
+    cnt = MediaPlayerlist.mediaCount();
+}
+
 void Player::DeleteFromList(int Index)
 {
     if(!MediaPlayerlist.removeMedia(Index))
         throw (DeleteFromListException());
+
 }
+
 
 //Go on or pause
 void Player::Retreat(){
