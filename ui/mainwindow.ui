@@ -324,6 +324,12 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Droid Sans Fallback</family>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>TextLabel1</string>
     </property>

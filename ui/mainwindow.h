@@ -59,6 +59,7 @@ private slots:
     void on_musicListLocal_clicked(const QModelIndex &index);
 
     void on_lyric_clicked();
+    void UpdateTime(qint64 time);
 
 private:
     Ui::MainWindow *ui;
@@ -66,7 +67,9 @@ private:
     QString lrc;
     int lrcState;
     int loop;
+    QMap<qint64, QString> lrc_map;
     //Player list;
+    void deal_lrc();
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent*);
     void paintEvent(QPaintEvent *);

@@ -141,6 +141,7 @@ void MainWindow::initial()
     connect(&Player::MediaPlayerlist, &QMediaPlaylist::currentIndexChanged, ui->musicName, [=](int index){
        ui->musicName->setText(ui->musicListLocal->item(index, 1)->text());
     });
+    connect(&Player::MediaPlayer, &QMediaPlayer::positionChanged, this, &MainWindow::UpdateTime);
 
     //lyric table
     ui->lyricLabel1->setAlignment(Qt::AlignCenter);
@@ -356,12 +357,84 @@ void MainWindow::on_playMethod_clicked()
     c.ChangePlayModel(loop);
 }
 
+void MainWindow::deal_lrc()
+{
+    if (lrc[0] != '[') lrc = "";
+    else
+    {
+        lrc_map.clear();
+        QStringList lines = lrc.split("\n");
+            //这个是时间标签的格式[00:05.54]
+            //正则表达式d{2}表示匹配2个数字
+            QRegExp rx("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
+            foreach(QString oneline, lines) {
+                QString temp = oneline;
+                if (temp.indexOf(']') == 10)
+                {
+                    temp.remove(9, 1);
+                    oneline.remove(9, 1);
+                }
+                temp.replace(rx, "");//用空字符串替换正则表达式中所匹配的地方,这样就获得了歌词文本
+                // 然后依次获取当前行中的所有时间标签，并分别与歌词文本存入QMap中
+                //indexIn()为返回第一个匹配的位置，如果返回为-1，则表示没有匹配成功
+                //正常情况下pos后面应该对应的是歌词文件
+                int pos = rx.indexIn(oneline, 0);
+                while (pos != -1) { //表示匹配成功
+                    QString cap = rx.cap(0);//返回第0个表达式匹配的内容
+                    // 将时间标签转换为时间数值，以毫秒为单位
+                    QRegExp regexp;
+                    regexp.setPattern("\\d{2}(?=:)");
+                    regexp.indexIn(cap);
+                    int minute = regexp.cap(0).toInt();
+                    regexp.setPattern("\\d{2}(?=\\.)");
+                    regexp.indexIn(cap);
+                    int second = regexp.cap(0).toInt();
+                    regexp.setPattern("\\d{2}(?=\\])");
+                    regexp.indexIn(cap);
+                    int millisecond = regexp.cap(0).toInt();
+                    qint64 totalTime = minute * 60000 + second * 1000 + millisecond * 10;
+                    // 插入到lrc_map中
+                    lrc_map.insert(totalTime, temp);
+                    pos += rx.matchedLength();
+                    pos = rx.indexIn(oneline, pos);//匹配全部
+                }
+            }
+            // 如果lrc_map为空
+           /* if (lrc_map.isEmpty()) {
+                lrc->setText(QFileInfo(media_object->currentSource().fileName()).baseName()
+                             + tr(" --- 歌词文件内容错误！"));
+                return;
+            }*/
+            for (QMap<qint64, QString>::iterator p = lrc_map.begin(); p != lrc_map.end(); p++)
+                qDebug() << p.key() << ' ' << p.value() << endl;
+    }
+}
+
+void MainWindow::UpdateTime(qint64 time)
+{
+    QMap<qint64, QString>::iterator p;
+    p = lrc_map.begin();
+    if  (!lrc_map.empty())
+    {
+        if (p.key() <= time)
+        {
+            ui->lyricLabel1->setText(ui->lyricLabel2->text());
+            ui->lyricLabel2->setText(p.value());
+            p = lrc_map.erase(p);
+            p++;
+        }
+    }
+    if (p != lrc_map.end())
+        ui->lyricLabel3->setText(p.value());
+}
+
 void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
 {
    Commander p;
    QImage img;
    QString ss;
    p.PlaySelectedOnMusic(index.row(), lrc, img, ss);
+   deal_lrc();
    ui->musicName->setText(ss);
     QImage a_img = img.scaled(238, 238, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->musicPic->setPixmap(QPixmap::fromImage(a_img));
@@ -383,9 +456,6 @@ void MainWindow::on_nextMusicBtn_clicked()
 
 void MainWindow::on_musicSlider_valueChanged(int value)
 {
-    /*Player list;
-    list.SetPositon((qint64)value);*/
-    // slider bar
     Commander c;
     c.SliderBarUpdate(qint64(value));
 }
