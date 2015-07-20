@@ -132,7 +132,6 @@ HEADERS  += ui/mainwindow.h\
     src/commander/itablefiller.h \
     src/commander/localmusicadder.h \
     3rdpart/taglib/src/toolkit/tdebug.h\
-    src/commander/interface/iplayer_terminate.h \
     src/commander/implementation/player_initer.h \
     src/commander/implementation/player_terminater.h \
     src/commander/implementation/ontable_filler.h \
@@ -159,7 +158,12 @@ HEADERS  += ui/mainwindow.h\
     src/commander/interface/i_play_selected_music.h \
     src/commander/interface/i_play_selected_onmusic.h \
     src/commander/interface/i_previous_music.h \
-    src/commander/interface/i_set_volume.h
+    src/commander/interface/i_set_volume.h \
+    src/commander/interface/i_delete_selected_offmusic.h \
+    src/commander/implementation/selected_offmusic_deleter.h \
+    src/commander/interface/i_slider_bar_update.h \
+    src/commander/implementation/slider_bar_updater.h \
+    src/commander/interface/i_player_terminate.h
 
 FORMS    += ui/mainwindow.ui
 

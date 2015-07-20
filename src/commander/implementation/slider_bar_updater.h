@@ -1,0 +1,5 @@
+#ifndef SLIDER_BAR_UPDATER
+#define SLIDER_BAR_UPDATER
+
+#endif // SLIDER_BAR_UPDATER
+
