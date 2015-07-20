@@ -205,12 +205,19 @@ void Player::Retreat(){
 
 //next song
 void Player::NextSong(){
+    QUrl url = MediaPlayer.currentMedia().canonicalUrl();
+    if(!url.isLocalFile())
+        return;
+
     int NextIndex = MediaPlayerlist.nextIndex();
     playNewMusic(NextIndex);
 }
 
 //last song
 void Player::LastSong(){
+    QUrl url = MediaPlayer.currentMedia().canonicalUrl();
+    if(!url.isLocalFile())
+        return;
     int PreviouseIndex = MediaPlayerlist.previousIndex();
     playNewMusic(PreviouseIndex);
 }
