@@ -9,7 +9,7 @@ public:
     void PlayerInit()
     {
         Player list;
-        list.Initialize();
+        //list.Initialize();
     }
 };
 #endif // PLAYER_INIT

@@ -54,7 +54,7 @@ Player::Player(QObject* parent)
     });*/
 }
 
-void Player::Initialize(const QVector<OffMusic>& qvec)
+void Player::Initialize(QVector<OffMusic>& qvec)
 {
     MediaPlayerlist.setPlaybackMode(QMediaPlaylist::Loop);
     if(!&MediaPlayerlist)

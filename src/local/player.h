@@ -55,7 +55,7 @@ public:
     static QMediaPlayer MediaPlayer;
     Player(QObject* parent = 0);
 
-    void Initialize(const QVector<OffMusic> &);
+    void Initialize(QVector<OffMusic> &);
 
     ~Player();
 

@@ -22,13 +22,13 @@ public:
                 case 1:
                     pTable->item(row,i)->setText(tmpMusic.GetName());
                     break;
-                case2:
-                    pTable->item(row,i)->setText(tmpMusic.GetAlbum());
+                case 2:
+                    pTable->item(row,i)->setText(tmpMusic.GetAlbum());         
                     break;
-                case3:
-                    pTable->item(row,i)->setText(tmpMusic.GetArtist());
+                case 3:
+                    pTable->item(row,i)->setText(tmpMusic.GetArtist());            
                     break;
-                case4:
+                case 4:
                     pTable->item(row,i)->setText(tmpMusic.GetDurationStr());
                 }
             }
