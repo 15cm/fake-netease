@@ -396,3 +396,11 @@ void MainWindow::on_favoriteList_clicked(const QModelIndex &index)
        ui->musicListLocal->hide();
    }
 }
+
+void MainWindow::on_addMusicFolderBtn_clicked()
+{
+    Commander c;
+    QImage deleteIcon1(":/icon/images/delete.png");
+    QImage deleteIcon = deleteIcon1.scaled(25,25,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+    c.AddLocalMusicFolder(ui->musicListLocal, deleteIcon);
+}

@@ -155,6 +155,25 @@ QPushButton#addLocalMusicBtn:pressed
     outline: 10px;
 }
 
+/*添加本地音乐folder按钮*/
+QPushButton#addMusicFolderBtn:!hover
+{
+    border-image: url(:/icon/images/addMusicFolderBtn.png);
+    outline: 10px;
+}
+
+QPushButton#addMusicFolderBtn:hover
+{
+    border-image: url(:/icon/images/addMusicFolderBtn_hover.png);
+    outline: 10px;
+}
+
+QPushButton#addMusicFolderBtn:pressed
+{
+    border-image: url(:/icon/images/addMusicFolderBtn_pressed.png);
+    outline: 10px;
+}
+
 /*进度条*/
 QSlider::add-page:horizontal
 {

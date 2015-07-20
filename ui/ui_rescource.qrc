@@ -28,5 +28,8 @@
         <file>images/lyric.png</file>
         <file>images/album.png</file>
         <file>images/delete.png</file>
+        <file>images/addMusicFolderBtn.png</file>
+        <file>images/addMusicFolderBtn_hover.png</file>
+        <file>images/addMusicFolderBtn_pressed.png</file>
     </qresource>
 </RCC>
