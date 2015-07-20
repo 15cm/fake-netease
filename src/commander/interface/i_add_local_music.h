@@ -2,10 +2,11 @@
 #define IADDLOCALMUSIC
 
 #include <QTableWidget>
+#include <QLabel>
 class IAddLocalMusic
 {
 public:
-    virtual void AddLocalMusic(QTableWidget *pTable) = 0;
+    virtual void AddLocalMusic(QTableWidget *pTable,QImage img) = 0;
 };
 
 #endif // IADDLOCALMUSIC

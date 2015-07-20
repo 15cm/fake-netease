@@ -49,8 +49,8 @@ void MainWindow::initial()
                                              tr("Duration"));
 
     ui->musicList->setColumnWidth(0, 30);
-    ui->musicList->setColumnWidth(1, 230);
-    ui->musicList->setColumnWidth(2, 170);
+    ui->musicList->setColumnWidth(1, 200);
+    ui->musicList->setColumnWidth(2, 200);
     ui->musicList->setColumnWidth(3, 140);
     ui->musicList->verticalHeader()->setVisible(false);
     ui->musicList->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -72,8 +72,8 @@ void MainWindow::initial()
                                              tr("Duration"));
 
     ui->musicListLocal->setColumnWidth(0, 30);
-    ui->musicListLocal->setColumnWidth(1, 230);
-    ui->musicListLocal->setColumnWidth(2, 170);
+    ui->musicListLocal->setColumnWidth(1, 200);
+    ui->musicListLocal->setColumnWidth(2, 200);
     ui->musicListLocal->setColumnWidth(3, 140);
     //ui->musicListLocal->setColumnWidth(4, 82);
     ui->musicListLocal->verticalHeader()->setVisible(false);
@@ -122,7 +122,9 @@ void MainWindow::initial()
 
     // table init
     Commander c;
-    c.PlayerInit(ui->musicListLocal);
+    QImage deleteIcon1(":/icon/images/delete.png");
+    QImage deleteIcon = deleteIcon1.scaled(25,25,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+    c.PlayerInit(ui->musicListLocal,deleteIcon);
     ui->musicListLocal->show();
     connect(&Player::MediaPlayer, &QMediaPlayer::durationChanged, ui->musicSlider, [=](qint64 duration){
        ui->musicSlider->setMaximum(duration);
@@ -223,7 +225,9 @@ void MainWindow::paintEvent(QPaintEvent *)
 void MainWindow::on_addLocalMusicBtn_clicked()
 {
     Commander c;
-    c.AddLocalMusic(ui->musicListLocal);
+    QImage deleteIcon1(":/icon/images/delete.png");
+    QImage deleteIcon = deleteIcon1.scaled(25,25,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+    c.AddLocalMusic(ui->musicListLocal,deleteIcon);
     ui->musicList->hide();
     ui->musicListLocal->show();
 }
@@ -310,12 +314,16 @@ void MainWindow::on_musicSlider_valueChanged(int value)
 {
     /*Player list;
     list.SetPositon((qint64)value);*/
+    // slider bar
+    Commander c;
+    c.SliderBarUpdate(qint64(value));
 }
 
 void MainWindow::on_musicListLocal_doubleClicked(const QModelIndex &index)
 {
     Commander c;
     c.PlaySelectedMusic(index.row());
+    pictolabel(":/icon/images/album.png",ui->musicPic,238,238);
 }
 
 void MainWindow::on_favoriteList_clicked(const QModelIndex &index)

@@ -16,14 +16,15 @@
 #include "selected_onmusic_player.h"
 #include "player_initer.h"
 #include "player_terminater.h"
+#include "slider_bar_updater.h"
 // Commander
 class Commander
 {
 public:
-    void PlayerInit(QTableWidget *pTable)
+    void PlayerInit(QTableWidget *pTable,QImage img)
     {
         IPlayerInit *tmp = new PlayerIniter;
-        tmp->PlayerInit(pTable);
+        tmp->PlayerInit(pTable,img);
         delete tmp;
     }
     void PlayerTerminate()
@@ -33,16 +34,16 @@ public:
         delete tmp;
     }
 
-    void AddLocalMusic(QTableWidget *pTable)
+    void AddLocalMusic(QTableWidget *pTable,QImage img)
     {
         IAddLocalMusic *pLocalMusicAdder = new LocalMusicAdder();
-        pLocalMusicAdder->AddLocalMusic(pTable);
+        pLocalMusicAdder->AddLocalMusic(pTable,img);
         delete pLocalMusicAdder;
     }
-    void AddLocalMusicFolder(QTableWidget *pTable)
+    void AddLocalMusicFolder(QTableWidget *pTable,QImage img)
     {
         IAddLocalMusicFolder *pLocalMusicFolerAdder = new LocalMusicFolderAdder();
-        pLocalMusicFolerAdder->AddLocalMusicFolder(pTable);
+        pLocalMusicFolerAdder->AddLocalMusicFolder(pTable,img);
         delete pLocalMusicFolerAdder;
     }
     void PlayOrPauseCurrentMusic()
@@ -107,6 +108,12 @@ public:
         bool result = tmp->GetCurrentPlayState();
         delete tmp;
         return result;
+    }
+    void SliderBarUpdate(qint64 value)
+    {
+        ISliderBarUpdate *tmp = new SliderBarUpdater;
+        tmp->SliderBarUpdate(value);
+        delete tmp;
     }
 
 
