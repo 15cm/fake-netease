@@ -17,7 +17,8 @@ TEMPLATE = app
 SOURCES += ui/main.cpp\
         ui/mainwindow.cpp \
     local/player.cpp \
-    3rdpart/taglib/src/mpeg/id3v2/id3v2frame.cpp
+    3rdpart/taglib/src/mpeg/id3v2/id3v2frame.cpp \
+    hintdialog.cpp
 
 HEADERS  += ui/mainwindow.h\
             src/local/OffMusic.h\
@@ -163,9 +164,11 @@ HEADERS  += ui/mainwindow.h\
     src/commander/implementation/selected_offmusic_deleter.h \
     src/commander/interface/i_slider_bar_update.h \
     src/commander/implementation/slider_bar_updater.h \
-    src/commander/interface/i_player_terminate.h
+    src/commander/interface/i_player_terminate.h \
+    hintdialog.h
 
-FORMS    += ui/mainwindow.ui
+FORMS    += ui/mainwindow.ui \
+    hintdialog.ui
 
 INCLUDEPATH += src/local
 INCLUDEPATH += src/online
