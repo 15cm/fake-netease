@@ -140,6 +140,7 @@ void MainWindow::initial()
     });
     connect(&Player::MediaPlayerlist, &QMediaPlaylist::currentIndexChanged, ui->musicName, [=](int index){
        ui->musicName->setText(ui->musicListLocal->item(index, 1)->text());
+       ui->musicListLocal->selectRow(index);
     });
     connect(&Player::MediaPlayer, &QMediaPlayer::positionChanged, this, &MainWindow::UpdateTime);
 
@@ -424,6 +425,17 @@ void MainWindow::UpdateTime(qint64 time)
     if  (!lrc_map.empty())
     {        
         p = lrc_map.lowerBound(time);
+        if (p == lrc_map.end())
+        {
+            p--;
+            ui->lyricLabel2->setText(p.value());
+            ui->lyricLabel3->setText("");
+            if (p != lrc_map.begin())
+                ui->lyricLabel1->setText((p - 1).value());
+            else
+                ui->lyricLabel1->setText("");
+            return;
+        }
         if (p.key() == time)
         {
             ui->lyricLabel2->setText(p.value());
