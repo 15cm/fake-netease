@@ -371,15 +371,15 @@ QLabel#musicName
 }
 
 /*lyricLabel*/
-QLabel#musicLabel1
+QLabel#lyricLabel1
 {
     color:white;
 }
-QLabel#musicLabel2
+QLabel#lyricLabel2
 {
     color:white;
 }
-QLabel#musicLabel1
+QLabel#lyricLabel3
 {
     color:white;
 }

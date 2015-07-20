@@ -363,7 +363,11 @@ void MainWindow::on_playMethod_clicked()
 
 void MainWindow::deal_lrc()
 {
-    if (lrc[0] != '[') lrc = "";
+    if (lrc[0] != '[')
+    {
+        lrc = "";
+        ui->lyricLabel2->setText(tr("No Lyric File"));
+    }
     else
     {
         lrc_map.clear();
@@ -417,20 +421,24 @@ void MainWindow::deal_lrc()
 void MainWindow::UpdateTime(qint64 time)
 {
     QMap<qint64, QString>::iterator p;
-    p = lrc_map.begin();
-    while  (!lrc_map.empty())
+    if  (!lrc_map.empty())
     {
-        if (p.key() <= time)
+        ui->lyricLabel1->setText("");
+        ui->lyricLabel2->setText("");
+        ui->lyricLabel3->setText("");
+        for (p = lrc_map.begin(); p != lrc_map.end(); p++)
         {
-            ui->lyricLabel1->setText(ui->lyricLabel2->text());
-            ui->lyricLabel2->setText(p.value());
-            p = lrc_map.erase(p);
-            p++;
-        }else
-            break;
+            if (p.key() > time)
+            {
+                ui->lyricLabel3->setText(p.value());
+                p = lrc_map.erase(p);
+            }else
+            {
+                ui->lyricLabel1->setText(ui->lyricLabel2->text());
+                ui->lyricLabel2->setText(p.value());
+            }
+        }
     }
-    if (p != lrc_map.end())
-        ui->lyricLabel3->setText(p.value());
 }
 
 void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
