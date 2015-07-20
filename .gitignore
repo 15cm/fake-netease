@@ -27,7 +27,9 @@
 *.out
 *.app
 
-# lib
+
+#lib
+#3rdpart/taglib/lib/*/
 
 #QT
 *.user

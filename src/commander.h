@@ -112,10 +112,10 @@ public:
         tmp->SliderBarUpdate(value);
         delete tmp;
     }
-    void DeleteSelectedOffMusic(int index)
+    void DeleteSelectedOffMusic(int index,QTableWidget *pTable)
     {
         IDelteSelectedOffMusic *tmp = new SelectedOffMusicDeleter;
-        tmp->DeleteSelectedOffMusic(index);
+        tmp->DeleteSelectedOffMusic(index,pTable);
         delete tmp;
     }
     void ChangePlayModel(int state)
