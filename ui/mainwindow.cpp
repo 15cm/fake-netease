@@ -138,6 +138,9 @@ void MainWindow::initial()
        ui->position->setText(ss);
        ui->musicSlider->update();
     });
+    connect(&Player::MediaPlayerlist, &QMediaPlaylist::currentIndexChanged, ui->musicName, [=](int index){
+       ui->musicName->setText(ui->musicListLocal->item(index, 1)->text());
+    });
 
     //lyric table
     ui->lyricLabel1->setAlignment(Qt::AlignCenter);
@@ -357,7 +360,9 @@ void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
 {
    Commander p;
    QImage img;
-   p.PlaySelectedOnMusic(index.row(), lrc, img);
+   QString ss;
+   p.PlaySelectedOnMusic(index.row(), lrc, img, ss);
+   ui->musicName->setText(ss);
     QImage a_img = img.scaled(238, 238, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->musicPic->setPixmap(QPixmap::fromImage(a_img));
     ui->musicPic->resize(a_img.width(), a_img.height());
