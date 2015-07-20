@@ -13,7 +13,25 @@ public:
         try
         {
             Player list;
-            OffMusic omus = list.AddLocalMusic();
+            OffMusic tmpMusic;
+            int index;
+            omus = list.AddLocalMusic(tmpMusic,index);
+            int row = index - 1;
+            for(int i = 1; i < 5; i ++){
+                switch (i) {
+                case 1:
+                    pTable->item(row,i)->setText(tmpMusic.GetName());
+                    break;
+                case2:
+                    pTable->item(row,i)->setText(tmpMusic.GetAlbum());
+                    break;
+                case3:
+                    pTable->item(row,i)->setText(tmpMusic.GetArtist());
+                    break;
+                case4:
+                    pTable->item(row,i)->setText(tmpMusic.GetDurationStr());
+                }
+            }
         }
         catch(const AlreadyInListException &alreadyinlistexception)
         {
