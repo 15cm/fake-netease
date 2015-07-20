@@ -2,8 +2,8 @@
 
 QMediaPlayer Player::MediaPlayer;
 QMediaPlaylist Player::MediaPlayerlist;
-//bool Player::flag = 0;
-
+//void Player::DurationChanged(qint64 duration){}
+//void Player::PositionChanged(qint64 progress){}
 /*
 Player::Player(QObject* parent)
     :QObject(parent)
@@ -44,6 +44,14 @@ Player::Player(QObject* parent)
     :QObject(parent)
 {
     //do nothing
+    /*connect(&MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
+    {
+       emit DurationChanged(duration);
+    });
+    connect(&MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
+    {
+        emit PositionChanged(progress);
+    });*/
 }
 
 void Player::Initialize()
@@ -56,6 +64,14 @@ void Player::Initialize()
     MediaPlayer.setVolume(20);
     //initilizeSong();
     InitMediaList(&MediaPlayerlist);
+    connect(&MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
+        {
+           emit DurationChanged(duration);
+        });
+        connect(&MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
+        {
+            emit PositionChanged(progress);
+        });
 }
 
 Player::~Player(){}
@@ -116,7 +132,7 @@ OffMusic Player::AddLocalMusic()
 {
     //add to list
     QUrl fileurl = QFileDialog::getOpenFileUrl(0, QObject::tr("Open Music File"), QObject::tr("."), QObject::tr("mp3 music files(*.mp3)"));
-    if(InList(fileurl))
+    if(InList(fileurl) || fileurl.isEmpty())
     {
         throw AlreadyInListException();
         qDebug() << "media count " << MediaPlayerlist.mediaCount();

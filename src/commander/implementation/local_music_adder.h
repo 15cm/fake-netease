@@ -10,7 +10,8 @@ class LocalMusicAdder: public IAddLocalMusic
 public:
     void AddLocalMusic(QTableWidget *pTable)
     {
-        try{
+        try
+        {
             Player list;
             OffMusic omus = list.AddLocalMusic();
         }
@@ -28,6 +29,8 @@ public:
         qDebug() << "HERE";
 
     }
+
+
 };
 
 #endif // LOCALMUSICADDER

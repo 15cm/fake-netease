@@ -3,8 +3,11 @@
 
 #include "i_play_selected_music.h"
 #include "player.h"
-class SelectedMusicPlayer : public IPlaySelectedMusic
+class SelectedMusicPlayer :  public IPlaySelectedMusic
 {
+signals:
+    void PlayPosChange(qint64 progress);
+
 public:
     void PlaySelectedMusic(int index)
     {
@@ -12,6 +15,9 @@ public:
         {
             Player list;
             list.playNewMusic(index);
+            /*connect(&list, &Player::PositionChanged, [=](qint64 progress){
+                emit PlayPosChange(progress);
+            });*/
         }
         catch(const playNewMusicException &playnewmusicexception)
         {
