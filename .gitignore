@@ -28,7 +28,7 @@
 *.app
 
 #lib
-3rdpart/taglib/libtag.a
+3rdpart/taglib/lib/libtag.a
 #QT
 *.user
 *.autosave

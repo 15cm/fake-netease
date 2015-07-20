@@ -3,6 +3,7 @@
 
 class IGetCurrentPlayState
 {
+public:
     virtual bool GetCurrentPlayState() = 0;
 };
 

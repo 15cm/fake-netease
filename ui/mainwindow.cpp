@@ -194,6 +194,8 @@ void MainWindow::on_addLocalMusicBtn_clicked()
 
 void MainWindow::on_playMusicBtn_clicked()
 {
+    Commander c;
+    c.PlayOrPauseCurrentMusic();
 }
 
 void MainWindow::on_soundSlider_valueChanged(int value)
@@ -252,4 +254,16 @@ void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
     QImage a_img = img.scaled(238, 238, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->musicPic->setPixmap(QPixmap::fromImage(a_img));
     ui->musicPic->resize(a_img.width(), a_img.height());
+}
+
+void MainWindow::on_lastMusicBtn_clicked()
+{
+    Commander c;
+    c.PreviousMusic();
+}
+
+void MainWindow::on_nextMusicBtn_clicked()
+{
+    Commander c;
+    c.NextMusic();
 }

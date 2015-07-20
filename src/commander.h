@@ -5,6 +5,7 @@
 #include "local_music_adder.h"
 #include "local_music_folder_adder.h"
 #include "play_or_pause_current_musicsetter.h"
+#include "current_playstate_getter.h"
 #include "volume_setter.h"
 #include "ontable_filler.h"
 #include "next_music_player.h"
@@ -99,6 +100,13 @@ public:
         IPlaySelectedOnMusic *pSelectedOnMusicPlayer = new SelectedOnMusicPlayer;
         pSelectedOnMusicPlayer->PlaySelectedOnMusic(index,lrc,img);
         delete pSelectedOnMusicPlayer;
+    }
+    bool GetCurrentPlayState()
+    {
+        IGetCurrentPlayState *tmp = new CurrentPlayStateGetter;
+        bool result = tmp->GetCurrentPlayState();
+        delete tmp;
+        return result;
     }
 
 
