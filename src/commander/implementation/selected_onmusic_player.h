@@ -7,7 +7,7 @@
 class SelectedOnMusicPlayer : public IPlaySelectedOnMusic
 {
 public:
-    void PlaySelectedOnMusic(int index, QString &lrc, QImage &img)
+    void PlaySelectedOnMusic(int index, QString &lrc, QImage &img, QString &name)
     {
         OnMusic onMusic = MusicSearch::vecOnMusic[index];
         LrcSearch lrcSearch(onMusic.GetId());
@@ -16,6 +16,7 @@ public:
         img = imgDowloader.GetImage();
         Player list;
         list.PlayOnlineMusic(onMusic.GetMp3Url());
+        name = onMusic.GetName();
     }
 };
 

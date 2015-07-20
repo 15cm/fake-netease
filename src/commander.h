@@ -93,10 +93,10 @@ public:
         return tmp;
     }
 
-    void PlaySelectedOnMusic(int index, QString &lrc, QImage &img)
+    void PlaySelectedOnMusic(int index, QString &lrc, QImage &img, QString &name)
     {
         IPlaySelectedOnMusic *pSelectedOnMusicPlayer = new SelectedOnMusicPlayer;
-        pSelectedOnMusicPlayer->PlaySelectedOnMusic(index,lrc,img);
+        pSelectedOnMusicPlayer->PlaySelectedOnMusic(index,lrc,img,name);
         delete pSelectedOnMusicPlayer;
     }
     bool GetCurrentPlayState()

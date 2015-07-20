@@ -7,7 +7,7 @@
 class IPlaySelectedOnMusic
 {
 public:
-    virtual void PlaySelectedOnMusic(int index, QString &lrc, QImage &img) = 0;
+    virtual void PlaySelectedOnMusic(int index, QString &lrc, QImage &img,QString &name) = 0;
 };
 
 #endif // IPLAYSELECTEDONMUSIC
