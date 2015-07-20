@@ -92,7 +92,7 @@ public:
     void SetPositon(qint64 progress);
 
     //add a musci to the list
-    OffMusic AddLocalMusic();
+    void AddLocalMusic(OffMusic &, int&);
 
     QVector<OffMusic> AddLocalMusicFolder();
 

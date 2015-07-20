@@ -247,9 +247,9 @@ bool Player::InList(QUrl url)
     }
     return false;
 }
-
+/*
 void Player::PlayOnlineMusic(const QUrl &url)
 {
     MediaPlayer.setMedia(url);
     MediaPlayer.play();
-}
+}*/

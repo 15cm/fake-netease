@@ -121,10 +121,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setFixedSize(this->width(), this->height());
     setWindowFlags(Qt::FramelessWindowHint);
+    Commander c;
+    c.PlayerInit();
 }
 
 MainWindow::~MainWindow()
 {
+    Commander c;
+    c.PlayerTerminate();
+
     for (int i = 0; i < ui->musicList->rowCount(); i++)
         for (int j = 1; j < ui->musicList->columnCount(); j++)
         {

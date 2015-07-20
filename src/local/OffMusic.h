@@ -8,6 +8,14 @@ class OffMusic : public Music
 {
 public:
     OffMusic() {}
+    OffMusic(const OffMusic& offmusic){
+        name = offmusic.name;
+        duration = offmusic.duration;
+        mp3Url = offmusic.mp3Url;
+        artist = offmusic.artist;
+        album = offmusic.album;
+    }
+
     OffMusic(QUrl url){
         TagLib::FileRef ref(url.path().toLatin1().data());
         if(!ref.tag())
