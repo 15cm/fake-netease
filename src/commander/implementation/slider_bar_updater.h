@@ -6,7 +6,7 @@
 class SliderBarUpdater : public ISliderBarUpdate
 {
 public:
-    qint64 SliderBarUpdate(qint64 value)
+    void SliderBarUpdate(qint64 value)
     {
         Player list;
         list.SetPositon(value);

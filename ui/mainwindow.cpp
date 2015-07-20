@@ -152,7 +152,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
         ui->musicListLocal->setFocusPolicy(Qt::NoFocus);
         ui->musicList->setFocusPolicy(Qt::NoFocus);
-        ui->search->setFocusPolicy(Qt::NoFocus);
+//        ui->search->setFocusPolicy();
         ui->favoriteList->setFocusPolicy(Qt::NoFocus);
 }
 
@@ -313,9 +313,6 @@ void MainWindow::on_soundSlider_valueChanged(int value)
 void MainWindow::on_musicList_clicked(const QModelIndex &index)
 {
    // ui->musicList->selectRow(index.row());
-    if (index.row() == 0)
-    {
-    }
 }
 
 void MainWindow::on_search_returnPressed()
@@ -342,6 +339,8 @@ void MainWindow::on_playMethod_clicked()
             ui->playMethod->setIcon(QIcon(":/icon/images/randomPlay.png"));
         break;
     }
+    Commander c;
+    c.ChangePlayModel(loop);
 }
 
 void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
@@ -406,4 +405,14 @@ void MainWindow::on_addMusicFolderBtn_clicked()
     QImage deleteIcon1(":/icon/images/delete.png");
     QImage deleteIcon = deleteIcon1.scaled(25,25,Qt::KeepAspectRatio,Qt::SmoothTransformation);
     c.AddLocalMusicFolder(ui->musicListLocal, deleteIcon);
+}
+
+void MainWindow::on_musicListLocal_clicked(const QModelIndex &index)
+{
+
+    if (index.column() == 0)
+    {
+        Commander c;
+        c.DeleteSelectedOffMusic(index.row(),ui->musicListLocal);
+    }
 }
