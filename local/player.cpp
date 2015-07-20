@@ -44,14 +44,6 @@ Player::Player(QObject* parent)
     :QObject(parent)
 {
     //do nothing
-    /*connect(&MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
-    {
-       emit DurationChanged(duration);
-    });
-    connect(&MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
-    {
-        emit PositionChanged(progress);
-    });*/
 }
 
 void Player::Initialize(QVector<OffMusic> &qvec)
@@ -59,31 +51,15 @@ void Player::Initialize(QVector<OffMusic> &qvec)
     MediaPlayerlist.setPlaybackMode(QMediaPlaylist::Loop);
     if(!&MediaPlayerlist)
         qDebug() << "NULL";
-    //qDebug() << Media
+    //set again
     MediaPlayer.setPlaylist(&MediaPlayerlist);
     MediaPlayer.setVolume(20);
     //initilizeSong();
     InitMediaList(&MediaPlayerlist, qvec);
-/*
-    connect(&MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
-    {
-        emit DurationChanged(duration);
-    });
-    connect(&MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
-    {
-        emit PositionChanged(progress);
-    });*/
+
 }
 
 Player::~Player(){}
-
-//first start the player to initialize the playlist
-/* hdj::directly add into Initialize()
-void Player::initilizeSong()
-{
-    InitMediaList(&MediaPlayerlist);
-}
-*/
 
 //To get the playing state(true while playing, or false)
 bool Player::GetPlayingState(){
