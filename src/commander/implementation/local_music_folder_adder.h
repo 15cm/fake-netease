@@ -15,7 +15,7 @@ public:
             int count;
             QVector<OffMusic> qvec = list.AddLocalMusicFolder(count);
             for(int row = count; row < qvec.size() + count; row ++)
-                    for(int col = 1; col < 5; col ++){
+                    for(int col = 0; col < 5; col ++){
                         switch (col) {
                         case 0:{
                             QLabel *pp = (QLabel*)(pTable->cellWidget(row,col));
