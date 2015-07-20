@@ -14,7 +14,7 @@ public:
             Player list;
             int count;
             QVector<OffMusic> qvec = list.AddLocalMusicFolder(count);
-            for(int row = count; row < qvec.size(); row ++)
+            for(int row = count; row < qvec.size() + count; row ++)
                     for(int col = 1; col < 5; col ++){
                         switch (col) {
                         case 0:{
