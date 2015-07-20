@@ -9,6 +9,7 @@ public:
     void PlayerInit(QTableWidget *pTable)
     {
         Player list;
+<<<<<<< HEAD
         QVector<OffMusic> offList;
         list.Initialize(offList);
         for(int row = 0; row < offList.size(); row ++)
@@ -28,6 +29,9 @@ public:
                     break;
                 }
             }
+=======
+        //list.Initialize();
+>>>>>>> 2ccf83ea93cdae90f9f078fa0a4ec146bbce21f1
     }
 };
 #endif // PLAYER_INIT
