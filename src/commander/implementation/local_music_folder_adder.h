@@ -25,16 +25,16 @@ public:
                         }
                         break;
                         case 1:
-                            pTable->item(row,col)->setText(qvec[row].GetName());
+                            pTable->item(row,col)->setText(qvec[row - count].GetName());
                             break;
                         case 2:
-                            pTable->item(row,col)->setText(qvec[row].GetAlbum());
+                            pTable->item(row,col)->setText(qvec[row - count].GetAlbum());
                             break;
                         case 3:
-                            pTable->item(row,col)->setText(qvec[row].GetArtist());
+                            pTable->item(row,col)->setText(qvec[row - count].GetArtist());
                             break;
                         case 4:
-                            pTable->item(row,col)->setText(qvec[row].GetDurationStr());
+                            pTable->item(row,col)->setText(qvec[row - count].GetDurationStr());
                         }
                 }
             }
