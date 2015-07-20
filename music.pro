@@ -131,32 +131,35 @@ HEADERS  += ui/mainwindow.h\
     src/commander/isetvolume.h \
     src/commander/itablefiller.h \
     src/commander/localmusicadder.h \
-    src/commander/interface/iaddlocalmusicfolder.h \
-    src/commander/interface/isetvolume.h \
-    src/commander/implementation/localmusicfolderadder.h \
-    src/commander/implementation/localmusicadder.h \
-    src/commander/interface/iaddlocalmusic.h \
-    src/commander/implementation/volumesetter.h \
-    src/commander/interface/ifilltable.h \
-    src/commander/interface/igetcurrentplaystate.h \
-    src/commander/implementation/currentplaystategetter.h \
-    src/commander/interface/inextmusic.h \
-    src/commander/interface/ipreviousmusic.h \
-    src/commander/implementation/nextmusicplayer.h \
-    src/commander/implementation/previousmusicplayer.h \
-    src/commander/interface/iplayselectedmusic.h \
-    src/commander/implementation/selectedmusicplayer.h \
-    src/commander/interface/iplayorpausecurrentmusic.h \
-    src/commander/implementation/playorpausecurrentmusicsetter.h \
     3rdpart/taglib/src/toolkit/tdebug.h\
-    src/commander/interface/igetcurrenttotalduration.h \
-    src/commander/implementation/ontablefiller.h \
-    src/commander/implementation/curtotaldurationgetter.h \
-    src/commander/interface/ichangeplaymodel.h \
-    src/commander/implementation/playmodelchanger.h\
-    src/commander/implementation/curtotaldurationgetter.h \
-    src/commander/interface/iplayselectedonmusic.h \
-    src/commander/implementation/selectedonmusicplayer.h
+    src/commander/interface/iplayer_terminate.h \
+    src/commander/implementation/player_initer.h \
+    src/commander/implementation/player_terminater.h \
+    src/commander/implementation/ontable_filler.h \
+    src/commander/implementation/current_playstate_getter.h \
+    src/commander/implementation/cur_total_duration_getter.h \
+    src/commander/implementation/local_music_adder.h \
+    src/commander/implementation/local_music_folder_adder.h \
+    src/commander/implementation/next_music_player.h \
+    src/commander/implementation/play_model_changer.h \
+    src/commander/implementation/play_or_pause_current_musicsetter.h \
+    src/commander/implementation/previous_music_player.h \
+    src/commander/implementation/selected_music_player.h \
+    src/commander/implementation/selected_onmusic_player.h \
+    src/commander/implementation/volume_setter.h \
+    src/commander/interface/i_add_local_music.h \
+    src/commander/interface/i_add_local_music_folder.h \
+    src/commander/interface/i_change_play_model.h \
+    src/commander/interface/i_fill_table.h \
+    src/commander/interface/i_get_current_play_state.h \
+    src/commander/interface/i_get_current_total_duration.h \
+    src/commander/interface/i_next_music.h \
+    src/commander/interface/i_player_init.h \
+    src/commander/interface/i_play_or_pause_current_music.h \
+    src/commander/interface/i_play_selected_music.h \
+    src/commander/interface/i_play_selected_onmusic.h \
+    src/commander/interface/i_previous_music.h \
+    src/commander/interface/i_set_volume.h
 
 FORMS    += ui/mainwindow.ui
 

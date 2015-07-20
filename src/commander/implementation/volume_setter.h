@@ -1,7 +1,7 @@
 #ifndef VOLUMESETTER
 #define VOLUMESETTER
 
-#include "isetvolume.h"
+#include "i_set_volume.h"
 #include "player.h"
 
 class VolumeSetter : public ISetVolume

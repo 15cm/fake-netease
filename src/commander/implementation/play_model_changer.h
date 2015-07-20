@@ -1,7 +1,7 @@
 #ifndef PLAYMODELCHANGER
 #define PLAYMODELCHANGER
 
-#include "ichangeplaymodel.h"
+#include "i_change_play_model.h"
 
 class PlayModleChanger : public IChangePlayModle
 {

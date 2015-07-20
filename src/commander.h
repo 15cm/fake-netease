@@ -2,21 +2,36 @@
 #define COMMANDER
 
 
-#include "localmusicadder.h"
-#include "localmusicfolderadder.h"
-#include "playorpausecurrentmusicsetter.h"
-#include "volumesetter.h"
-#include "ontablefiller.h"
-#include "nextmusicplayer.h"
-#include "previousmusicplayer.h"
-#include "selectedmusicplayer.h"
-#include "curtotaldurationgetter.h"
-#include "playmodelchanger.h"
-#include "selectedonmusicplayer.h"
+#include "local_music_adder.h"
+#include "local_music_folder_adder.h"
+#include "play_or_pause_current_musicsetter.h"
+#include "volume_setter.h"
+#include "ontable_filler.h"
+#include "next_music_player.h"
+#include "previous_music_player.h"
+#include "selected_music_player.h"
+#include "cur_total_duration_getter.h"
+#include "play_model_changer.h"
+#include "selected_onmusic_player.h"
+#include "player_initer.h"
+#include "player_terminater.h"
 // Commander
 class Commander
 {
 public:
+    void PlayerInit()
+    {
+        IPlayerInit *tmp = new PlayerIniter;
+        tmp->PlayerInit();
+        delete tmp;
+    }
+    void PlayerTerminate()
+    {
+        IPlayerTerminate *tmp = new PlayerTerminater;
+        tmp->PlayerTerminate();
+        delete tmp;
+    }
+
     void AddLocalMusic(QTableWidget *pTable)
     {
         IAddLocalMusic *pLocalMusicAdder = new LocalMusicAdder();

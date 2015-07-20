@@ -1,7 +1,7 @@
 #ifndef NEXTMUSICPLAYER
 #define NEXTMUSICPLAYER
 
-#include "inextmusic.h"
+#include "i_next_music.h"
 #include "player.h"
 class NextMusicPlayer : public INextMusic
 {
