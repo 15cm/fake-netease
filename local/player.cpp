@@ -123,8 +123,9 @@ void Player::AddLocalMusic(OffMusic &offmusic, int &index)
     qDebug() << "index" << index;
 }
 
-QVector<OffMusic> Player::AddLocalMusicFolder()
+QVector<OffMusic> Player::AddLocalMusicFolder(int &MusicCount)
 {
+    MusicCount = MediaPlayerlist.mediaCount();
     qDebug() << "media count " << MediaPlayerlist.mediaCount();
     QUrl url = QFileDialog::getExistingDirectoryUrl(0, QObject::tr("Open Music File Folder"));
     QDir dir(url.toLocalFile());
@@ -157,6 +158,10 @@ QVector<OffMusic> Player::AddLocalMusicFolder()
 
 //play a new music
 void Player::playNewMusic(int Index){
+    if(Index >= MediaPlayerlist.mediaCount())
+    {
+        return;
+    }
     qDebug() << "before set" ;
     MediaPlayer.setPlaylist(&MediaPlayerlist);
     MediaPlayerlist.setCurrentIndex(Index);
@@ -201,12 +206,19 @@ void Player::Retreat(){
 
 //next song
 void Player::NextSong(){
+    QUrl url = MediaPlayer.currentMedia().canonicalUrl();
+    if(!url.isLocalFile())
+        return;
+
     int NextIndex = MediaPlayerlist.nextIndex();
     playNewMusic(NextIndex);
 }
 
 //last song
 void Player::LastSong(){
+    QUrl url = MediaPlayer.currentMedia().canonicalUrl();
+    if(!url.isLocalFile())
+        return;
     int PreviouseIndex = MediaPlayerlist.previousIndex();
     playNewMusic(PreviouseIndex);
 }
