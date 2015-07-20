@@ -15,9 +15,7 @@ public:
         {
             Player list;
             list.playNewMusic(index);
-            /*connect(&list, &Player::PositionChanged, [=](qint64 progress){
-                emit PlayPosChange(progress);
-            });*/
+
         }
         catch(const playNewMusicException &playnewmusicexception)
         {

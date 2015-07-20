@@ -157,6 +157,10 @@ QVector<OffMusic> Player::AddLocalMusicFolder()
 
 //play a new music
 void Player::playNewMusic(int Index){
+    if(Index >= MediaPlayerlist.mediaCount())
+    {
+        return;
+    }
     qDebug() << "before set" ;
     MediaPlayer.setPlaylist(&MediaPlayerlist);
     MediaPlayerlist.setCurrentIndex(Index);
