@@ -125,6 +125,18 @@ void MainWindow::initial()
     Commander c;
     c.PlayerInit(ui->musicListLocal);
     ui->musicListLocal->show();
+    connect(&Player::MediaPlayer, &QMediaPlayer::durationChanged, ui->musicSlider, [=](qint64 duration){
+       ui->musicSlider->setMaximum(duration);
+    });
+    connect(&Player::MediaPlayer, &QMediaPlayer::positionChanged, ui->musicSlider, [=](qint64 progress){
+       ui->musicSlider->setValue(progress);
+       QTime t = QTime::fromMSecsSinceStartOfDay(progress);
+       QString ss = t.toString();
+       ss.remove(0, 3);
+       ui->position->setText(ss);
+       ui->musicSlider->update();
+    });
+
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -132,6 +144,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     sta(false)
 {
+
     ui->setupUi(this);
 
     setFixedSize(this->width(), this->height());

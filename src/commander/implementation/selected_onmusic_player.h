@@ -14,6 +14,8 @@ public:
         lrc = lrcSearch.SearchLrc();
         ImageDownload imgDowloader(onMusic.GetPicUrl());
         img = imgDowloader.GetImage();
+        Player list;
+        list.PlayOnlineMusic(onMusic.GetMp3Url());
     }
 };
 

@@ -53,6 +53,7 @@ signals:
 
 public:
     static QMediaPlayer MediaPlayer;
+
     Player(QObject* parent = 0);
 
     void Initialize(QVector<OffMusic> &);
@@ -116,7 +117,7 @@ public:
     bool InList(QUrl url);
 
     //play online music
-    void PlayOnlineMusic(const QUrl &url);
+    void PlayOnlineMusic(QUrl url);
 
 };
 

@@ -54,7 +54,7 @@ Player::Player(QObject* parent)
     });*/
 }
 
-void Player::Initialize(QVector<OffMusic>& qvec)
+void Player::Initialize(QVector<OffMusic> &qvec)
 {
     MediaPlayerlist.setPlaybackMode(QMediaPlaylist::Loop);
     if(!&MediaPlayerlist)
@@ -64,14 +64,15 @@ void Player::Initialize(QVector<OffMusic>& qvec)
     MediaPlayer.setVolume(20);
     //initilizeSong();
     InitMediaList(&MediaPlayerlist, qvec);
+/*
     connect(&MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
     {
-       emit DurationChanged(duration);
+        emit DurationChanged(duration);
     });
     connect(&MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
     {
         emit PositionChanged(progress);
-    });
+    });*/
 }
 
 Player::~Player(){}
@@ -180,6 +181,7 @@ QVector<OffMusic> Player::AddLocalMusicFolder()
 
 //play a new music
 void Player::playNewMusic(int Index){
+    qDebug() << "before set" ;
     MediaPlayerlist.setCurrentIndex(Index);
     qDebug() << MediaPlayer.currentMedia().canonicalUrl();
     QUrl url = MediaPlayer.currentMedia().canonicalUrl();
@@ -249,9 +251,12 @@ bool Player::InList(QUrl url)
     return false;
 }
 
-void Player::PlayOnlineMusic(const QUrl &url)
+void Player::PlayOnlineMusic(QUrl url)
 {
-    MediaPlayer.setMedia(url);
+    qDebug() << "set before" << url;
+    QUrl url2("http://m1.music.126.net/5RWxppxy9xFV2pj9qS-XQg==/5650390255212947.mp3");
+    MediaPlayer.setMedia(url2);
+    qDebug() << "after set" << url;
     MediaPlayer.play();
     qDebug() << "play online music" << url;
 }

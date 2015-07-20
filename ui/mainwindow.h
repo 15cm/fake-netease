@@ -10,8 +10,9 @@
 #include <QMouseEvent>
 #include <QLabel>
 //#include "OffMusic.h"
-//#include "player.h"
+#include "player.h"
 #include <QTableWidgetItem>
+#include <QTime>
 
 namespace Ui {
 class MainWindow;

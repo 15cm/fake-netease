@@ -253,7 +253,7 @@
    <widget class="QPushButton" name="playMethod">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>640</x>
       <y>659</y>
       <width>21</width>
       <height>21</height>
@@ -266,7 +266,7 @@
    <widget class="QPushButton" name="lyric">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>670</x>
       <y>659</y>
       <width>21</width>
       <height>21</height>
@@ -287,6 +287,19 @@
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="position">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>660</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>time</string>
     </property>
    </widget>
   </widget>
