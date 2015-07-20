@@ -4,7 +4,7 @@
 class IDelteSelectedOffMusic
 {
 public:
-    virtual void DeleteSelectedOffMusic(int index ) = 0;
+    virtual void DeleteSelectedOffMusic(int index) = 0;
 };
 
 #endif // I_DELETE_SELECTED_OFFMUSIC
