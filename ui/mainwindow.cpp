@@ -222,6 +222,60 @@ void MainWindow::paintEvent(QPaintEvent *)
     painter.setBrush(Qt::NoBrush);
 }
 
+void MainWindow::changePlayMusicBtn()
+{
+    Commander c;
+    if (c.GetCurrentPlayState())
+    {
+        ui->playMusicBtn->setStyleSheet("\
+                                        QPushButton#playMusicBtn:!hover\
+                                        {\
+                                            border-image: url(:/icon/images/pauseMusicBtn.png);\
+                                            background-color:white;\
+                                            border-radius: 30px;\
+                                            outline: 10px;\
+                                        }\
+                                        QPushButton#playMusicBtn:hover\
+                                        {\
+                                            border-image: url(:/icon/images/pauseMusicBtn.png);\
+                                            background-color:white;\
+                                            border-radius: 30px;\
+                                            outline: 10px;\
+                                        }\
+                                        QPushButton#playMusicBtn:pressed\
+                                        {\
+                                            border-image: url(:/icon/images/pauseMusicBtn.png);\
+                                            background-color:white;\
+                                            border-radius: 30px;\
+                                            outline: 10px;\
+                                        }");
+    }else
+    {
+        ui->playMusicBtn->setStyleSheet("\
+                                        QPushButton#playMusicBtn:!hover\
+                                        {\
+                                            border-image: url(:/icon/images/playMusicBtn.png);\
+                                            background-color:white;\
+                                            border-radius: 30px;\
+                                            outline: 10px;\
+                                        }\
+                                        QPushButton#playMusicBtn:hover\
+                                        {\
+                                            border-image: url(:/icon/images/playMusicBtn.png);\
+                                            background-color:white;\
+                                            border-radius: 30px;\
+                                            outline: 10px;\
+                                        }\
+                                        QPushButton#playMusicBtn:pressed\
+                                        {\
+                                            border-image: url(:/icon/images/playMusicBtn.png);\
+                                            background-color:white;\
+                                            border-radius: 30px;\
+                                            outline: 10px;\
+                                        }");
+    }
+}
+
 void MainWindow::on_addLocalMusicBtn_clicked()
 {
     Commander c;
@@ -236,6 +290,7 @@ void MainWindow::on_playMusicBtn_clicked()
 {
     Commander c;
     c.PlayOrPauseCurrentMusic();
+    changePlayMusicBtn();
 }
 
 void MainWindow::on_soundSlider_valueChanged(int value)
@@ -262,7 +317,6 @@ void MainWindow::on_musicList_clicked(const QModelIndex &index)
 
 void MainWindow::on_search_returnPressed()
 {
-
     Commander *p = new Commander;
     QVector<bool> res = p->FillOnlineMusicTable(ui->musicList, ui->search->text());
     ui->musicList->show();
@@ -296,6 +350,7 @@ void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
     QImage a_img = img.scaled(238, 238, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->musicPic->setPixmap(QPixmap::fromImage(a_img));
     ui->musicPic->resize(a_img.width(), a_img.height());
+    changePlayMusicBtn();
 }
 
 void MainWindow::on_lastMusicBtn_clicked()
@@ -324,6 +379,7 @@ void MainWindow::on_musicListLocal_doubleClicked(const QModelIndex &index)
     Commander c;
     c.PlaySelectedMusic(index.row());
     pictolabel(":/icon/images/album.png",ui->musicPic,238,238);
+    changePlayMusicBtn();
 }
 
 void MainWindow::on_favoriteList_clicked(const QModelIndex &index)

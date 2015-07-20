@@ -63,6 +63,7 @@ private:
     void mouseMoveEvent(QMouseEvent*);
     void paintEvent(QPaintEvent *);
     void pictolabel(QString pic, QLabel *label, int, int);
+    void changePlayMusicBtn();
 };
 
 #endif // MAINWINDOW_H
