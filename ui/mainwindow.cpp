@@ -422,21 +422,34 @@ void MainWindow::UpdateTime(qint64 time)
 {
     QMap<qint64, QString>::iterator p;
     if  (!lrc_map.empty())
-    {
-        ui->lyricLabel1->setText("");
-        ui->lyricLabel2->setText("");
-        ui->lyricLabel3->setText("");
-        for (p = lrc_map.begin(); p != lrc_map.end(); p++)
+    {        
+        p = lrc_map.lowerBound(time);
+        if (p.key() == time)
         {
-            if (p.key() > time)
+            ui->lyricLabel2->setText(p.value());
+            if (p == lrc_map.begin())
+                ui->lyricLabel1->setText("");
+            else
+                ui->lyricLabel1->setText((p - 1).value());
+            if (p + 1 == lrc_map.end())
+                ui->lyricLabel3->setText("");
+            else
+                ui->lyricLabel3->setText((p + 1).value());
+        }else
+        {
+            if ( p  == lrc_map.begin() ||  p == lrc_map.begin() + 1)
+                ui->lyricLabel1->setText("");
+            else
             {
-                ui->lyricLabel3->setText(p.value());
-                p = lrc_map.erase(p);
-            }else
-            {
-                ui->lyricLabel1->setText(ui->lyricLabel2->text());
-                ui->lyricLabel2->setText(p.value());
+                QMap<qint64, QString>::iterator t;
+                t = p - 1;
+                ui->lyricLabel1->setText((t - 1).value());
             }
+            if (p == lrc_map.begin())
+                ui->lyricLabel2->setText("");
+            else
+                ui->lyricLabel2->setText((p -1).value());
+                ui->lyricLabel3->setText(p.value());
         }
     }
 }
