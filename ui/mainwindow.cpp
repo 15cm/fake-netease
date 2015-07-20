@@ -120,6 +120,10 @@ void MainWindow::initial()
     loop = 0;
 
     pictolabel(":/icon/images/album.png", ui->musicPic, 238, 238);
+
+    // table init
+    Commander c;
+    c.PlayerInit(ui->musicList  );
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -131,8 +135,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setFixedSize(this->width(), this->height());
     setWindowFlags(Qt::FramelessWindowHint);
-    Commander c;
-    c.PlayerInit();
+
 }
 
 MainWindow::~MainWindow()

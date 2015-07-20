@@ -20,10 +20,10 @@
 class Commander
 {
 public:
-    void PlayerInit()
+    void PlayerInit(QTableWidget *pTable)
     {
         IPlayerInit *tmp = new PlayerIniter;
-        tmp->PlayerInit();
+        tmp->PlayerInit(pTable);
         delete tmp;
     }
     void PlayerTerminate()

@@ -54,7 +54,7 @@ Player::Player(QObject* parent)
     });*/
 }
 
-void Player::Initialize()
+void Player::Initialize(QVector<OffMusic>& qvec)
 {
     MediaPlayerlist.setPlaybackMode(QMediaPlaylist::Loop);
     if(!&MediaPlayerlist)
@@ -63,7 +63,7 @@ void Player::Initialize()
     MediaPlayer.setPlaylist(&MediaPlayerlist);
     MediaPlayer.setVolume(20);
     //initilizeSong();
-    InitMediaList(&MediaPlayerlist);
+    InitMediaList(&MediaPlayerlist, qvec);
     connect(&MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
     {
        emit DurationChanged(duration);
