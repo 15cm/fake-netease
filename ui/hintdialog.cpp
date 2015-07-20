@@ -6,6 +6,7 @@ HintDialog::HintDialog(QWidget *parent) :
     ui(new Ui::HintDialog)
 {
     ui->setupUi(this);
+    setWindowTitle("Hint");
 }
 
 HintDialog::~HintDialog()
