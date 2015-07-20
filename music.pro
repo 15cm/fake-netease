@@ -18,7 +18,7 @@ SOURCES += ui/main.cpp\
         ui/mainwindow.cpp \
     local/player.cpp \
     3rdpart/taglib/src/mpeg/id3v2/id3v2frame.cpp \
-    hintdialog.cpp
+    ui/hintdialog.cpp
 
 HEADERS  += ui/mainwindow.h\
             src/local/OffMusic.h\
@@ -165,10 +165,10 @@ HEADERS  += ui/mainwindow.h\
     src/commander/interface/i_slider_bar_update.h \
     src/commander/implementation/slider_bar_updater.h \
     src/commander/interface/i_player_terminate.h \
-    hintdialog.h
+    ui/hintdialog.h
 
 FORMS    += ui/mainwindow.ui \
-    hintdialog.ui
+    ui/hintdialog.ui
 
 INCLUDEPATH += src/local
 INCLUDEPATH += src/online
