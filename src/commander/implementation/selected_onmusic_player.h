@@ -1,7 +1,7 @@
 #ifndef SELECTEDONMUSICPLAYER
 #define SELECTEDONMUSICPLAYER
 
-#include "iplayselectedonmusic.h"
+#include "i_play_selected_onmusic.h"
 #include "network.h"
 #include "onmusic.h"
 class SelectedOnMusicPlayer : public IPlaySelectedOnMusic

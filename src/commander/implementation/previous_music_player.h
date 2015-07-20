@@ -1,7 +1,7 @@
 #ifndef PREVIOUSMUSICPLAYER
 #define PREVIOUSMUSICPLAYER
 
-#include "ipreviousmusic.h"
+#include "i_previous_music.h"
 #include "player.h"
 class PreviousMusicPlayer : public IPreviousMusic
 {

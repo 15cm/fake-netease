@@ -1,7 +1,7 @@
 #ifndef CURTOTALDURATIONGETTER
 #define CURTOTALDURATIONGETTER
 
-#include "igetcurrenttotalduration.h"
+#include "i_get_current_total_duration.h"
 #include "player.h"
 
 class CurTotalDurationGetter : public IGetCurrentTotalDuration

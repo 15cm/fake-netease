@@ -1,7 +1,7 @@
 #ifndef LOCALMUSICFOLDERADDER
 #define LOCALMUSICFOLDERADDER
 
-#include "iaddlocalmusicfolder.h"
+#include "i_add_local_music_folder.h"
 #include "player.h"
 #include <QVector>
 #include "OffMusic.h"
