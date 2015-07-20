@@ -56,7 +56,6 @@ void MainWindow::initial()
     ui->musicList->verticalHeader()->setVisible(false);
     ui->musicList->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->musicList->setShowGrid(false);
-    ui->musicList->setFocusPolicy(Qt::NoFocus);
     ui->musicList->resize(QSize(this->width() - 242, this->height() - 182));
     ui->musicList->setEditTriggers(QTableWidget::NoEditTriggers);
     ui->musicList->horizontalHeader()->setStretchLastSection(true);
@@ -80,7 +79,6 @@ void MainWindow::initial()
     ui->musicListLocal->verticalHeader()->setVisible(false);
     ui->musicListLocal->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->musicListLocal->setShowGrid(false);
-    ui->musicListLocal->setFocusPolicy(Qt::NoFocus);
     ui->musicListLocal->resize(QSize(this->width() - 242, this->height() - 182));
     ui->musicListLocal->setEditTriggers(QTableWidget::NoEditTriggers);
     ui->musicListLocal->horizontalHeader()->setStretchLastSection(true);
@@ -152,6 +150,10 @@ MainWindow::MainWindow(QWidget *parent) :
     setFixedSize(this->width(), this->height());
     setWindowFlags(Qt::FramelessWindowHint);
 
+        ui->musicListLocal->setFocusPolicy(Qt::NoFocus);
+        ui->musicList->setFocusPolicy(Qt::NoFocus);
+        ui->search->setFocusPolicy(Qt::NoFocus);
+        ui->favoriteList->setFocusPolicy(Qt::NoFocus);
 }
 
 MainWindow::~MainWindow()
