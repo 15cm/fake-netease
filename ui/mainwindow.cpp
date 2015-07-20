@@ -102,6 +102,16 @@ void MainWindow::initial()
             if (j == 4)
                 ui->musicList->item(i, j)->setTextAlignment(Qt::AlignCenter);
         }
+    for (int i = 0; i < ui->musicListLocal->rowCount(); i++)
+        for (int j = 0; j < ui->musicListLocal->columnCount(); j++)
+        {
+            if (j > 0)
+                ui->musicListLocal->setItem(i, j, new QTableWidgetItem(" "));
+            else
+                ui->musicListLocal->setCellWidget(i, j, new QLabel);
+            if (j == 4)
+                ui->musicListLocal->item(i, j)->setTextAlignment(Qt::AlignCenter);
+        }
     ui->musicList->hide();
     ui->musicListLocal->hide();
 
@@ -134,6 +144,11 @@ MainWindow::~MainWindow()
         for (int j = 1; j < ui->musicList->columnCount(); j++)
         {
             delete ui->musicList->item(i, j);
+        }
+    for (int i = 0; i < ui->musicListLocal->rowCount(); i++)
+        for (int j = 1; j < ui->musicListLocal->columnCount(); j++)
+        {
+            delete ui->musicListLocal->item(i, j);
         }
     delete ui;
 }
