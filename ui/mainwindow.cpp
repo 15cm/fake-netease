@@ -123,7 +123,8 @@ void MainWindow::initial()
 
     // table init
     Commander c;
-    c.PlayerInit(ui->musicList  );
+    c.PlayerInit(ui->musicListLocal);
+    ui->musicListLocal->show();
 }
 
 MainWindow::MainWindow(QWidget *parent) :
