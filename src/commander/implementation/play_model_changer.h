@@ -5,7 +5,7 @@
 
 class PlayModleChanger : public IChangePlayModle
 {
-    void ChangePlayModle()
+    void ChangePlayModle(int state)
     {
     }
 };

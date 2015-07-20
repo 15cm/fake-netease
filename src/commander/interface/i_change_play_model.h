@@ -4,7 +4,7 @@
 class IChangePlayModle
 {
 public:
-    virtual void ChangePlayModle() = 0;
+    virtual void ChangePlayModle(int state) = 0;
 };
 
 #endif // ICHANGEPLAYMODEL

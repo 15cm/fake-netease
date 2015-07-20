@@ -17,6 +17,8 @@
 #include "player_initer.h"
 #include "player_terminater.h"
 #include "slider_bar_updater.h"
+#include "selected_offmusic_deleter.h"
+#include "play_model_changer.h"
 // Commander
 class Commander
 {
@@ -115,6 +117,19 @@ public:
         tmp->SliderBarUpdate(value);
         delete tmp;
     }
+    void DeleteSelectedOffMusic(int index)
+    {
+        IDelteSelectedOffMusic *tmp = new SelectedOffMusicDeleter;
+        tmp->DeleteSelectedOffMusic(index);
+        delete tmp;
+    }
+    void ChangePlayModel(int state)
+    {
+        IChangePlayModle *p = new PlayModleChanger;
+        p->ChangePlayModle(state);
+        delete p;
+    }
+
 
 
 
