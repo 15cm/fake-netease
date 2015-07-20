@@ -8,7 +8,7 @@
 class LocalMusicAdder: public IAddLocalMusic
 {
 public:
-    void AddLocalMusic(QTableWidget *pTable)
+    void AddLocalMusic(QTableWidget *pTable, QImage img)
     {
         try
         {
@@ -17,8 +17,15 @@ public:
             int count;
             list.AddLocalMusic(tmpMusic,count);
             int row = count - 1;
-            for(int i = 1; i < 5; i ++){
+            for(int i = 0; i < 5; i ++){
                 switch (i) {
+                case 0:{
+                    QLabel *pp = (QLabel*)(pTable->cellWidget(row,i));
+                    pp->setPixmap(QPixmap::fromImage(img));
+                    QLabel* pp2 = (QLabel*)(pTable->cellWidget(row,i));
+                    pp2->resize(25,25);
+                }
+                    break;
                 case 1:
                     pTable->item(row,i)->setText(tmpMusic.GetName());
                     break;

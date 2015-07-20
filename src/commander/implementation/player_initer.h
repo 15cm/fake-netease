@@ -6,14 +6,21 @@
 class PlayerIniter : public IPlayerInit
 {
 public:
-    void PlayerInit(QTableWidget *pTable)
+    void PlayerInit(QTableWidget *pTable,QImage img)
     {
         Player list;
         QVector<OffMusic> offList;
         list.Initialize(offList);
         for(int row = 0; row < offList.size(); row ++)
-            for(int col = 1; col < 5; col ++){
+            for(int col = 0; col < 5; col ++){
                 switch(col){
+                case 0:{
+                    QLabel *pp = (QLabel*)(pTable->cellWidget(row,col));
+                    pp->setPixmap(QPixmap::fromImage(img));
+                    QLabel* pp2 = (QLabel*)(pTable->cellWidget(row,col));
+                    pp2->resize(25,25);
+                }
+                break;
                 case 1:
                     pTable->item(row,col)->setText(offList[row].GetName());
                     break;
