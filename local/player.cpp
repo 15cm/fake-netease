@@ -182,6 +182,7 @@ QVector<OffMusic> Player::AddLocalMusicFolder()
 //play a new music
 void Player::playNewMusic(int Index){
     qDebug() << "before set" ;
+    MediaPlayer.setPlaylist(&MediaPlayerlist);
     MediaPlayerlist.setCurrentIndex(Index);
     qDebug() << MediaPlayer.currentMedia().canonicalUrl();
     QUrl url = MediaPlayer.currentMedia().canonicalUrl();
@@ -254,8 +255,7 @@ bool Player::InList(QUrl url)
 void Player::PlayOnlineMusic(QUrl url)
 {
     qDebug() << "set before" << url;
-    QUrl url2("http://m1.music.126.net/5RWxppxy9xFV2pj9qS-XQg==/5650390255212947.mp3");
-    MediaPlayer.setMedia(url2);
+    MediaPlayer.setMedia(url);
     qDebug() << "after set" << url;
     MediaPlayer.play();
     qDebug() << "play online music" << url;

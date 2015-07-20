@@ -27,6 +27,15 @@ public:
         mp3Url = url;
         artist = QString(ref.tag()->artist().toCString());
         album = QString(ref.tag()->album().toCString());
+        if(name.isEmpty())
+        {
+            QString qstr = url.fileName();
+            QStringList list = qstr.split(".");
+            if(!list.isEmpty())
+                name = list.first();
+            else
+                name = "UNKNOWN";
+        }
     }
 
     virtual ~OffMusic(){}
