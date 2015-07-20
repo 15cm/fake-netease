@@ -302,6 +302,19 @@
      <string>00:00</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="addMusicFolderBtn">
+    <property name="geometry">
+     <rect>
+      <x>569</x>
+      <y>47</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

@@ -54,6 +54,8 @@ private slots:
     void on_favoriteList_clicked(const QModelIndex &index);
 
 
+    void on_addMusicFolderBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QPoint dragPosition;   bool sta;
@@ -63,6 +65,7 @@ private:
     void mouseMoveEvent(QMouseEvent*);
     void paintEvent(QPaintEvent *);
     void pictolabel(QString pic, QLabel *label, int, int);
+    void changePlayMusicBtn();
 };
 
 #endif // MAINWINDOW_H
