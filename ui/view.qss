@@ -363,3 +363,9 @@ QLabel#position
 {
     color:white;
 }
+
+/*musicName*/
+QLabel#musicName
+{
+    color:white;
+}

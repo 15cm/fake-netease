@@ -39,6 +39,7 @@ void MainWindow::initial()
     ui->soundSlider->setMinimum(0);
     ui->soundSlider->setMaximum(100);
     ui->soundSlider->setValue(20);
+
     //在线列表设置
     ui->musicList->setRowCount(50);
     ui->musicList->setColumnCount(5);
@@ -61,6 +62,7 @@ void MainWindow::initial()
     ui->musicList->horizontalHeader()->setStretchLastSection(true);
     ui->musicList->setAlternatingRowColors(true);
     ui->musicList->horizontalHeader()->setHighlightSections(false);
+
     //local列表设置
     ui->musicListLocal->setRowCount(50);
     ui->musicListLocal->setColumnCount(5);
@@ -137,6 +139,14 @@ void MainWindow::initial()
        ui->musicSlider->update();
     });
 
+    //lyric table
+    ui->lyricLabel1->setAlignment(Qt::AlignCenter);
+    ui->lyricLabel1->hide();
+    ui->lyricLabel2->setAlignment(Qt::AlignCenter);
+    ui->lyricLabel2->hide();
+    ui->lyricLabel3->setAlignment(Qt::AlignCenter);
+    ui->lyricLabel3->hide();
+    lrcState = 0;
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -346,9 +356,8 @@ void MainWindow::on_playMethod_clicked()
 void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
 {
    Commander p;
-   QString s;
    QImage img;
-   p.PlaySelectedOnMusic(index.row(), s, img);
+   p.PlaySelectedOnMusic(index.row(), lrc, img);
     QImage a_img = img.scaled(238, 238, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->musicPic->setPixmap(QPixmap::fromImage(a_img));
     ui->musicPic->resize(a_img.width(), a_img.height());
@@ -415,4 +424,21 @@ void MainWindow::on_musicListLocal_clicked(const QModelIndex &index)
         Commander c;
         c.DeleteSelectedOffMusic(index.row(),ui->musicListLocal);
     }
+}
+
+void MainWindow::on_lyric_clicked()
+{
+    if (lrcState == 0)
+    {
+        ui->lyricLabel1->hide();
+        ui->lyricLabel2->hide();
+        ui->lyricLabel3->hide();
+    }
+    else
+    {
+        ui->lyricLabel1->show();
+        ui->lyricLabel2->show();
+        ui->lyricLabel3->show();
+    }
+    lrcState ^= 1;
 }

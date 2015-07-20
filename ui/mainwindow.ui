@@ -280,7 +280,7 @@
     <property name="geometry">
      <rect>
       <x>1</x>
-      <y>391</y>
+      <y>392</y>
       <width>171</width>
       <height>171</height>
      </rect>
@@ -308,6 +308,58 @@
       <x>569</x>
       <y>47</y>
       <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lyricLabel2">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>330</y>
+      <width>201</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lyricLabel1">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>300</y>
+      <width>201</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lyricLabel3">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>360</y>
+      <width>201</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="musicName">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>637</y>
+      <width>66</width>
       <height>21</height>
      </rect>
     </property>

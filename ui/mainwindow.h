@@ -58,9 +58,13 @@ private slots:
 
     void on_musicListLocal_clicked(const QModelIndex &index);
 
+    void on_lyric_clicked();
+
 private:
     Ui::MainWindow *ui;
     QPoint dragPosition;   bool sta;
+    QString lrc;
+    int lrcState;
     int loop;
     //Player list;
     void mousePressEvent(QMouseEvent*);
