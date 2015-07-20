@@ -14,9 +14,9 @@ public:
         {
             Player list;
             OffMusic tmpMusic;
-            int index;
-            list.AddLocalMusic(tmpMusic,index);
-            int row = index - 1;
+            int count;
+            list.AddLocalMusic(tmpMusic,count);
+            int row = count - 1;
             for(int i = 1; i < 5; i ++){
                 switch (i) {
                 case 1:
