@@ -65,13 +65,13 @@ void Player::Initialize()
     //initilizeSong();
     InitMediaList(&MediaPlayerlist);
     connect(&MediaPlayer,&QMediaPlayer::durationChanged, [=](qint64 duration)
-        {
-           emit DurationChanged(duration);
-        });
-        connect(&MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
-        {
-            emit PositionChanged(progress);
-        });
+    {
+       emit DurationChanged(duration);
+    });
+    connect(&MediaPlayer, &QMediaPlayer::positionChanged, [=](qint64 progress)
+    {
+        emit PositionChanged(progress);
+    });
 }
 
 Player::~Player(){}
@@ -128,7 +128,7 @@ void Player::SetPositon(qint64 progress)
 }
 
 //add a musci to the list
-OffMusic Player::AddLocalMusic()
+void Player::AddLocalMusic(OffMusic &offmusic, int &index)
 {
     //add to list
     QUrl fileurl = QFileDialog::getOpenFileUrl(0, QObject::tr("Open Music File"), QObject::tr("."), QObject::tr("mp3 music files(*.mp3)"));
@@ -141,8 +141,8 @@ OffMusic Player::AddLocalMusic()
         throw AddToListException();
     qDebug() << "media count " << MediaPlayerlist.mediaCount();
     OffMusic omus(fileurl);
-    return omus;
-
+    offmusic = omus;
+    index = MediaPlayerlist.currentIndex();
 }
 
 QVector<OffMusic> Player::AddLocalMusicFolder()
@@ -235,7 +235,8 @@ void Player::Release(){
     SyncMediaList(&MediaPlayerlist);
 }
 
-bool Player::InList(QUrl url){
+bool Player::InList(QUrl url)
+{
     int cnt = MediaPlayerlist.mediaCount();
     for( int index = 0 ; index < cnt ; index++)
     {
@@ -245,4 +246,10 @@ bool Player::InList(QUrl url){
             return true;
     }
     return false;
+}
+
+void Player::PlayOnlineMusic(const QUrl &url)
+{
+    MediaPlayer.setMedia(url);
+    MediaPlayer.play();
 }
