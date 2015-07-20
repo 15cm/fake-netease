@@ -252,8 +252,9 @@ void MainWindow::on_soundSlider_valueChanged(int value)
 void MainWindow::on_musicList_clicked(const QModelIndex &index)
 {
    // ui->musicList->selectRow(index.row());
-    if (index.column() == 0)
-        pictolabel(":/icon/images/collect.png", (QLabel*)ui->musicList->cellWidget(index.row(), 0), 25, 25);
+    if (index.row() == 0)
+    {
+    }
 }
 
 void MainWindow::on_search_returnPressed()
@@ -263,6 +264,7 @@ void MainWindow::on_search_returnPressed()
     QVector<bool> res = p->FillOnlineMusicTable(ui->musicList, ui->search->text());
     ui->musicList->show();
     ui->musicListLocal->hide();
+    ui->favoriteList->setCurrentRow(2);
 }
 
 void MainWindow::on_playMethod_clicked()
@@ -303,4 +305,31 @@ void MainWindow::on_nextMusicBtn_clicked()
 {
     Commander c;
     c.NextMusic();
+}
+
+void MainWindow::on_musicSlider_valueChanged(int value)
+{
+    /*Player list;
+    list.SetPositon((qint64)value);*/
+}
+
+void MainWindow::on_musicListLocal_doubleClicked(const QModelIndex &index)
+{
+    Commander c;
+    c.PlaySelectedMusic(index.row());
+}
+
+void MainWindow::on_favoriteList_clicked(const QModelIndex &index)
+{
+    qDebug() << index.row() << endl;
+   if (index.row() == 1)
+   {
+       ui->musicListLocal->show();
+       ui->musicList->hide();
+   }else
+   if (index.row() == 2)
+   {
+       ui->musicList->show();
+       ui->musicListLocal->hide();
+   }
 }

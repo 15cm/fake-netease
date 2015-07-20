@@ -333,3 +333,9 @@ QPushButton#lyric
     outline:0px;
     color:white;
 }
+
+/*currentposition*/
+QLabel#position
+{
+    color:white;
+}
