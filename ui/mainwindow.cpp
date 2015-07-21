@@ -138,11 +138,11 @@ void MainWindow::initial()
        ui->position->setText(ss);
        ui->musicSlider->update();
        UpdateTime(progress);
-       qint64 duration = Player::MediaPlayer.duration();
-       if(duration > 0 && ((progress + 1000) > duration)){
-           Commander c;
-           c.NextMusic();
-       }
+//       qint64 duration = Player::MediaPlayer.duration();
+//       if(duration > 0 && ((progress + 2000) > duration)){
+//           Commander c;
+//           c.NextMusic();
+//       }
     });
     connect(&Player::MediaPlayer, &QMediaPlayer::positionChanged, this, &MainWindow::UpdateTime);
     connect(&Player::MediaPlayerlist, &QMediaPlaylist::currentIndexChanged, ui->musicName, [=](int index){
