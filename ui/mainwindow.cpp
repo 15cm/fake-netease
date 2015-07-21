@@ -557,12 +557,14 @@ void MainWindow::on_lyric_clicked()
         ui->lyricLabel1->hide();
         ui->lyricLabel2->hide();
         ui->lyricLabel3->hide();
+        ui->lyric->setStyleSheet("color:white;");
     }
     else
     {
         ui->lyricLabel1->show();
         ui->lyricLabel2->show();
         ui->lyricLabel3->show();
+        ui->lyric->setStyleSheet("color:black;");
     }
     lrcState ^= 1;
 }
