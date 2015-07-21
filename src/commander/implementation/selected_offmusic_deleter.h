@@ -10,9 +10,9 @@ public:
     void DeleteSelectedOffMusic(int index,QTableWidget *pTable)
     {
         Player list;
-        int count;
+        int count = Player::MediaPlayerlist.mediaCount() - 1;
 
-        list.DeleteFromList(index, count);
+//        list.DeleteFromList(index, count);
         for(int row = index + 1; row <= count; row ++)
             for(int col = 1; col < 5; col ++)
                 pTable->item(row - 1,col)->setText(pTable->item(row, col)->text());

@@ -137,7 +137,14 @@ void MainWindow::initial()
        ss.remove(0, 3);
        ui->position->setText(ss);
        ui->musicSlider->update();
+       UpdateTime(progress);
+       qint64 duration = Player::MediaPlayer.duration();
+       if(duration > 0 && ((progress + 1000) > duration)){
+           Commander c;
+           c.NextMusic();
+       }
     });
+    connect(&Player::MediaPlayer, &QMediaPlayer::positionChanged, this, &MainWindow::UpdateTime);
     connect(&Player::MediaPlayerlist, &QMediaPlaylist::currentIndexChanged, ui->musicName, [=](int index){
         currentIndex = index;
        ui->musicName->setText(ui->musicListLocal->item(index, 1)->text());
@@ -150,8 +157,10 @@ void MainWindow::initial()
         ui->musicPic->setPixmap(QPixmap::fromImage(a_img));
         ui->musicPic->resize(a_img.width(), a_img.height());
        deal_lrc();
+    qDebug() << "Bug index: " << index << endl;
     });
-    connect(&Player::MediaPlayer, &QMediaPlayer::positionChanged, this, &MainWindow::UpdateTime);
+    qDebug() << "Bug index out: " << index << endl;
+
 
     //lyric table
     ui->lyricLabel1->setAlignment(Qt::AlignCenter);
@@ -426,8 +435,8 @@ void MainWindow::deal_lrc()
                              + tr(" --- 歌词文件内容错误！"));
                 return;
             }*/
-            for (QMap<qint64, QString>::iterator p = lrc_map.begin(); p != lrc_map.end(); p++)
-                qDebug() << p.key() << ' ' << p.value() << endl;
+//            for (QMap<qint64, QString>::iterator p = lrc_map.begin(); p != lrc_map.end(); p++)
+//                qDebug() << p.key() << ' ' << p.value() << endl;
     }
 }
 
@@ -512,6 +521,7 @@ void MainWindow::on_musicSlider_valueChanged(int value)
 
 void MainWindow::on_musicListLocal_doubleClicked(const QModelIndex &index)
 {
+    qDebug() << "index(local double click)" << index.row();
     ui->lyricLabel1->setText("");
     ui->lyricLabel2->setText("");
     ui->lyricLabel3->setText("");
@@ -546,10 +556,26 @@ void MainWindow::on_addMusicFolderBtn_clicked()
 
 void MainWindow::on_musicListLocal_clicked(const QModelIndex &index)
 {
-    if (index.row() > currentIndex && index.column() == 0)
+    if (index.column() == 0)
     {
+        disconnect(&Player::MediaPlayerlist,0,0,0);
         Commander c;
         c.DeleteSelectedOffMusic(index.row(),ui->musicListLocal);
+        Player::MediaPlayerlist.removeMedia(index.row());
+        connect(&Player::MediaPlayerlist, &QMediaPlaylist::currentIndexChanged, ui->musicName, [=](int index){
+                currentIndex = index;
+               ui->musicName->setText(ui->musicListLocal->item(index, 1)->text());
+               ui->musicListLocal->selectRow(index);
+               QString name = ui->musicName->text();
+               Commander c;
+               QImage img;
+               c.GetMusicInfo(name,lrc,img);
+                QImage a_img = img.scaled(238, 238, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+                ui->musicPic->setPixmap(QPixmap::fromImage(a_img));
+                ui->musicPic->resize(a_img.width(), a_img.height());
+               deal_lrc();
+            });
+            qDebug() << "Bug index: " << index.row() << endl;
     }
 }
 

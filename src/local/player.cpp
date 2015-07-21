@@ -53,7 +53,7 @@ void Player::Initialize(QVector<OffMusic> &qvec)
         qDebug() << "NULL";
     //set again
     MediaPlayer.setPlaylist(&MediaPlayerlist);
-    MediaPlayer.setVolume(50);
+    MediaPlayer.setVolume(20);
     //initilizeSong();
     InitMediaList(&MediaPlayerlist, qvec);
 
@@ -158,15 +158,13 @@ QVector<OffMusic> Player::AddLocalMusicFolder(int &MusicCount)
 
 //play a new music
 void Player::playNewMusic(int Index){
-    qDebug() << "index in play new" <<  Index << endl;
     if(Index >= MediaPlayerlist.mediaCount())
     {
         return;
     }
     qDebug() << "before set" ;
-//    MediaPlayer.setPlaylist(&MediaPlayerlist);
+    MediaPlayer.setPlaylist(&MediaPlayerlist);
     MediaPlayerlist.setCurrentIndex(Index);
-    qDebug() << "index in play new after set" << MediaPlayerlist.currentIndex();
     qDebug() << MediaPlayer.currentMedia().canonicalUrl();
     QUrl url = MediaPlayer.currentMedia().canonicalUrl();
     if(!QFile::exists(url.toLocalFile()))
@@ -289,5 +287,4 @@ void Player::PlayOnlineMusic(QUrl url)
     qDebug() << "after set" << url;
     MediaPlayer.play();
     qDebug() << "play online music" << url;
-    MediaPlayer.setPlaylist(&MediaPlayerlist);
 }
