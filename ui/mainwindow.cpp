@@ -38,7 +38,7 @@ void MainWindow::initial()
     //音量调设置
     ui->soundSlider->setMinimum(0);
     ui->soundSlider->setMaximum(100);
-    ui->soundSlider->setValue(20);
+    ui->soundSlider->setValue(50);
 
     //在线列表设置
     ui->musicList->setRowCount(50);
@@ -91,7 +91,7 @@ void MainWindow::initial()
     ui->musicListLocal->setFrameShape(QListWidget::NoFrame);
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/favorite.png")), QObject::tr("收藏歌曲")));
     ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/localList.png")), QObject::tr("本地列表")));
-    ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/playList.png")), QObject::tr("播放列表")));
+    ui->favoriteList->addItem(new QListWidgetItem(QIcon(QObject::tr(":/icon/images/playList.png")), QObject::tr("在线列表")));
     for (int i = 0; i < ui->musicList->rowCount(); i++)
         for (int j = 0; j < ui->musicList->columnCount(); j++)
         {

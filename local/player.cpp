@@ -53,7 +53,7 @@ void Player::Initialize(QVector<OffMusic> &qvec)
         qDebug() << "NULL";
     //set again
 //    MediaPlayer.setPlaylist(&MediaPlayerlist);
-    MediaPlayer.setVolume(20);
+    MediaPlayer.setVolume(50);
     //initilizeSong();
     InitMediaList(&MediaPlayerlist, qvec);
 
