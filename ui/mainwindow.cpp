@@ -375,8 +375,11 @@ void MainWindow::deal_lrc()
 {
     if (lrc[0] != '[')
     {
+        lrc_map.clear();
         lrc = "";
+        ui->lyricLabel1->setText("");
         ui->lyricLabel2->setText(tr("No Lyric File"));
+        ui->lyricLabel3->setText("");
     }
     else
     {
@@ -477,9 +480,6 @@ void MainWindow::UpdateTime(qint64 time)
 
 void MainWindow::on_musicList_doubleClicked(const QModelIndex &index)
 {
-    ui->lyricLabel1->setText("");
-    ui->lyricLabel2->setText("");
-    ui->lyricLabel3->setText("");
    Commander p;
    QImage img;
    QString ss;
@@ -512,6 +512,9 @@ void MainWindow::on_musicSlider_valueChanged(int value)
 
 void MainWindow::on_musicListLocal_doubleClicked(const QModelIndex &index)
 {
+    ui->lyricLabel1->setText("");
+    ui->lyricLabel2->setText("");
+    ui->lyricLabel3->setText("");
     Commander c;
     c.PlaySelectedMusic(index.row());
     //pictolabel(":/icon/images/album.png",ui->musicPic,238,238);
@@ -543,7 +546,6 @@ void MainWindow::on_addMusicFolderBtn_clicked()
 
 void MainWindow::on_musicListLocal_clicked(const QModelIndex &index)
 {
-
     if (index.row() > currentIndex && index.column() == 0)
     {
         Commander c;
@@ -553,7 +555,7 @@ void MainWindow::on_musicListLocal_clicked(const QModelIndex &index)
 
 void MainWindow::on_lyric_clicked()
 {
-    if (lrcState == 0)
+    if (lrcState == 1)
     {
         ui->lyricLabel1->hide();
         ui->lyricLabel2->hide();
