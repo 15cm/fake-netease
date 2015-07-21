@@ -75,6 +75,7 @@ private:
     void paintEvent(QPaintEvent *);
     void pictolabel(QString pic, QLabel *label, int, int);
     void changePlayMusicBtn();
+    int currentIndex;
 };
 
 #endif // MAINWINDOW_H

@@ -139,6 +139,7 @@ void MainWindow::initial()
        ui->musicSlider->update();
     });
     connect(&Player::MediaPlayerlist, &QMediaPlaylist::currentIndexChanged, ui->musicName, [=](int index){
+        currentIndex = index;
        ui->musicName->setText(ui->musicListLocal->item(index, 1)->text());
        ui->musicListLocal->selectRow(index);
        QString name = ui->musicName->text();
@@ -543,7 +544,7 @@ void MainWindow::on_addMusicFolderBtn_clicked()
 void MainWindow::on_musicListLocal_clicked(const QModelIndex &index)
 {
 
-    if (index.column() == 0)
+    if (index.row() > currentIndex && index.column() == 0)
     {
         Commander c;
         c.DeleteSelectedOffMusic(index.row(),ui->musicListLocal);

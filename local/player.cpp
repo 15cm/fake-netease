@@ -52,7 +52,7 @@ void Player::Initialize(QVector<OffMusic> &qvec)
     if(!&MediaPlayerlist)
         qDebug() << "NULL";
     //set again
-    MediaPlayer.setPlaylist(&MediaPlayerlist);
+//    MediaPlayer.setPlaylist(&MediaPlayerlist);
     MediaPlayer.setVolume(20);
     //initilizeSong();
     InitMediaList(&MediaPlayerlist, qvec);
@@ -163,10 +163,12 @@ void Player::playNewMusic(int Index){
         return;
     }
     qDebug() << "before set" ;
-    MediaPlayer.setPlaylist(&MediaPlayerlist);
+//    MediaPlayer.setPlaylist(&MediaPlayerlist);
     MediaPlayerlist.setCurrentIndex(Index);
     qDebug() << MediaPlayer.currentMedia().canonicalUrl();
-    QUrl url = MediaPlayer.currentMedia().canonicalUrl();
+//    QUrl url = MediaPlayer.currentMedia().canonicalUrl();
+    QUrl url = MediaPlayerlist.media(Index).canonicalUrl();
+    MediaPlayer.setMedia(url);
     if(!QFile::exists(url.toLocalFile()))
     {
         try
