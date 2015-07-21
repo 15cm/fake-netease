@@ -11,6 +11,7 @@ public:
     {
         Player list;
         int count;
+
         list.DeleteFromList(index, count);
         for(int row = index + 1; row <= count; row ++)
             for(int col = 1; col < 5; col ++)

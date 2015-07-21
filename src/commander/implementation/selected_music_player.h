@@ -3,6 +3,7 @@
 
 #include "i_play_selected_music.h"
 #include "player.h"
+#include "network.h"
 class SelectedMusicPlayer :  public IPlaySelectedMusic
 {
 signals:

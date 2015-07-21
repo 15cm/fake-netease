@@ -165,7 +165,9 @@ HEADERS  += ui/mainwindow.h\
     src/commander/interface/i_slider_bar_update.h \
     src/commander/implementation/slider_bar_updater.h \
     src/commander/interface/i_player_terminate.h \
-    ui/hintdialog.h
+    ui/hintdialog.h \
+    src/commander/implementation/music_info_getter.h \
+    src/commander/interface/i_get_music_info.h
 
 FORMS    += ui/mainwindow.ui \
     ui/hintdialog.ui

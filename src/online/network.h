@@ -163,6 +163,18 @@ public:
             vecOnMusic.clear();
         }
     }
+    void MusicInfo(QString &id, QUrl &imgUrl)
+    {
+        this->MakePostData();
+        Search::SetApiForSearch();
+        this->Dosearch();
+        QJsonObject resultObj = searchObj["result"].toObject();
+        QJsonArray songArray = resultObj["songs"].toArray();
+        QJsonObject song = songArray.at(0).toObject();
+        id = QString::number(song["id"].toInt(),10);
+        QJsonObject albumObj = song["album"].toObject();
+        imgUrl = QUrl(albumObj["picUrl"].toString());
+    }
 };
 
 class LrcSearch : public Search

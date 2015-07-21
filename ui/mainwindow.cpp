@@ -141,6 +141,14 @@ void MainWindow::initial()
     connect(&Player::MediaPlayerlist, &QMediaPlaylist::currentIndexChanged, ui->musicName, [=](int index){
        ui->musicName->setText(ui->musicListLocal->item(index, 1)->text());
        ui->musicListLocal->selectRow(index);
+       QString name = ui->musicName->text();
+       Commander c;
+       QImage img;
+       c.GetMusicInfo(name,lrc,img);
+        QImage a_img = img.scaled(238, 238, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        ui->musicPic->setPixmap(QPixmap::fromImage(a_img));
+        ui->musicPic->resize(a_img.width(), a_img.height());
+       deal_lrc();
     });
     connect(&Player::MediaPlayer, &QMediaPlayer::positionChanged, this, &MainWindow::UpdateTime);
 
@@ -505,7 +513,7 @@ void MainWindow::on_musicListLocal_doubleClicked(const QModelIndex &index)
 {
     Commander c;
     c.PlaySelectedMusic(index.row());
-    pictolabel(":/icon/images/album.png",ui->musicPic,238,238);
+    //pictolabel(":/icon/images/album.png",ui->musicPic,238,238);
     changePlayMusicBtn();
 }
 

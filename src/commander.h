@@ -19,6 +19,7 @@
 #include "slider_bar_updater.h"
 #include "selected_offmusic_deleter.h"
 #include "play_model_changer.h"
+#include "music_info_getter.h"
 // Commander
 class Commander
 {
@@ -122,6 +123,12 @@ public:
     {
         IChangePlayModle *p = new PlayModleChanger;
         p->ChangePlayModle(state);
+        delete p;
+    }
+    void GetMusicInfo(QString name,QString &lrc,QImage &img)
+    {
+        IGetMusicInfo *p = new MusicInfoGetter;
+        p->GetMusicInfo(name,lrc,img);
         delete p;
     }
 
